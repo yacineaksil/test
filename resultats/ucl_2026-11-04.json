@@ -1,0 +1,1071 @@
+{
+  "date": "2026-11-04",
+  "competition": "UEFA Champions League",
+  "source": "ESPN",
+  "matchs": [
+    {
+      "id": "401915383",
+      "coup_envoi_utc": "2026-11-04T17:45:00Z",
+      "coup_envoi_paris": "2026-11-04 18:45",
+      "heure_paris": "18h45",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "887",
+        "nom": "AEK Athens",
+        "abrev": "AEK",
+        "score": 2,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": false
+      },
+      "exterieur": {
+        "id": "86",
+        "nom": "Real Madrid",
+        "abrev": "RMA",
+        "score": 3,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": true
+      },
+      "buts": [
+        {
+          "minute": "12'",
+          "periode": 1,
+          "equipe": "AEK Athens",
+          "equipe_id": "887",
+          "buteur": "Aboubakary Koita",
+          "passeur": "Luka Jovic",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "32'",
+          "periode": 1,
+          "equipe": "Real Madrid",
+          "equipe_id": "86",
+          "buteur": "Jude Bellingham",
+          "passeur": "Marc Cucurella",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "75'",
+          "periode": 2,
+          "equipe": "AEK Athens",
+          "equipe_id": "887",
+          "buteur": "Stavros Pilios",
+          "passeur": "Aboubakary Koita",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "78'",
+          "periode": 2,
+          "equipe": "Real Madrid",
+          "equipe_id": "86",
+          "buteur": "Kylian Mbappé",
+          "passeur": "Denzel Dumfries",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "90'+2'",
+          "periode": 2,
+          "equipe": "Real Madrid",
+          "equipe_id": "86",
+          "buteur": "Federico Valverde",
+          "passeur": "Brahim Díaz",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "34'",
+          "equipe": "AEK Athens",
+          "joueur": "Kervin Arriaga",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "65'",
+          "equipe": "Real Madrid",
+          "joueur": "Marc Cucurella",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "90'+5'",
+          "equipe": "AEK Athens",
+          "joueur": "Aboubakary Koita",
+          "couleur": "rouge",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "OPAP Arena",
+      "ville": "Athens",
+      "affluence": 30368,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915383/real-madrid-aek-athens"
+    },
+    {
+      "id": "401915382",
+      "coup_envoi_utc": "2026-11-04T17:45:00Z",
+      "coup_envoi_paris": "2026-11-04 18:45",
+      "heure_paris": "18h45",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "436",
+        "nom": "Fenerbahce",
+        "abrev": "FEN",
+        "score": 3,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": true
+      },
+      "exterieur": {
+        "id": "364",
+        "nom": "Liverpool",
+        "abrev": "LIV",
+        "score": 2,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": false
+      },
+      "buts": [
+        {
+          "minute": "25'",
+          "periode": 1,
+          "equipe": "Liverpool",
+          "equipe_id": "364",
+          "buteur": "Trey Nyoni",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "29'",
+          "periode": 1,
+          "equipe": "Fenerbahce",
+          "equipe_id": "436",
+          "buteur": "Mason Greenwood",
+          "passeur": null,
+          "type": "normal",
+          "precision": "sur coup franc"
+        },
+        {
+          "minute": "69'",
+          "periode": 2,
+          "equipe": "Liverpool",
+          "equipe_id": "364",
+          "buteur": "Alexander Isak",
+          "passeur": "Cody Gakpo",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "73'",
+          "periode": 2,
+          "equipe": "Fenerbahce",
+          "equipe_id": "436",
+          "buteur": "Archie Brown",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "79'",
+          "periode": 2,
+          "equipe": "Fenerbahce",
+          "equipe_id": "436",
+          "buteur": "Vedat Muriqi",
+          "passeur": "Archie Brown",
+          "type": "normal",
+          "precision": "de la tête"
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "25'",
+          "equipe": "Fenerbahce",
+          "joueur": "Archie Brown",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "85'",
+          "equipe": "Liverpool",
+          "joueur": "Alexis Mac Allister",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "Şükrü Saracoğlu Stadium",
+      "ville": "Istanbul",
+      "affluence": 0,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915382/liverpool-fenerbahce"
+    },
+    {
+      "id": "401915304",
+      "coup_envoi_utc": "2026-11-04T20:00:00Z",
+      "coup_envoi_paris": "2026-11-04 21:00",
+      "heure_paris": "21h00",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "124",
+        "nom": "Borussia Dortmund",
+        "abrev": "DOR",
+        "score": 2,
+        "mi_temps": 0,
+        "tab": null,
+        "vainqueur": true
+      },
+      "exterieur": {
+        "id": "244",
+        "nom": "Real Betis",
+        "abrev": "BET",
+        "score": 1,
+        "mi_temps": 0,
+        "tab": null,
+        "vainqueur": false
+      },
+      "buts": [
+        {
+          "minute": "49'",
+          "periode": 2,
+          "equipe": "Borussia Dortmund",
+          "equipe_id": "124",
+          "buteur": "Fábio Silva",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "67'",
+          "periode": 2,
+          "equipe": "Real Betis",
+          "equipe_id": "244",
+          "buteur": "Aitor Ruibal",
+          "passeur": "Abde Ezzalzouli",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "72'",
+          "periode": 2,
+          "equipe": "Borussia Dortmund",
+          "equipe_id": "124",
+          "buteur": "Konstantinos Karetsas",
+          "passeur": "Fábio Silva",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "38'",
+          "equipe": "Borussia Dortmund",
+          "joueur": "Julian Ryerson",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "44'",
+          "equipe": "Real Betis",
+          "joueur": "Natan",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "45'+4'",
+          "equipe": "Borussia Dortmund",
+          "joueur": "Ramy Bensebaini",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "64'",
+          "equipe": "Real Betis",
+          "joueur": "Valentín Gómez",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "78'",
+          "equipe": "Borussia Dortmund",
+          "joueur": "Joey Veerman",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "79'",
+          "equipe": "Borussia Dortmund",
+          "joueur": "Jobe Bellingham",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "88'",
+          "equipe": "Real Betis",
+          "joueur": "Ángel Ortiz",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "90'+3'",
+          "equipe": "Real Betis",
+          "joueur": "Isco",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "Signal Iduna Park",
+      "ville": "Aue",
+      "affluence": 81365,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915304/real-betis-borussia-dortmund"
+    },
+    {
+      "id": "401915301",
+      "coup_envoi_utc": "2026-11-04T20:00:00Z",
+      "coup_envoi_paris": "2026-11-04 21:00",
+      "heure_paris": "21h00",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "437",
+        "nom": "FC Porto",
+        "abrev": "FCP",
+        "score": 4,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": true
+      },
+      "exterieur": {
+        "id": "114",
+        "nom": "Napoli",
+        "abrev": "NAP",
+        "score": 1,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": false
+      },
+      "buts": [
+        {
+          "minute": "11'",
+          "periode": 1,
+          "equipe": "FC Porto",
+          "equipe_id": "437",
+          "buteur": "Jan Bednarek",
+          "passeur": "Gabri Veiga",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "43'",
+          "periode": 1,
+          "equipe": "Napoli",
+          "equipe_id": "114",
+          "buteur": "Scott McTominay",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "71'",
+          "periode": 2,
+          "equipe": "FC Porto",
+          "equipe_id": "437",
+          "buteur": "Gabri Veiga",
+          "passeur": "Santiago Gimenez",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "80'",
+          "periode": 2,
+          "equipe": "FC Porto",
+          "equipe_id": "437",
+          "buteur": "Jakub Kiwior",
+          "passeur": "Hwang In-Beom",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "90'",
+          "periode": 2,
+          "equipe": "FC Porto",
+          "equipe_id": "437",
+          "buteur": "Samu Aghehowa",
+          "passeur": null,
+          "type": "penalty",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "1'",
+          "equipe": "Napoli",
+          "joueur": "Antonio Vergara",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "21'",
+          "equipe": "Napoli",
+          "joueur": "Frank Anguissa",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "35'",
+          "equipe": "Napoli",
+          "joueur": "Amir Rrahmani",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "36'",
+          "equipe": "Napoli",
+          "joueur": "Scott McTominay",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "45'+2'",
+          "equipe": "FC Porto",
+          "joueur": "Gabri Veiga",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "88'",
+          "equipe": "Napoli",
+          "joueur": "Rafa Marín",
+          "couleur": "rouge",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "Estádio do Dragão",
+      "ville": "Porto",
+      "affluence": 49190,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915301/napoli-fc-porto"
+    },
+    {
+      "id": "401915305",
+      "coup_envoi_utc": "2026-11-04T20:00:00Z",
+      "coup_envoi_paris": "2026-11-04 21:00",
+      "heure_paris": "21h00",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "175",
+        "nom": "Lens",
+        "abrev": "RCL",
+        "score": 1,
+        "mi_temps": 0,
+        "tab": null,
+        "vainqueur": false
+      },
+      "exterieur": {
+        "id": "2572",
+        "nom": "Como",
+        "abrev": "COMO",
+        "score": 9,
+        "mi_temps": 3,
+        "tab": null,
+        "vainqueur": true
+      },
+      "buts": [
+        {
+          "minute": "7'",
+          "periode": 1,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Tasos Douvikas",
+          "passeur": "Máximo Perrone",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "32'",
+          "periode": 1,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Tasos Douvikas",
+          "passeur": "Álex Valle",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "40'",
+          "periode": 1,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Nico Paz",
+          "passeur": "Tasos Douvikas",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "47'",
+          "periode": 2,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Lucas Da Cunha",
+          "passeur": "Nico Paz",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "53'",
+          "periode": 2,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Marc-Oliver Kempf",
+          "passeur": "Luis Milla",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "57'",
+          "periode": 2,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Tasos Douvikas",
+          "passeur": "Nico Paz",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "62'",
+          "periode": 2,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Mattia Liberali",
+          "passeur": "Jacobo Ramón",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "65'",
+          "periode": 2,
+          "equipe": "Lens",
+          "equipe_id": "175",
+          "buteur": "Ruben Aguilar",
+          "passeur": "Florian Thauvin",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "69'",
+          "periode": 2,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Martin Baturina",
+          "passeur": "Mattia Liberali",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "90'+1'",
+          "periode": 2,
+          "equipe": "Como",
+          "equipe_id": "2572",
+          "buteur": "Matteo Papaccioli",
+          "passeur": "Mattia Liberali",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "34'",
+          "equipe": "Lens",
+          "joueur": "Samson Baidoo",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "75'",
+          "equipe": "Lens",
+          "joueur": "Michaël Cuisance",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "Stade Bollaert-Delelis",
+      "ville": "Lens",
+      "affluence": 37417,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915305/como-lens"
+    },
+    {
+      "id": "401915303",
+      "coup_envoi_utc": "2026-11-04T20:00:00Z",
+      "coup_envoi_paris": "2026-11-04 21:00",
+      "heure_paris": "21h00",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "148",
+        "nom": "PSV Eindhoven",
+        "abrev": "PSV",
+        "score": 1,
+        "mi_temps": 0,
+        "tab": null,
+        "vainqueur": false
+      },
+      "exterieur": {
+        "id": "570",
+        "nom": "Club Brugge",
+        "abrev": "BRU",
+        "score": 2,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": true
+      },
+      "buts": [
+        {
+          "minute": "25'",
+          "periode": 1,
+          "equipe": "Club Brugge",
+          "equipe_id": "570",
+          "buteur": "Nicolo Tresoldi",
+          "passeur": "Joaquin Seys",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "54'",
+          "periode": 2,
+          "equipe": "PSV Eindhoven",
+          "equipe_id": "148",
+          "buteur": "Kodai Sano",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "65'",
+          "periode": 2,
+          "equipe": "Club Brugge",
+          "equipe_id": "570",
+          "buteur": "Carlos Forbs",
+          "passeur": "Joaquin Seys",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "28'",
+          "equipe": "Club Brugge",
+          "joueur": "Carlos Forbs",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "73'",
+          "equipe": "Club Brugge",
+          "joueur": "Hugo Vetlesen",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "81'",
+          "equipe": "Club Brugge",
+          "joueur": "Jorne Spileers",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "Philips Stadion",
+      "ville": "Eindhoven",
+      "affluence": 34900,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915303/club-brugge-psv-eindhoven"
+    },
+    {
+      "id": "401915306",
+      "coup_envoi_utc": "2026-11-04T20:00:00Z",
+      "coup_envoi_paris": "2026-11-04 21:00",
+      "heure_paris": "21h00",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "11420",
+        "nom": "RB Leipzig",
+        "abrev": "RBL",
+        "score": 2,
+        "mi_temps": 0,
+        "tab": null,
+        "vainqueur": false
+      },
+      "exterieur": {
+        "id": "382",
+        "nom": "Manchester City",
+        "abrev": "MNC",
+        "score": 3,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": true
+      },
+      "buts": [
+        {
+          "minute": "37'",
+          "periode": 1,
+          "equipe": "Manchester City",
+          "equipe_id": "382",
+          "buteur": "Castello Lukeba",
+          "passeur": null,
+          "type": "csc",
+          "precision": null
+        },
+        {
+          "minute": "49'",
+          "periode": 2,
+          "equipe": "RB Leipzig",
+          "equipe_id": "11420",
+          "buteur": "Ridle Baku",
+          "passeur": "Brajan Gruda",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "58'",
+          "periode": 2,
+          "equipe": "Manchester City",
+          "equipe_id": "382",
+          "buteur": "Enzo Fernández",
+          "passeur": "Iliman Ndiaye",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "61'",
+          "periode": 2,
+          "equipe": "RB Leipzig",
+          "equipe_id": "11420",
+          "buteur": "Antonio Nusa",
+          "passeur": "Christopher Nkunku",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "78'",
+          "periode": 2,
+          "equipe": "Manchester City",
+          "equipe_id": "382",
+          "buteur": "Erling Haaland",
+          "passeur": "Elliot Anderson",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "17'",
+          "equipe": "RB Leipzig",
+          "joueur": "Christoph Baumgartner",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "33'",
+          "equipe": "RB Leipzig",
+          "joueur": "Ridle Baku",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "48'",
+          "equipe": "RB Leipzig",
+          "joueur": "Neil El Aynaoui",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "77'",
+          "equipe": "RB Leipzig",
+          "joueur": "David Raum",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "88'",
+          "equipe": "Manchester City",
+          "joueur": "Jérémy Doku",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "90'+4'",
+          "equipe": "Manchester City",
+          "joueur": "Abdukodir Khusanov",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "Red Bull Arena",
+      "ville": "Leipzig",
+      "affluence": 45228,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915306/manchester-city-rb-leipzig"
+    },
+    {
+      "id": "401915381",
+      "coup_envoi_utc": "2026-11-04T20:00:00Z",
+      "coup_envoi_paris": "2026-11-04 21:00",
+      "heure_paris": "21h00",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "494",
+        "nom": "Slavia Prague",
+        "abrev": "SLP",
+        "score": 1,
+        "mi_temps": 0,
+        "tab": null,
+        "vainqueur": false
+      },
+      "exterieur": {
+        "id": "359",
+        "nom": "Arsenal",
+        "abrev": "ARS",
+        "score": 2,
+        "mi_temps": 2,
+        "tab": null,
+        "vainqueur": true
+      },
+      "buts": [
+        {
+          "minute": "9'",
+          "periode": 1,
+          "equipe": "Arsenal",
+          "equipe_id": "359",
+          "buteur": "Noni Madueke",
+          "passeur": "Viktor Gyökeres",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "38'",
+          "periode": 1,
+          "equipe": "Arsenal",
+          "equipe_id": "359",
+          "buteur": "Viktor Gyökeres",
+          "passeur": "Mikel Merino",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "90'",
+          "periode": 2,
+          "equipe": "Slavia Prague",
+          "equipe_id": "494",
+          "buteur": "Wiktor Nowak",
+          "passeur": "David Jurásek",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "20'",
+          "equipe": "Slavia Prague",
+          "joueur": "David Moses",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "53'",
+          "equipe": "Arsenal",
+          "joueur": "Ezri Konsa",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "68'",
+          "equipe": "Arsenal",
+          "joueur": "Declan Rice",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [],
+      "tirs_au_but": [],
+      "stade": "Fortuna Arena",
+      "ville": "Prague",
+      "affluence": 19308,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915381/arsenal-slavia-prague"
+    },
+    {
+      "id": "401915302",
+      "coup_envoi_utc": "2026-11-04T20:00:00Z",
+      "coup_envoi_paris": "2026-11-04 21:00",
+      "heure_paris": "21h00",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
+      "chrono": null,
+      "domicile": {
+        "id": "510",
+        "nom": "Viking FK",
+        "abrev": "VFK",
+        "score": 4,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": true
+      },
+      "exterieur": {
+        "id": "21922",
+        "nom": "Sabah FK",
+        "abrev": "SAB",
+        "score": 1,
+        "mi_temps": 1,
+        "tab": null,
+        "vainqueur": false
+      },
+      "buts": [
+        {
+          "minute": "11'",
+          "periode": 1,
+          "equipe": "Sabah FK",
+          "equipe_id": "21922",
+          "buteur": "Orphé Mbina",
+          "passeur": "Umarali Rakhmonaliev",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "27'",
+          "periode": 1,
+          "equipe": "Viking FK",
+          "equipe_id": "510",
+          "buteur": "Erik Botheim",
+          "passeur": "Kristoffer Haugen",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "69'",
+          "periode": 2,
+          "equipe": "Viking FK",
+          "equipe_id": "510",
+          "buteur": "Zlatko Tripic",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "81'",
+          "periode": 2,
+          "equipe": "Viking FK",
+          "equipe_id": "510",
+          "buteur": "Henrik Falchener",
+          "passeur": "Zlatko Tripic",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "90'+4'",
+          "periode": 2,
+          "equipe": "Viking FK",
+          "equipe_id": "510",
+          "buteur": "Erik Botheim",
+          "passeur": "Peter Christiansen",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "2'",
+          "equipe": "Viking FK",
+          "joueur": "Kristoffer Haugen",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "18'",
+          "equipe": "Viking FK",
+          "joueur": "Gianni Stensness",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "36'",
+          "equipe": "Sabah FK",
+          "joueur": "Umarali Rakhmonaliev",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "77'",
+          "equipe": "Sabah FK",
+          "joueur": "Aden McCarthy",
+          "couleur": "rouge",
+          "second_jaune": false
+        },
+        {
+          "minute": "87'",
+          "equipe": "Sabah FK",
+          "joueur": "Joy-Lance Mickels",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
+      "penaltys_manques": [
+        {
+          "minute": "69'",
+          "equipe": "Viking FK",
+          "joueur": "Zlatko Tripic",
+          "issue": "arrêté"
+        }
+      ],
+      "tirs_au_but": [],
+      "stade": "Viking Stadion",
+      "ville": "Stavanger",
+      "affluence": 15012,
+      "phase": null,
+      "lien": "https://www.espn.com/soccer/match/_/gameId/401915302/sabah-fk-viking-fk"
+    }
+  ]
+}
