@@ -13,7 +13,7 @@
   "matchs_historique": 81,
   "verification": {
     "statut": "ATTENTION",
-    "genere": "2026-11-25 13:14",
+    "genere": "2026-11-25 17:14",
     "controles": [
       {
         "controle": "Buteurs dans l'effectif de leur équipe",
@@ -47,7 +47,7 @@
       }
     ],
     "corrections": [
-      "Lamine Yamal (Barcelona) retiré (absent : cheville, n'a pas fait le déplacement) → remplacé par Karim Adeyemi (2 buts en C1, ~32 %) [source : https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list]",
+      "Lamine Yamal (Barcelona) retiré (absent : cheville, n'a pas fait le déplacement) → remplacé par Karim Adeyemi (2 buts en C1, ~33 %) [source : https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list]",
       "Harry Kane (Bayern Munich) retiré (absent : annoncé forfait/blessé par ESPN : « Harry Kane vows to be back for 'business end of the season' after ankle surgery » (2026-11-21)) → remplacé par Michael Olise (2 buts en C1, ~23 %) [source : https://www.espn.com/soccer/story/_/id/50548680/harry-kane-injury-bayern-munich]",
       "Désiré Doué (Paris Saint-Germain) retiré (absent : annoncé forfait/blessé par ESPN : « Luis Enrique insists PSG won't 'start crying' over Doué, Kvaratskhelia injuries » (2026-11-24)) → remplacé par Ferran Torres (3 buts en C1, ~28 %) [source : https://www.espn.com/soccer/story/_/id/50584788/psg-luis-enrique-injuries-desire-doue-khvicha-kvaratskhelia]"
     ],
@@ -226,49 +226,49 @@
         3.12
       ],
       "buts_attendus_cotes": [
-        0.83,
-        3.93
+        0.81,
+        4.01
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          23.0,
+          29.0,
           14.0,
-          1.07
+          1.06
         ],
         "proba_1n2": [
-          0.041,
+          0.033,
           0.068,
-          0.89
+          0.899
         ]
       },
       "buts_attendus": [
-        0.93,
-        3.67
+        0.91,
+        3.72
       ],
       "proba_1n2": [
-        0.05,
-        0.094,
-        0.856
+        0.046,
+        0.091,
+        0.863
       ],
       "pronostic_1n2": "2",
       "score_probable": "0-3",
-      "proba_score": 0.083,
-      "plus_2_5": 0.837,
-      "deux_equipes_marquent": 0.593,
+      "proba_score": 0.084,
+      "plus_2_5": 0.841,
+      "deux_equipes_marquent": 0.587,
       "buteurs_domicile": [
         {
           "joueur": "Aden McCarthy",
           "id": "332563",
           "buts_c1": 1,
-          "proba_buteur": 0.12340904550577791,
+          "proba_buteur": 0.12127105468507893,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Joy-Lance Mickels",
           "id": "291791",
           "buts_c1": 1,
-          "proba_buteur": 0.12340904550577791,
+          "proba_buteur": 0.12127105468507893,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -277,14 +277,14 @@
           "joueur": "Raphinha",
           "id": "231050",
           "buts_c1": 4,
-          "proba_buteur": 0.5416964253963443,
+          "proba_buteur": 0.5466253732140829,
           "disponibilite": "vérifiée"
         },
         {
           "joueur": "Karim Adeyemi",
           "id": "274913",
           "buts_c1": 2,
-          "proba_buteur": 0.3230187782488677,
+          "proba_buteur": 0.32666900651617337,
           "remplace": "Lamine Yamal",
           "disponibilite": "vérifiée"
         }
@@ -362,49 +362,49 @@
         2.11
       ],
       "buts_attendus_cotes": [
-        1.36,
-        1.65
+        1.41,
+        1.67
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          3.1,
-          3.75,
-          2.2
+          3.05,
+          3.65,
+          2.25
         ],
         "proba_1n2": [
-          0.309,
-          0.255,
-          0.435
+          0.313,
+          0.262,
+          0.425
         ]
       },
       "buts_attendus": [
-        1.55,
-        1.78
+        1.59,
+        1.79
       ],
       "proba_1n2": [
-        0.328,
-        0.248,
-        0.424
+        0.335,
+        0.246,
+        0.419
       ],
       "pronostic_1n2": "2",
       "score_probable": "1-1",
-      "proba_score": 0.109,
-      "plus_2_5": 0.646,
-      "deux_equipes_marquent": 0.664,
+      "proba_score": 0.107,
+      "plus_2_5": 0.655,
+      "deux_equipes_marquent": 0.672,
       "buteurs_domicile": [
         {
           "joueur": "Danijel Sturm",
           "id": "322169",
           "buts_c1": 2,
-          "proba_buteur": 0.31337835106106104,
+          "proba_buteur": 0.3195358865111291,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Lukás Provod",
           "id": "294618",
           "buts_c1": 1,
-          "proba_buteur": 0.17137363731357247,
+          "proba_buteur": 0.17509751273931118,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -413,14 +413,14 @@
           "joueur": "Georges Mikautadze",
           "id": "300002",
           "buts_c1": 2,
-          "proba_buteur": 0.2607954154741319,
+          "proba_buteur": 0.2619754518572822,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Santiago Mouriño",
           "id": "318098",
           "buts_c1": 2,
-          "proba_buteur": 0.2607954154741319,
+          "proba_buteur": 0.2619754518572822,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -466,49 +466,49 @@
         1.38
       ],
       "buts_attendus_cotes": [
-        3.28,
-        0.68
+        3.3,
+        0.72
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
           1.11,
-          10.5,
+          10.0,
           19.0
         ],
         "proba_1n2": [
-          0.859,
-          0.091,
+          0.855,
+          0.095,
           0.05
         ]
       },
       "buts_attendus": [
-        2.75,
-        0.84
+        2.77,
+        0.87
       ],
       "proba_1n2": [
-        0.767,
-        0.151,
-        0.081
+        0.763,
+        0.152,
+        0.085
       ],
       "pronostic_1n2": "1",
       "score_probable": "2-0",
-      "proba_score": 0.104,
-      "plus_2_5": 0.696,
-      "deux_equipes_marquent": 0.538,
+      "proba_score": 0.101,
+      "plus_2_5": 0.704,
+      "deux_equipes_marquent": 0.551,
       "buteurs_domicile": [
         {
           "joueur": "Ademola Lookman",
           "id": "229645",
           "buts_c1": 1,
-          "proba_buteur": 0.3231132725022038,
+          "proba_buteur": 0.3245203748367821,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Julián Álvarez",
           "id": "277206",
           "buts_c1": 1,
-          "proba_buteur": 0.3231132725022038,
+          "proba_buteur": 0.3245203748367821,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -517,14 +517,14 @@
           "joueur": "Erik Botheim",
           "id": "239925",
           "buts_c1": 2,
-          "proba_buteur": 0.12155442988196241,
+          "proba_buteur": 0.12591487332621998,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Peter Christiansen",
           "id": "9167",
           "buts_c1": 2,
-          "proba_buteur": 0.12155442988196241,
+          "proba_buteur": 0.12591487332621998,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -570,49 +570,49 @@
         2.36
       ],
       "buts_attendus_cotes": [
-        1.41,
-        2.4
+        1.43,
+        2.42
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
           4.5,
-          4.8,
+          4.7,
           1.62
         ],
         "proba_1n2": [
           0.212,
-          0.199,
-          0.588
+          0.203,
+          0.586
         ]
       },
       "buts_attendus": [
-        1.83,
-        2.39
+        1.86,
+        2.4
       ],
       "proba_1n2": [
-        0.293,
-        0.208,
-        0.499
+        0.296,
+        0.207,
+        0.498
       ],
       "pronostic_1n2": "2",
       "score_probable": "1-2",
-      "proba_score": 0.077,
-      "plus_2_5": 0.793,
-      "deux_equipes_marquent": 0.769,
+      "proba_score": 0.076,
+      "plus_2_5": 0.797,
+      "deux_equipes_marquent": 0.774,
       "buteurs_domicile": [
         {
           "joueur": "Nicolo Tresoldi",
           "id": "335201",
           "buts_c1": 5,
-          "proba_buteur": 0.45089032479269475,
+          "proba_buteur": 0.45495166491619055,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Carlos Forbs",
           "id": "78836",
           "buts_c1": 2,
-          "proba_buteur": 0.2132012914730832,
+          "proba_buteur": 0.21553421380982973,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -621,14 +621,14 @@
           "joueur": "Alexis Mac Allister",
           "id": "249299",
           "buts_c1": 3,
-          "proba_buteur": 0.3164970673560893,
+          "proba_buteur": 0.3179162950898067,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Bradley Barcola",
           "id": "328238",
           "buts_c1": 3,
-          "proba_buteur": 0.3164970673560893,
+          "proba_buteur": 0.3179162950898067,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -674,8 +674,8 @@
         1.3
       ],
       "buts_attendus_cotes": [
-        2.68,
-        1.22
+        2.66,
+        1.2
       ],
       "cotes": {
         "bookmaker": "DraftKings",
@@ -691,32 +691,32 @@
         ]
       },
       "buts_attendus": [
-        2.4,
-        1.24
+        2.38,
+        1.23
       ],
       "proba_1n2": [
-        0.621,
-        0.202,
-        0.177
+        0.622,
+        0.203,
+        0.176
       ],
       "pronostic_1n2": "1",
       "score_probable": "2-1",
       "proba_score": 0.094,
-      "plus_2_5": 0.704,
-      "deux_equipes_marquent": 0.655,
+      "plus_2_5": 0.699,
+      "deux_equipes_marquent": 0.65,
       "buteurs_domicile": [
         {
           "joueur": "Carlos Augusto",
           "id": "271769",
           "buts_c1": 2,
-          "proba_buteur": 0.33476115509579174,
+          "proba_buteur": 0.3329865148319592,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Lautaro Martínez",
           "id": "219713",
           "buts_c1": 2,
-          "proba_buteur": 0.33476115509579174,
+          "proba_buteur": 0.3329865148319592,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -725,14 +725,14 @@
           "joueur": "Ermedin Demirovic",
           "id": "269136",
           "buts_c1": 4,
-          "proba_buteur": 0.37484254323482646,
+          "proba_buteur": 0.37114142156376406,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Deniz Undav",
           "id": "273300",
           "buts_c1": 1,
-          "proba_buteur": 0.11080429984565277,
+          "proba_buteur": 0.10949113460667192,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -779,35 +779,35 @@
       ],
       "buts_attendus_cotes": [
         0.95,
-        1.91
+        1.89
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
           5.25,
           4.1,
-          1.61
+          1.62
         ],
         "proba_1n2": [
-          0.18,
-          0.231,
-          0.589
+          0.181,
+          0.232,
+          0.586
         ]
       },
       "buts_attendus": [
         1.08,
-        2.18
+        2.17
       ],
       "proba_1n2": [
-        0.17,
-        0.216,
-        0.614
+        0.171,
+        0.217,
+        0.612
       ],
       "pronostic_1n2": "2",
       "score_probable": "1-1",
-      "proba_score": 0.099,
-      "plus_2_5": 0.634,
-      "deux_equipes_marquent": 0.596,
+      "proba_score": 0.1,
+      "plus_2_5": 0.631,
+      "deux_equipes_marquent": 0.595,
       "buteurs_domicile": [
         {
           "joueur": "Soriba Diaoune",
@@ -829,14 +829,14 @@
           "joueur": "Alphonso Davies",
           "id": "236721",
           "buts_c1": 2,
-          "proba_buteur": 0.23278262332576538,
+          "proba_buteur": 0.2316138124346364,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Michael Olise",
           "id": "286831",
           "buts_c1": 2,
-          "proba_buteur": 0.23278262332576538,
+          "proba_buteur": 0.2316138124346364,
           "remplace": "Harry Kane",
           "disponibilite": "non vérifiée"
         }
@@ -890,49 +890,49 @@
         1.34
       ],
       "buts_attendus_cotes": [
-        2.45,
-        1.2
+        2.48,
+        1.29
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          1.49,
-          4.9,
-          5.75
+          1.53,
+          4.7,
+          5.5
         ],
         "proba_1n2": [
-          0.64,
-          0.194,
-          0.166
+          0.624,
+          0.203,
+          0.173
         ]
       },
       "buts_attendus": [
-        2.86,
-        1.24
+        2.89,
+        1.31
       ],
       "proba_1n2": [
-        0.702,
-        0.165,
-        0.133
+        0.693,
+        0.166,
+        0.141
       ],
       "pronostic_1n2": "1",
       "score_probable": "2-1",
-      "proba_score": 0.084,
-      "plus_2_5": 0.777,
-      "deux_equipes_marquent": 0.677,
+      "proba_score": 0.082,
+      "plus_2_5": 0.789,
+      "deux_equipes_marquent": 0.695,
       "buteurs_domicile": [
         {
           "joueur": "Fabián Ruiz",
           "id": "214596",
           "buts_c1": 4,
-          "proba_buteur": 0.35759659446253267,
+          "proba_buteur": 0.36012828199867697,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Ferran Torres",
           "id": "265869",
           "buts_c1": 3,
-          "proba_buteur": 0.28244387493343426,
+          "proba_buteur": 0.2845658176214093,
           "remplace": "Désiré Doué",
           "disponibilite": "non vérifiée"
         }
@@ -942,14 +942,14 @@
           "joueur": "Donyell Malen",
           "id": "259481",
           "buts_c1": 4,
-          "proba_buteur": 0.2970320015027025,
+          "proba_buteur": 0.30983454343417105,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Bryan Cristante",
           "id": "169213",
           "buts_c1": 1,
-          "proba_buteur": 0.08434074638698263,
+          "proba_buteur": 0.08853855074872208,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -1002,30 +1002,30 @@
         1.04
       ],
       "buts_attendus_cotes": [
-        1.38,
-        1.44
+        1.4,
+        1.43
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          2.75,
-          3.5,
-          2.55
+          2.7,
+          3.45,
+          2.6
         ],
         "proba_1n2": [
-          0.349,
-          0.274,
-          0.377
+          0.354,
+          0.277,
+          0.368
         ]
       },
       "buts_attendus": [
-        1.57,
-        1.31
+        1.58,
+        1.3
       ],
       "proba_1n2": [
-        0.423,
-        0.27,
-        0.307
+        0.427,
+        0.269,
+        0.303
       ],
       "pronostic_1n2": "1",
       "score_probable": "1-1",
@@ -1037,14 +1037,14 @@
           "joueur": "Gleiker Mendoza",
           "id": "382379",
           "buts_c1": 2,
-          "proba_buteur": 0.3586469542639288,
+          "proba_buteur": 0.36044255922963053,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Pedrinho",
           "id": "253821",
           "buts_c1": 1,
-          "proba_buteur": 0.19915479289935734,
+          "proba_buteur": 0.20027664735211748,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -1053,14 +1053,14 @@
           "joueur": "Archie Brown",
           "id": "320982",
           "buts_c1": 2,
-          "proba_buteur": 0.24290636974317692,
+          "proba_buteur": 0.24130605341186573,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Mason Greenwood",
           "id": "276221",
           "buts_c1": 2,
-          "proba_buteur": 0.24290636974317692,
+          "proba_buteur": 0.24130605341186573,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -1106,49 +1106,49 @@
         1.35
       ],
       "buts_attendus_cotes": [
-        1.59,
+        1.63,
         1.68
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          2.7,
-          3.7,
-          2.45
+          2.65,
+          3.75,
+          2.5
         ],
         "proba_1n2": [
-          0.353,
-          0.258,
-          0.389
+          0.361,
+          0.255,
+          0.383
         ]
       },
       "buts_attendus": [
-        1.74,
+        1.77,
         1.57
       ],
       "proba_1n2": [
-        0.411,
-        0.249,
-        0.34
+        0.417,
+        0.247,
+        0.335
       ],
       "pronostic_1n2": "1",
       "score_probable": "1-1",
-      "proba_score": 0.11,
-      "plus_2_5": 0.643,
-      "deux_equipes_marquent": 0.663,
+      "proba_score": 0.108,
+      "plus_2_5": 0.649,
+      "deux_equipes_marquent": 0.667,
       "buteurs_domicile": [
         {
           "joueur": "Luis Suárez",
           "id": "272722",
           "buts_c1": 4,
-          "proba_buteur": 0.44657129802693196,
+          "proba_buteur": 0.45192968119894394,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Issa Doumbia",
           "id": "386592",
           "buts_c1": 2,
-          "proba_buteur": 0.25607211238382244,
+          "proba_buteur": 0.2596822852308234,
           "disponibilite": "non vérifiée"
         }
       ],
@@ -1157,14 +1157,14 @@
           "joueur": "Matheus Cunha",
           "id": "259902",
           "buts_c1": 3,
-          "proba_buteur": 0.329969332327377,
+          "proba_buteur": 0.33031953665453595,
           "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Bruno Fernandes",
           "id": "124091",
           "buts_c1": 2,
-          "proba_buteur": 0.23429211258799854,
+          "proba_buteur": 0.23455894373787345,
           "disponibilite": "non vérifiée"
         }
       ],
