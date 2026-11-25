@@ -11,7 +11,9 @@ Ce qu'il contrôle :
 
 1. Disponibilité de chaque « buteur probable » :
    - feuille de match officielle (ESPN `summary.rosters`, publiée ~1 h avant le coup
-     d'envoi) : joueur absent du groupe → retiré et remplacé ; sur le banc → « remplaçant » ;
+     d'envoi) : joueur absent du groupe → retiré et remplacé ; une fois la compo publiée,
+     seuls les TITULAIRES sont listés comme buteurs probables (leçon du 25/11/2026) ;
+     les remplaçants passent dans une ligne « Sur le banc » (probabilité x0,35) ;
    - effectif actuel de l'équipe (ESPN `teams/<id>/roster`) : joueur parti → retiré ;
      champ `injuries` de cet effectif s'il est renseigné ;
    - actualités ESPN de l'équipe (`news?team=<id>`) des derniers jours : article qui
@@ -42,7 +44,10 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 FICHIER_ABSENCES = os.path.join(ICI, "absences.json")
 
 FENETRE_NEWS_JOURS = 7     # ancienneté maximale d'un article pour être pris en compte
-FACTEUR_REMPLACANT = 0.35  # un remplaçant joue ~20-30 min en moyenne
+# Un remplaçant joue ~20-30 min en moyenne. Valeur conservée après le bilan du 25/11/2026 :
+# deux remplaçants buteurs (Lautaro, Malen) ne suffisent pas à la recalibrer. Les lignes
+# « banc » de historique/buteurs.csv serviront à l'ajuster quand il y aura assez de données.
+FACTEUR_REMPLACANT = 0.35
 FACTEUR_INCERTAIN = 0.5    # joueur signalé blessé / incertain dans l'actualité
 
 # Mots-clés (en anglais : les articles ESPN le sont) dans le titre ou le chapeau d'un article.
@@ -274,6 +279,46 @@ def _fmt_p(x):
     return f"{100 * x:.0f} %"
 
 
+def desc_buts(b):
+    """« 8 buts cette saison dont 1 en C1 » (toutes compétitions) ou « 2 buts en C1 » (ancien calcul)."""
+    if b.get("buts_saison") is not None:
+        g, c1 = b["buts_saison"], b.get("buts_c1", 0)
+        s = f"{g} but{'s' if g > 1 else ''} cette saison"
+        if c1:
+            s += f" dont {c1} en C1"
+        return s
+    g = b.get("buts_c1", 0)
+    return f"{g} but{'s' if g > 1 else ''} en C1"
+
+
+def _base_titulaire(b):
+    return b.get("proba_si_titulaire", b["proba_buteur"])
+
+
+def appliquer_compo(candidats, groupe, n=2, n_banc=2):
+    """Compo officielle publiée : (titulaires retenus, meilleurs remplaçants, absents du groupe).
+    Les titulaires gardent leur probabilité « si titulaire », les remplaçants x FACTEUR_REMPLACANT ;
+    un candidat absent de la feuille de match est écarté. Utilisé par la vérification et le backtest."""
+    tit, banc, absents = [], [], []
+    for c in candidats:
+        g = trouver(groupe, c["joueur"], c.get("id"))
+        if g is None:
+            absents.append(c)
+            continue
+        b = dict(c)
+        if g["titulaire"]:
+            b["proba_buteur"] = _base_titulaire(c)
+            b["disponibilite"] = "titulaire"
+            tit.append(b)
+        else:
+            b["proba_buteur"] = _base_titulaire(c) * FACTEUR_REMPLACANT
+            b["disponibilite"] = "remplaçant"
+            banc.append(b)
+    tit.sort(key=lambda x: -x["proba_buteur"])
+    banc.sort(key=lambda x: -x["proba_buteur"])
+    return tit[:n], banc[:n_banc], absents
+
+
 def verifier_pronostics(jour, pronos, chemin_absences=FICHIER_ABSENCES, verbeux=True):
     """Vérifie (et corrige sur place) la liste `pronos` produite par ucl_predict.predire.
 
@@ -406,7 +451,7 @@ def verifier_pronostics(jour, pronos, chemin_absences=FICHIER_ABSENCES, verbeux=
             deja = {normaliser(b["joueur"]) for b in retenus} | {normaliser(b["joueur"]) for b, _ in retires}
             for b, m in retires:
                 remplacant = None
-                for c in candidats:
+                for c in ([] if groupe else candidats):   # avec la compo : voir « titulaires » plus bas
                     if normaliser(c["joueur"]) in deja:
                         continue
                     mc = motif_absence(c["joueur"], c.get("id"))
@@ -419,15 +464,42 @@ def verifier_pronostics(jour, pronos, chemin_absences=FICHIER_ABSENCES, verbeux=
                     break
                 phrase = f"{b['joueur']} ({nom_eq}) retiré (absent : {m[1]})"
                 if remplacant:
-                    phrase += (f" → remplacé par {remplacant['joueur']} ({remplacant['buts_c1']} but"
-                               f"{'s' if remplacant['buts_c1'] > 1 else ''} en C1, ~{_fmt_p(remplacant['proba_buteur'])})")
+                    phrase += (f" → remplacé par {remplacant['joueur']} ({desc_buts(remplacant)}, "
+                               f"~{_fmt_p(remplacant['proba_buteur'])})")
                     retenus.append(remplacant)
-                else:
-                    phrase += " → aucun autre buteur éligible en C1 cette saison"
+                elif not groupe:
+                    phrase += " → aucun autre buteur éligible cette saison"
                 if m[2]:
                     phrase += f" [source : {m[2]}]"
                 rap.corrections.append(phrase)
-            for b in retenus:
+            if groupe:
+                # Compo officielle publiée : seuls les titulaires sont des « buteurs probables »
+                # (leçon du 25/11/2026) ; les remplaçants passent dans la ligne « Sur le banc ».
+                eligibles = []
+                for c in candidats:
+                    mc = motif_absence(c["joueur"], c.get("id"))
+                    if not (mc and mc[0] == "absent"):
+                        eligibles.append(c)
+                n_liste = max(2, len(p.get(cle_b) or []))
+                tit, banc, _ = appliquer_compo(eligibles, groupe, n=n_liste)
+                noms_tit = {normaliser(b["joueur"]) for b in tit}
+                noms_avant = {normaliser(b["joueur"]) for b in retenus}
+                for b in retenus:
+                    if normaliser(b["joueur"]) in noms_tit:
+                        continue
+                    if b.get("disponibilite") == "remplaçant":
+                        rap.corrections.append(
+                            f"{b['joueur']} ({nom_eq}) sur le banc au coup d'envoi : retiré des buteurs probables "
+                            f"(ligne « Sur le banc », ~{_fmt_p(b['proba_buteur'])})")
+                    else:
+                        rap.corrections.append(f"{b['joueur']} ({nom_eq}) dépassé par un titulaire plus probable")
+                for b in tit:
+                    if normaliser(b["joueur"]) not in noms_avant:
+                        rap.corrections.append(f"{b['joueur']} ({nom_eq}) titulaire, ajouté aux buteurs probables "
+                                               f"({desc_buts(b)}, ~{_fmt_p(b['proba_buteur'])})")
+                retenus = tit
+                p[f"banc_{camp}"] = banc
+            for b in ([] if groupe else retenus):
                 if b.get("disponibilite") == "remplaçant":
                     rap.corrections.append(f"{b['joueur']} ({nom_eq}) sur le banc au coup d'envoi : "
                                            f"probabilité ramenée à ~{_fmt_p(b['proba_buteur'])}")
@@ -476,9 +548,10 @@ def _applique_statut(b, motif, verifiee):
     niveau = motif[0] if motif else None
     if niveau == "titulaire":
         b["disponibilite"] = "titulaire"
+        b["proba_buteur"] = _base_titulaire(b)
     elif niveau == "remplacant":
         b["disponibilite"] = "remplaçant"
-        b["proba_buteur"] = b["proba_buteur"] * FACTEUR_REMPLACANT
+        b["proba_buteur"] = _base_titulaire(b) * FACTEUR_REMPLACANT
     elif niveau == "doute":
         b["disponibilite"] = "incertain"
         b["note_dispo"] = motif[1]

@@ -144,7 +144,8 @@ def main():
                     help="n'utiliser que des cotes publiées par le bookmaker")
     ap.add_argument("--source", choices=["marche", "modele"], default="marche",
                     help="marche = buts attendus déduits des cotes (le plus fiable au backtest) ; "
-                         "modele = mélange 70 % cotes / 30 % stats")
+                         "modele = buts attendus publiés dans le JSON (cotes seules depuis le 25/11/2026, "
+                         "mélange 70/30 avant ou avec ucl_predict.py --melange)")
     ap.add_argument("--out", default="pronostics/")
     args = ap.parse_args()
 
@@ -175,7 +176,7 @@ def main():
 
     lignes = []
     lignes.append(f"Simulation Monte-Carlo — {N:,} simulations de chaque match".replace(",", " ")
-                  + f" — probabilités : {'marché (cotes)' if args.source == 'marche' else 'modèle 70/30'}")
+                  + f" — probabilités : {'marché (cotes)' if args.source == 'marche' else 'buts attendus publiés'}")
     lignes.append("=" * 60)
     for m, sm in zip(matchs, sims):
         p = m["p"]

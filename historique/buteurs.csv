@@ -1,0 +1,50 @@
+date,id,match,equipe,joueur,id_joueur,liste,statut_compo,entre_en_jeu,proba,a_marque,buts,dont_penalty,tireur_penalty,buts_saison_avant,buts_c1_avant
+2026-11-25,401915378,Sabah FK - Barcelona,Sabah FK,Joy-Lance Mickels,291791,oui,remplaçant entré,1,0.042,1,1,0,0,5,1
+2026-11-25,401915378,Sabah FK - Barcelona,Sabah FK,Kaheem Parris,268529,oui,remplaçant entré,1,0.042,0,0,0,0,2,1
+2026-11-25,401915378,Sabah FK - Barcelona,Barcelona,Karim Adeyemi,274913,oui,titulaire,1,0.327,1,1,0,0,4,2
+2026-11-25,401915378,Sabah FK - Barcelona,Barcelona,Raphinha,231050,oui,remplaçant entré,1,0.191,0,0,0,0,19,4
+2026-11-25,401915378,Sabah FK - Barcelona,Barcelona,Anthony Gordon,268782,non,titulaire,,,1,2,0,,3,1
+2026-11-25,401915378,Sabah FK - Barcelona,Barcelona,Gabriel Jesus,217289,non,titulaire,,,1,1,0,,4,1
+2026-11-25,401915293,Slavia Prague - Villarreal,Slavia Prague,Wiktor Nowak,410093,oui,titulaire,1,0.182,0,0,0,0,1,1
+2026-11-25,401915293,Slavia Prague - Villarreal,Slavia Prague,Pavel Kacor,420913,oui,remplaçant entré,1,0.064,0,0,0,0,1,1
+2026-11-25,401915293,Slavia Prague - Villarreal,Villarreal,Santiago Mouriño,318098,oui,titulaire,1,0.254,0,0,0,0,2,2
+2026-11-25,401915293,Slavia Prague - Villarreal,Villarreal,Georges Mikautadze,300002,oui,remplaçant entré,1,0.089,0,0,0,0,5,2
+2026-11-25,401915293,Slavia Prague - Villarreal,Villarreal,Tajon Buchanan,284769,non,titulaire,,,1,1,0,,2,0
+2026-11-25,401915291,Atlético Madrid - Viking FK,Atlético Madrid,Julián Álvarez,277206,oui,titulaire,1,0.331,1,1,0,0,2,1
+2026-11-25,401915291,Atlético Madrid - Viking FK,Atlético Madrid,Marcos Llorente,206474,oui,titulaire,1,0.331,0,0,0,0,1,1
+2026-11-25,401915291,Atlético Madrid - Viking FK,Atlético Madrid,Alexander Sørloth,188230,non,titulaire,,,1,1,0,,0,0
+2026-11-25,401915291,Atlético Madrid - Viking FK,Viking FK,Erik Botheim,239925,oui,titulaire,1,0.124,0,0,0,0,6,2
+2026-11-25,401915291,Atlético Madrid - Viking FK,Viking FK,Peter Christiansen,9167,oui,remplaçant entré,1,0.044,0,0,0,0,16,2
+2026-11-25,401915292,Club Brugge - Liverpool,Club Brugge,Nicolo Tresoldi,335201,oui,titulaire,1,0.461,0,0,0,0,15,5
+2026-11-25,401915292,Club Brugge - Liverpool,Club Brugge,Carlos Forbs,78836,oui,titulaire,1,0.219,0,0,0,0,5,2
+2026-11-25,401915292,Club Brugge - Liverpool,Liverpool,Bradley Barcola,328238,oui,titulaire,1,0.314,0,0,0,0,3,3
+2026-11-25,401915292,Club Brugge - Liverpool,Liverpool,Alexis Mac Allister,249299,oui,remplaçant entré,1,0.11,0,0,0,0,5,3
+2026-11-25,401915292,Club Brugge - Liverpool,Liverpool,Alexander Isak,235662,non,titulaire,,,1,2,0,,8,1
+2026-11-25,401915292,Club Brugge - Liverpool,Liverpool,Florian Wirtz,303748,non,titulaire,,,1,1,0,,3,1
+2026-11-25,401915376,Internazionale - VfB Stuttgart,Internazionale,Carlos Augusto,271769,oui,titulaire,1,0.333,0,0,0,0,4,2
+2026-11-25,401915376,Internazionale - VfB Stuttgart,Internazionale,Lautaro Martínez,219713,oui,remplaçant entré,1,0.117,1,1,0,0,6,2
+2026-11-25,401915376,Internazionale - VfB Stuttgart,Internazionale,Petar Sucic,341494,non,titulaire,,,1,1,1,,2,0
+2026-11-25,401915376,Internazionale - VfB Stuttgart,VfB Stuttgart,Ermedin Demirovic,269136,oui,titulaire,1,0.37,0,0,0,0,9,4
+2026-11-25,401915376,Internazionale - VfB Stuttgart,VfB Stuttgart,Deniz Undav,273300,oui,remplaçant entré,1,0.038,0,0,0,0,2,1
+2026-11-25,401915377,Lille - Bayern Munich,Lille,Alexsandro,340900,oui,titulaire,1,0.145,0,0,0,0,1,1
+2026-11-25,401915377,Lille - Bayern Munich,Lille,Soriba Diaoune,400352,oui,remplaçant entré,1,0.094,0,0,0,0,3,2
+2026-11-25,401915377,Lille - Bayern Munich,Lille,Ayase Ueda,274277,non,titulaire,,,1,1,0,,3,1
+2026-11-25,401915377,Lille - Bayern Munich,Bayern Munich,Konrad Laimer,169189,oui,titulaire,1,0.124,0,0,0,0,2,1
+2026-11-25,401915377,Lille - Bayern Munich,Bayern Munich,Jamal Musiala,303821,oui,remplaçant entré,1,0.044,0,0,0,0,2,1
+2026-11-25,401915377,Lille - Bayern Munich,Bayern Munich,Dayot Upamecano,222793,non,titulaire,,,1,1,0,,3,0
+2026-11-25,401915374,Paris Saint-Germain - AS Roma,Paris Saint-Germain,Fabián Ruiz,214596,oui,titulaire,1,0.353,0,0,0,0,4,4
+2026-11-25,401915374,Paris Saint-Germain - AS Roma,Paris Saint-Germain,Ferran Torres,265869,oui,titulaire,1,0.278,0,0,0,0,8,3
+2026-11-25,401915374,Paris Saint-Germain - AS Roma,Paris Saint-Germain,Illia Zabarnyi,304503,non,titulaire,,,1,1,0,,2,0
+2026-11-25,401915374,Paris Saint-Germain - AS Roma,Paris Saint-Germain,Ousmane Dembélé,229744,non,remplaçant entré,,,1,1,1,,4,3
+2026-11-25,401915374,Paris Saint-Germain - AS Roma,AS Roma,Donyell Malen,259481,oui,remplaçant entré,1,0.102,1,1,1,0,16,4
+2026-11-25,401915374,Paris Saint-Germain - AS Roma,AS Roma,Bryan Cristante,169213,oui,remplaçant entré,1,0.029,0,0,0,0,2,1
+2026-11-25,401915374,Paris Saint-Germain - AS Roma,AS Roma,Mario Hermoso,222529,non,titulaire,,,1,1,0,,3,1
+2026-11-25,401915375,Shakhtar Donetsk - Fenerbahce,Shakhtar Donetsk,Pedrinho,253821,oui,titulaire,1,0.203,0,0,0,0,1,1
+2026-11-25,401915375,Shakhtar Donetsk - Fenerbahce,Shakhtar Donetsk,Vinícius Tobias,307928,oui,titulaire,1,0.203,0,0,0,0,1,1
+2026-11-25,401915375,Shakhtar Donetsk - Fenerbahce,Fenerbahce,Archie Brown,320982,oui,titulaire,1,0.234,0,0,0,0,3,2
+2026-11-25,401915375,Shakhtar Donetsk - Fenerbahce,Fenerbahce,Mason Greenwood,276221,oui,titulaire,1,0.234,0,0,0,0,11,2
+2026-11-25,401915375,Shakhtar Donetsk - Fenerbahce,Fenerbahce,Vedat Muriqi,240209,non,titulaire,,,1,1,0,,9,1
+2026-11-25,401915373,Sporting CP - Manchester United,Sporting CP,Luis Suárez,272722,oui,titulaire,1,0.454,1,2,1,0,13,4
+2026-11-25,401915373,Sporting CP - Manchester United,Sporting CP,Issa Doumbia,386592,oui,titulaire,1,0.261,0,0,0,0,2,2
+2026-11-25,401915373,Sporting CP - Manchester United,Manchester United,Bruno Fernandes,124091,oui,titulaire,1,0.236,1,2,1,0,6,2
+2026-11-25,401915373,Sporting CP - Manchester United,Manchester United,Joshua Zirkzee,276327,oui,titulaire,1,0.126,0,0,0,0,2,1
