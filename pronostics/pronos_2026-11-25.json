@@ -2,7 +2,7 @@
   "date": "2026-11-25",
   "competition": "UEFA Champions League",
   "source": "ESPN (+ cotes DraftKings via ESPN)",
-  "avertissement": "Ces pronostics sont des estimations statistiques (loi de Poisson, notes d'équipes sur peu de matchs, cotes de bookmaker quand elles existent). Ce ne sont pas des certitudes : le football reste très aléatoire, les blessures, compositions et enjeux ne sont pas pris en compte. Ne pariez pas sur cette base.",
+  "avertissement": "Ces pronostics sont des estimations statistiques (loi de Poisson, notes d'équipes sur peu de matchs, cotes de bookmaker quand elles existent). Ce ne sont pas des certitudes : le football reste très aléatoire ; les absences ne sont prises en compte que pour les buteurs (vérification automatique, forcément incomplète) et les enjeux pas du tout. Ne pariez pas sur cette base.",
   "parametres": {
     "domicile": 1.15,
     "exterieur": 0.87,
@@ -11,12 +11,192 @@
     "rho_dixon_coles": -0.1
   },
   "matchs_historique": 81,
+  "verification": {
+    "statut": "ATTENTION",
+    "genere": "2026-11-25 13:14",
+    "controles": [
+      {
+        "controle": "Buteurs dans l'effectif de leur équipe",
+        "niveau": "ok",
+        "detail": "36 buteurs vérifiés"
+      },
+      {
+        "controle": "Disponibilité des buteurs",
+        "niveau": "avertissement",
+        "detail": "aucune information de disponibilité (compo officielle, absences.json, blessures ESPN) pour 17/18 équipes : Sabah FK, Slavia Prague, Villarreal, Atlético Madrid, Viking FK, Club Brugge, Liverpool, Internazionale, VfB Stuttgart, Lille, Bayern Munich, Paris Saint-Germain, AS Roma, Shakhtar Donetsk, Fenerbahce, Sporting CP, Manchester United → buteurs marqués « disponibilité non vérifiée » (seule l'actualité ESPN a été analysée)"
+      },
+      {
+        "controle": "Probabilités 1/N/2 (somme ≈ 100 %)",
+        "niveau": "ok",
+        "detail": "9 matchs conformes"
+      },
+      {
+        "controle": "Pas de match en double",
+        "niveau": "ok",
+        "detail": ""
+      },
+      {
+        "controle": "Équipes et heures conformes au tableau ESPN",
+        "niveau": "ok",
+        "detail": "9 matchs, équipes et coups d'envoi identiques"
+      },
+      {
+        "controle": "Matchs pas encore commencés",
+        "niveau": "ok",
+        "detail": "tous les matchs sont à venir"
+      }
+    ],
+    "corrections": [
+      "Lamine Yamal (Barcelona) retiré (absent : cheville, n'a pas fait le déplacement) → remplacé par Karim Adeyemi (2 buts en C1, ~32 %) [source : https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list]",
+      "Harry Kane (Bayern Munich) retiré (absent : annoncé forfait/blessé par ESPN : « Harry Kane vows to be back for 'business end of the season' after ankle surgery » (2026-11-21)) → remplacé par Michael Olise (2 buts en C1, ~23 %) [source : https://www.espn.com/soccer/story/_/id/50548680/harry-kane-injury-bayern-munich]",
+      "Désiré Doué (Paris Saint-Germain) retiré (absent : annoncé forfait/blessé par ESPN : « Luis Enrique insists PSG won't 'start crying' over Doué, Kvaratskhelia injuries » (2026-11-24)) → remplacé par Ferran Torres (3 buts en C1, ~28 %) [source : https://www.espn.com/soccer/story/_/id/50584788/psg-luis-enrique-injuries-desire-doue-khvicha-kvaratskhelia]"
+    ],
+    "disponibilite_equipes": {
+      "Sabah FK": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (9 articles, 7 derniers jours analysés)",
+          "effectif ESPN (32 joueurs)"
+        ]
+      },
+      "Barcelona": {
+        "verifiee": true,
+        "sources": [
+          "absences.json (5 absent(s))",
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (34 joueurs)"
+        ]
+      },
+      "Slavia Prague": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (38 joueurs)"
+        ]
+      },
+      "Villarreal": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (31 joueurs)"
+        ]
+      },
+      "Atlético Madrid": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (30 joueurs)"
+        ]
+      },
+      "Viking FK": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (14 articles, 7 derniers jours analysés)",
+          "effectif ESPN (39 joueurs)"
+        ]
+      },
+      "Club Brugge": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (33 joueurs)"
+        ]
+      },
+      "Liverpool": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (34 joueurs)"
+        ]
+      },
+      "Internazionale": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (32 joueurs)"
+        ]
+      },
+      "VfB Stuttgart": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (25 articles, 7 derniers jours analysés)",
+          "effectif ESPN (58 joueurs)"
+        ]
+      },
+      "Lille": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (29 joueurs)"
+        ]
+      },
+      "Bayern Munich": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (30 joueurs)"
+        ]
+      },
+      "Paris Saint-Germain": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (28 joueurs)"
+        ]
+      },
+      "AS Roma": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (30 joueurs)"
+        ]
+      },
+      "Shakhtar Donetsk": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (33 joueurs)"
+        ]
+      },
+      "Fenerbahce": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (28 joueurs)"
+        ]
+      },
+      "Sporting CP": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (36 joueurs)"
+        ]
+      },
+      "Manchester United": {
+        "verifiee": false,
+        "sources": [
+          "actualités ESPN (50 articles, 7 derniers jours analysés)",
+          "effectif ESPN (33 joueurs)"
+        ]
+      }
+    },
+    "sources": {
+      "absences_json": "absences.json",
+      "feuilles_de_match": [],
+      "effectifs": 18,
+      "effectifs_avec_blessures": 0,
+      "articles_consultes": 798,
+      "erreurs_reseau": []
+    }
+  },
   "pronostics": [
     {
       "id": "401915378",
       "heure_paris": "18h45",
       "domicile": "Sabah FK",
       "exterieur": "Barcelona",
+      "id_domicile": "21922",
+      "id_exterieur": "83",
       "bilan_domicile": {
         "mj": 4,
         "v": 1,
@@ -46,67 +226,113 @@
         3.12
       ],
       "buts_attendus_cotes": [
-        0.87,
-        3.87
+        0.83,
+        3.93
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          21.0,
-          13.0,
-          1.08
+          23.0,
+          14.0,
+          1.07
         ],
         "proba_1n2": [
-          0.045,
-          0.073,
-          0.881
+          0.041,
+          0.068,
+          0.89
         ]
       },
       "buts_attendus": [
-        0.96,
-        3.63
+        0.93,
+        3.67
       ],
       "proba_1n2": [
-        0.054,
-        0.098,
-        0.848
+        0.05,
+        0.094,
+        0.856
       ],
       "pronostic_1n2": "2",
       "score_probable": "0-3",
-      "proba_score": 0.081,
-      "plus_2_5": 0.836,
-      "deux_equipes_marquent": 0.604,
+      "proba_score": 0.083,
+      "plus_2_5": 0.837,
+      "deux_equipes_marquent": 0.593,
       "buteurs_domicile": [
         {
           "joueur": "Aden McCarthy",
+          "id": "332563",
           "buts_c1": 1,
-          "proba_buteur": 0.12702347619230203
+          "proba_buteur": 0.12340904550577791,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Joy-Lance Mickels",
+          "id": "291791",
           "buts_c1": 1,
-          "proba_buteur": 0.12702347619230203
+          "proba_buteur": 0.12340904550577791,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Raphinha",
+          "id": "231050",
           "buts_c1": 4,
-          "proba_buteur": 0.5376932443323297
+          "proba_buteur": 0.5416964253963443,
+          "disponibilite": "vérifiée"
         },
         {
-          "joueur": "Lamine Yamal",
-          "buts_c1": 3,
-          "proba_buteur": 0.4393424435754486
+          "joueur": "Karim Adeyemi",
+          "id": "274913",
+          "buts_c1": 2,
+          "proba_buteur": 0.3230187782488677,
+          "remplace": "Lamine Yamal",
+          "disponibilite": "vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [
+        {
+          "joueur": "Lamine Yamal",
+          "raison": "cheville, n'a pas fait le déplacement",
+          "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list",
+          "origine": "absences.json"
+        },
+        {
+          "joueur": "Andreas Christensen",
+          "raison": "absent du groupe de 22 convoqué",
+          "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list",
+          "origine": "absences.json"
+        },
+        {
+          "joueur": "Rodri",
+          "raison": "absent du groupe de 22 convoqué",
+          "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list",
+          "origine": "absences.json"
+        },
+        {
+          "joueur": "Xavi Espart",
+          "raison": "absent du groupe de 22 convoqué",
+          "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list",
+          "origine": "absences.json"
+        },
+        {
+          "joueur": "Roony Bardghji",
+          "raison": "absent du groupe de 22 convoqué",
+          "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list",
+          "origine": "absences.json"
+        }
+      ],
+      "disponibilite_exterieur": "vérifiée"
     },
     {
       "id": "401915293",
       "heure_paris": "18h45",
       "domicile": "Slavia Prague",
       "exterieur": "Villarreal",
+      "id_domicile": "494",
+      "id_exterieur": "102",
       "bilan_domicile": {
         "mj": 4,
         "v": 0,
@@ -169,34 +395,48 @@
       "buteurs_domicile": [
         {
           "joueur": "Danijel Sturm",
+          "id": "322169",
           "buts_c1": 2,
-          "proba_buteur": 0.31337835106106104
+          "proba_buteur": 0.31337835106106104,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Lukás Provod",
+          "id": "294618",
           "buts_c1": 1,
-          "proba_buteur": 0.17137363731357247
+          "proba_buteur": 0.17137363731357247,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Georges Mikautadze",
+          "id": "300002",
           "buts_c1": 2,
-          "proba_buteur": 0.2607954154741319
+          "proba_buteur": 0.2607954154741319,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Santiago Mouriño",
+          "id": "318098",
           "buts_c1": 2,
-          "proba_buteur": 0.2607954154741319
+          "proba_buteur": 0.2607954154741319,
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [],
+      "disponibilite_exterieur": "non vérifiée"
     },
     {
       "id": "401915291",
       "heure_paris": "21h00",
       "domicile": "Atlético Madrid",
       "exterieur": "Viking FK",
+      "id_domicile": "1068",
+      "id_exterieur": "510",
       "bilan_domicile": {
         "mj": 4,
         "v": 1,
@@ -226,8 +466,8 @@
         1.38
       ],
       "buts_attendus_cotes": [
-        3.26,
-        0.67
+        3.28,
+        0.68
       ],
       "cotes": {
         "bookmaker": "DraftKings",
@@ -244,49 +484,63 @@
       },
       "buts_attendus": [
         2.75,
-        0.83
+        0.84
       ],
       "proba_1n2": [
-        0.768,
+        0.767,
         0.151,
-        0.08
+        0.081
       ],
       "pronostic_1n2": "1",
       "score_probable": "2-0",
-      "proba_score": 0.106,
-      "plus_2_5": 0.692,
-      "deux_equipes_marquent": 0.533,
+      "proba_score": 0.104,
+      "plus_2_5": 0.696,
+      "deux_equipes_marquent": 0.538,
       "buteurs_domicile": [
         {
           "joueur": "Ademola Lookman",
+          "id": "229645",
           "buts_c1": 1,
-          "proba_buteur": 0.32223070696246403
+          "proba_buteur": 0.3231132725022038,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Julián Álvarez",
+          "id": "277206",
           "buts_c1": 1,
-          "proba_buteur": 0.32223070696246403
+          "proba_buteur": 0.3231132725022038,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Erik Botheim",
+          "id": "239925",
           "buts_c1": 2,
-          "proba_buteur": 0.12008009671918718
+          "proba_buteur": 0.12155442988196241,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Peter Christiansen",
+          "id": "9167",
           "buts_c1": 2,
-          "proba_buteur": 0.12008009671918718
+          "proba_buteur": 0.12155442988196241,
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [],
+      "disponibilite_exterieur": "non vérifiée"
     },
     {
       "id": "401915292",
       "heure_paris": "21h00",
       "domicile": "Club Brugge",
       "exterieur": "Liverpool",
+      "id_domicile": "570",
+      "id_exterieur": "364",
       "bilan_domicile": {
         "mj": 4,
         "v": 3,
@@ -316,67 +570,81 @@
         2.36
       ],
       "buts_attendus_cotes": [
-        1.4,
-        2.38
+        1.41,
+        2.4
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
           4.5,
-          4.7,
+          4.8,
           1.62
         ],
         "proba_1n2": [
           0.212,
-          0.203,
-          0.586
+          0.199,
+          0.588
         ]
       },
       "buts_attendus": [
         1.83,
-        2.37
+        2.39
       ],
       "proba_1n2": [
         0.293,
         0.208,
-        0.498
+        0.499
       ],
       "pronostic_1n2": "2",
       "score_probable": "1-2",
       "proba_score": 0.077,
-      "plus_2_5": 0.79,
-      "deux_equipes_marquent": 0.767,
+      "plus_2_5": 0.793,
+      "deux_equipes_marquent": 0.769,
       "buteurs_domicile": [
         {
           "joueur": "Nicolo Tresoldi",
+          "id": "335201",
           "buts_c1": 5,
-          "proba_buteur": 0.4493539358348201
+          "proba_buteur": 0.45089032479269475,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Carlos Forbs",
+          "id": "78836",
           "buts_c1": 2,
-          "proba_buteur": 0.2123214558147417
+          "proba_buteur": 0.2132012914730832,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Alexis Mac Allister",
+          "id": "249299",
           "buts_c1": 3,
-          "proba_buteur": 0.31507154593954334
+          "proba_buteur": 0.3164970673560893,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Bradley Barcola",
+          "id": "328238",
           "buts_c1": 3,
-          "proba_buteur": 0.31507154593954334
+          "proba_buteur": 0.3164970673560893,
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [],
+      "disponibilite_exterieur": "non vérifiée"
     },
     {
       "id": "401915376",
       "heure_paris": "21h00",
       "domicile": "Internazionale",
       "exterieur": "VfB Stuttgart",
+      "id_domicile": "110",
+      "id_exterieur": "134",
       "bilan_domicile": {
         "mj": 4,
         "v": 2,
@@ -406,67 +674,81 @@
         1.3
       ],
       "buts_attendus_cotes": [
-        2.67,
-        1.26
+        2.68,
+        1.22
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
           1.42,
           5.5,
-          6.0
+          6.5
         ],
         "proba_1n2": [
-          0.669,
-          0.172,
-          0.158
+          0.678,
+          0.175,
+          0.148
         ]
       },
       "buts_attendus": [
-        2.39,
-        1.27
+        2.4,
+        1.24
       ],
       "proba_1n2": [
-        0.615,
-        0.203,
-        0.182
+        0.621,
+        0.202,
+        0.177
       ],
       "pronostic_1n2": "1",
       "score_probable": "2-1",
-      "proba_score": 0.093,
-      "plus_2_5": 0.708,
-      "deux_equipes_marquent": 0.661,
+      "proba_score": 0.094,
+      "plus_2_5": 0.704,
+      "deux_equipes_marquent": 0.655,
       "buteurs_domicile": [
         {
           "joueur": "Carlos Augusto",
+          "id": "271769",
           "buts_c1": 2,
-          "proba_buteur": 0.3340968029390182
+          "proba_buteur": 0.33476115509579174,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Lautaro Martínez",
+          "id": "219713",
           "buts_c1": 2,
-          "proba_buteur": 0.3340968029390182
+          "proba_buteur": 0.33476115509579174,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Ermedin Demirovic",
+          "id": "269136",
           "buts_c1": 4,
-          "proba_buteur": 0.38057523227428725
+          "proba_buteur": 0.37484254323482646,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Deniz Undav",
+          "id": "273300",
           "buts_c1": 1,
-          "proba_buteur": 0.1128498268173993
+          "proba_buteur": 0.11080429984565277,
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [],
+      "disponibilite_exterieur": "non vérifiée"
     },
     {
       "id": "401915377",
       "heure_paris": "21h00",
       "domicile": "Lille",
       "exterieur": "Bayern Munich",
+      "id_domicile": "166",
+      "id_exterieur": "132",
       "bilan_domicile": {
         "mj": 4,
         "v": 0,
@@ -496,67 +778,89 @@
         2.99
       ],
       "buts_attendus_cotes": [
-        0.93,
+        0.95,
         1.91
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          5.5,
+          5.25,
           4.1,
           1.61
         ],
         "proba_1n2": [
-          0.173,
-          0.233,
-          0.594
+          0.18,
+          0.231,
+          0.589
         ]
       },
       "buts_attendus": [
-        1.07,
+        1.08,
         2.18
       ],
       "proba_1n2": [
-        0.166,
+        0.17,
         0.216,
-        0.618
+        0.614
       ],
       "pronostic_1n2": "2",
       "score_probable": "1-1",
       "proba_score": 0.099,
-      "plus_2_5": 0.63,
-      "deux_equipes_marquent": 0.591,
+      "plus_2_5": 0.634,
+      "deux_equipes_marquent": 0.596,
       "buteurs_domicile": [
         {
           "joueur": "Soriba Diaoune",
+          "id": "400352",
           "buts_c1": 2,
-          "proba_buteur": 0.26079535817553234
+          "proba_buteur": 0.26445863549958215,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Alexsandro",
+          "id": "340900",
           "buts_c1": 1,
-          "proba_buteur": 0.14022989013081666
+          "proba_buteur": 0.14236291795397638,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
-          "joueur": "Harry Kane",
-          "buts_c1": 4,
-          "proba_buteur": 0.41137749692910563
+          "joueur": "Alphonso Davies",
+          "id": "236721",
+          "buts_c1": 2,
+          "proba_buteur": 0.23278262332576538,
+          "disponibilite": "non vérifiée"
         },
         {
-          "joueur": "Alphonso Davies",
+          "joueur": "Michael Olise",
+          "id": "286831",
           "buts_c1": 2,
-          "proba_buteur": 0.23278262332576538
+          "proba_buteur": 0.23278262332576538,
+          "remplace": "Harry Kane",
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [
+        {
+          "joueur": "Harry Kane",
+          "raison": "annoncé forfait/blessé par ESPN : « Harry Kane vows to be back for 'business end of the season' after ankle surgery » (2026-11-21)",
+          "source": "https://www.espn.com/soccer/story/_/id/50548680/harry-kane-injury-bayern-munich",
+          "origine": "espn"
+        }
+      ],
+      "disponibilite_exterieur": "non vérifiée"
     },
     {
       "id": "401915374",
       "heure_paris": "21h00",
       "domicile": "Paris Saint-Germain",
       "exterieur": "AS Roma",
+      "id_domicile": "160",
+      "id_exterieur": "104",
       "bilan_domicile": {
         "mj": 4,
         "v": 4,
@@ -586,30 +890,30 @@
         1.34
       ],
       "buts_attendus_cotes": [
-        2.44,
-        1.21
+        2.45,
+        1.2
       ],
       "cotes": {
         "bookmaker": "DraftKings",
         "cotes_1n2": [
-          1.5,
+          1.49,
           4.9,
           5.75
         ],
         "proba_1n2": [
-          0.638,
-          0.195,
+          0.64,
+          0.194,
           0.166
         ]
       },
       "buts_attendus": [
         2.86,
-        1.25
+        1.24
       ],
       "proba_1n2": [
-        0.701,
+        0.702,
         0.165,
-        0.134
+        0.133
       ],
       "pronostic_1n2": "1",
       "score_probable": "2-1",
@@ -619,34 +923,56 @@
       "buteurs_domicile": [
         {
           "joueur": "Fabián Ruiz",
+          "id": "214596",
           "buts_c1": 4,
-          "proba_buteur": 0.3573423423052906
+          "proba_buteur": 0.35759659446253267,
+          "disponibilite": "non vérifiée"
         },
         {
-          "joueur": "Désiré Doué",
+          "joueur": "Ferran Torres",
+          "id": "265869",
           "buts_c1": 3,
-          "proba_buteur": 0.28223088824140186
+          "proba_buteur": 0.28244387493343426,
+          "remplace": "Désiré Doué",
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Donyell Malen",
+          "id": "259481",
           "buts_c1": 4,
-          "proba_buteur": 0.2974821488956041
+          "proba_buteur": 0.2970320015027025,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Bryan Cristante",
+          "id": "169213",
           "buts_c1": 1,
-          "proba_buteur": 0.08448736779854138
+          "proba_buteur": 0.08434074638698263,
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [
+        {
+          "joueur": "Désiré Doué",
+          "raison": "annoncé forfait/blessé par ESPN : « Luis Enrique insists PSG won't 'start crying' over Doué, Kvaratskhelia injuries » (2026-11-24)",
+          "source": "https://www.espn.com/soccer/story/_/id/50584788/psg-luis-enrique-injuries-desire-doue-khvicha-kvaratskhelia",
+          "origine": "espn"
+        }
+      ],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [],
+      "disponibilite_exterieur": "non vérifiée"
     },
     {
       "id": "401915375",
       "heure_paris": "21h00",
       "domicile": "Shakhtar Donetsk",
       "exterieur": "Fenerbahce",
+      "id_domicile": "493",
+      "id_exterieur": "436",
       "bilan_domicile": {
         "mj": 4,
         "v": 1,
@@ -709,34 +1035,48 @@
       "buteurs_domicile": [
         {
           "joueur": "Gleiker Mendoza",
+          "id": "382379",
           "buts_c1": 2,
-          "proba_buteur": 0.3586469542639288
+          "proba_buteur": 0.3586469542639288,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Pedrinho",
+          "id": "253821",
           "buts_c1": 1,
-          "proba_buteur": 0.19915479289935734
+          "proba_buteur": 0.19915479289935734,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Archie Brown",
+          "id": "320982",
           "buts_c1": 2,
-          "proba_buteur": 0.24290636974317692
+          "proba_buteur": 0.24290636974317692,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Mason Greenwood",
+          "id": "276221",
           "buts_c1": 2,
-          "proba_buteur": 0.24290636974317692
+          "proba_buteur": 0.24290636974317692,
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [],
+      "disponibilite_exterieur": "non vérifiée"
     },
     {
       "id": "401915373",
       "heure_paris": "21h00",
       "domicile": "Sporting CP",
       "exterieur": "Manchester United",
+      "id_domicile": "2250",
+      "id_exterieur": "360",
       "bilan_domicile": {
         "mj": 4,
         "v": 3,
@@ -799,28 +1139,40 @@
       "buteurs_domicile": [
         {
           "joueur": "Luis Suárez",
+          "id": "272722",
           "buts_c1": 4,
-          "proba_buteur": 0.44657129802693196
+          "proba_buteur": 0.44657129802693196,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Issa Doumbia",
+          "id": "386592",
           "buts_c1": 2,
-          "proba_buteur": 0.25607211238382244
+          "proba_buteur": 0.25607211238382244,
+          "disponibilite": "non vérifiée"
         }
       ],
       "buteurs_exterieur": [
         {
           "joueur": "Matheus Cunha",
+          "id": "259902",
           "buts_c1": 3,
-          "proba_buteur": 0.329969332327377
+          "proba_buteur": 0.329969332327377,
+          "disponibilite": "non vérifiée"
         },
         {
           "joueur": "Bruno Fernandes",
+          "id": "124091",
           "buts_c1": 2,
-          "proba_buteur": 0.23429211258799854
+          "proba_buteur": 0.23429211258799854,
+          "disponibilite": "non vérifiée"
         }
       ],
-      "resultat_reel": null
+      "resultat_reel": null,
+      "absents_domicile": [],
+      "disponibilite_domicile": "non vérifiée",
+      "absents_exterieur": [],
+      "disponibilite_exterieur": "non vérifiée"
     }
   ]
 }

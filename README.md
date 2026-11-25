@@ -124,6 +124,100 @@ Contrôle sur la 4e journée (3 et 4 novembre 2026, 18 matchs, données antérie
 échantillon minuscule : il ne prouve pas grand-chose.
 
 > ⚠️ **Avertissement.** Ces pronostics sont des **estimations statistiques**, pas des
-> certitudes. Ils reposent sur très peu de matchs et ignorent les blessures, suspensions,
-> compositions d'équipe, la fatigue et les enjeux. Un favori à 60 % perd ou fait match nul
-> 4 fois sur 10. Ils ne constituent en aucun cas un conseil de pari.
+> certitudes. Ils reposent sur très peu de matchs. Les absences ne sont prises en compte que pour
+> les buteurs probables (voir « Vérification » ci-dessous, forcément incomplète) ; les probabilités
+> 1/N/2 ignorent blessures, suspensions, fatigue et enjeux (sauf ce que les cotes intègrent déjà).
+> Un favori à 60 % perd ou fait match nul 4 fois sur 10. Ils ne constituent en aucun cas un
+> conseil de pari.
+
+## Vérification (`ucl_verif.py`)
+
+Le 25 novembre 2026, le pronostic listait Lamine Yamal parmi les buteurs probables de Barcelone à
+Sabah alors qu'il était forfait (cheville, resté à Barcelone). D'où un **robot de vérification**,
+lancé automatiquement par `ucl_predict.py` avant l'affichage et l'écriture des fichiers
+(`--sans-verif` pour le désactiver, déconseillé), et utilisable seul :
+
+```bash
+# Vérifie les résultats (ucl_bot) et les pronostics (ucl_predict) d'une date
+python3 ucl_verif.py --date 2026-11-25
+
+# Contrôle un fichier de résultats déjà écrit
+python3 ucl_verif.py --date 2026-11-04 --resultats resultats/ucl_2026-11-04.json
+```
+
+Code de sortie : 0 si tout va bien ou s'il n'y a que des avertissements, 2 en cas d'erreur de
+cohérence (même chose pour `ucl_predict.py`).
+
+### 1. Disponibilité des buteurs probables
+
+Pour chaque buteur probable, dans cet ordre :
+
+| Source | Ce qu'elle apporte réellement |
+|---|---|
+| `absences.json` (dans le dépôt, saisi à la main) | Absences confirmées (blessure, non convoqué…) avec raison et lien source. **Prioritaire.** |
+| Effectif ESPN `teams/<id>/roster` | Effectif actuel : un joueur qui n'y figure plus (transfert) est retiré. Le champ `injuries` existe mais est **vide pour toutes les équipes** en novembre 2026 (idem avec l'effectif du championnat, `esp.1`…), et `status` vaut toujours « Active ». |
+| Feuille de match ESPN `summary?event=<id>` → `rosters` | Vide avant la publication des compositions (~1 h avant le coup d'envoi), puis titulaires + remplaçants. Joueur absent de la feuille → retiré ; sur le banc → « remplaçant », probabilité x0,35. |
+| Actualités ESPN `news?team=<id>` | Articles en anglais des 7 derniers jours. Si le titre ou le chapeau nomme le joueur près d'un mot du type *ruled out*, *out for*, *will miss*, *sidelined*, *without*… il est retiré ; près de *injury*, *doubt*, *knock*… il est « incertain » (probabilité x0,5). Les articles de transfert / retour de blessure sont ignorés. C'est une heuristique : le titre et le lien sont recopiés dans le rapport pour contrôle humain. |
+
+(Le champ `injuries` du `summary` n'existe pas pour les matchs de C1.)
+
+Un buteur retiré est remplacé par le meilleur buteur suivant de l'équipe en C1 cette saison qui
+n'est pas lui-même absent. Les noms sont comparés sans accents ni majuscules, et le nom de famille
+seul suffit (« Christensen » = « Andreas Christensen »).
+
+Si **aucune** information de disponibilité n'existe pour une équipe (pas de compo officielle, pas
+d'entrée dans `absences.json`, pas de blessure ESPN), ses buteurs sont marqués
+**« ⚠️ disponibilité non vérifiée »** : avant les compositions officielles, c'est le cas de la
+plupart des équipes. Pour vérifier une équipe, ajoutez-la dans `absences.json` (une liste vide
+signifie « vérifié, aucun absent ») :
+
+```json
+{
+  "2026-11-25": {
+    "Barcelona": [
+      {"joueur": "Lamine Yamal", "raison": "cheville", "source": "https://…"}
+    ]
+  }
+}
+```
+
+Le nom d'équipe est celui d'ESPN (« Barcelona », « Bayern Munich »…). Un absent déclaré qui
+n'existe pas dans l'effectif ESPN déclenche un avertissement (faute de frappe ?).
+
+### 2. Contrôles de cohérence
+
+- probabilités 1/N/2 dont la somme vaut 100 % (± 1 point) ;
+- équipes, identifiants et heure de coup d'envoi identiques au tableau ESPN (relu sans cache),
+  aucun match oublié ni en double ;
+- matchs pas encore commencés (sinon avertissement : pronostic a posteriori) ;
+- chaque buteur appartient bien à l'effectif de l'équipe sous laquelle il est listé ;
+- résultats de `ucl_bot.py` : nombre de buts par équipe = score final, buts de 1re période =
+  score à la mi-temps, chaque buteur figure sur la feuille de match de son équipe (celle de
+  l'adversaire pour un but contre son camp), pas de match en double.
+
+### 3. Sortie
+
+- console et rapport `.md` : section **« Contrôles »** (✅ / ⚠️ / ❌) et **« ⚠️ Corrections
+  appliquées »**, par exemple : *Lamine Yamal (Barcelona) retiré (absent : cheville) → remplacé
+  par Karim Adeyemi (2 buts en C1, ~32 %)* ; dans le détail de chaque match, une ligne
+  « Absents » ;
+- `.json` : clé `verification` (statut, contrôles, corrections, sources consultées) et, pour
+  chaque buteur, un champ `disponibilite` (`titulaire`, `remplaçant`, `incertain`, `vérifiée`,
+  `non vérifiée`) et `remplace` le cas échéant.
+
+## Processus complet en 3 étapes
+
+```bash
+# 1. Résultats de la veille / du jour
+python3 ucl_bot.py --date 2026-11-24 --out resultats/
+
+# 2. Pronostics (la vérification de l'étape 3 est lancée automatiquement)
+#    Idéalement : saisir d'abord les absences connues dans absences.json, et relancer
+#    après la publication des compositions (~1 h avant le coup d'envoi).
+python3 ucl_predict.py --date 2026-11-25 --out pronostics/
+
+# 3. Vérification (seule, pour relire résultats + pronostics)
+python3 ucl_verif.py --date 2026-11-25
+```
+
+Le dossier `cache/` reste ignoré par git.

@@ -1,0 +1,32 @@
+{
+  "_lisez_moi": "Absences saisies à la main, lues par ucl_verif.py. Format : {\"AAAA-MM-JJ\": {\"Nom de l'équipe (comme ESPN)\": [{\"joueur\": \"...\", \"raison\": \"...\", \"source\": \"url\"}]}}. Une équipe présente avec une liste vide signifie « vérifié : aucun absent ». Les clés commençant par _ sont ignorées.",
+  "2026-11-25": {
+    "Barcelona": [
+      {
+        "joueur": "Lamine Yamal",
+        "raison": "cheville, n'a pas fait le déplacement",
+        "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list"
+      },
+      {
+        "joueur": "Andreas Christensen",
+        "raison": "absent du groupe de 22 convoqué",
+        "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list"
+      },
+      {
+        "joueur": "Rodri",
+        "raison": "absent du groupe de 22 convoqué",
+        "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list"
+      },
+      {
+        "joueur": "Xavi Espart",
+        "raison": "absent du groupe de 22 convoqué",
+        "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list"
+      },
+      {
+        "joueur": "Roony Bardghji",
+        "raison": "absent du groupe de 22 convoqué",
+        "source": "https://www.barcablaugranes.com/barcelona-uefa-champions-league/138819/sabah-barcelona-champions-league-team-news-squad-list"
+      }
+    ]
+  }
+}

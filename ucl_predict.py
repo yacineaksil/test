@@ -14,6 +14,9 @@ Modèle (volontairement simple) :
   4. Loi de Poisson (avec correction Dixon-Coles des petits scores) → probabilités 1/N/2,
      score exact le plus probable, buts attendus, plus de 2,5 buts, les deux équipes marquent.
   5. Buteurs probables : les 2 meilleurs buteurs de chaque équipe en C1 cette saison.
+  6. Vérification automatique (ucl_verif.py) avant affichage / écriture : disponibilité
+     des buteurs (compo officielle, effectif, actualité ESPN, absences.json) et
+     contrôles de cohérence. Désactivable avec --sans-verif.
 
 Ce sont des ESTIMATIONS STATISTIQUES, pas des certitudes.
 
@@ -31,6 +34,7 @@ import sys
 from datetime import date, datetime, timedelta, timezone
 
 from ucl_bot import BASE, aujourdhui_paris, date_longue, get_json, parse_utc, vers_paris
+from ucl_verif import bloc_verif_markdown, bloc_verif_texte, verifier_pronostics
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(ICI, "cache")
@@ -281,8 +285,9 @@ def lambdas_marche(mk):
 # Buteurs
 # --------------------------------------------------------------------------
 def buteurs_saison(matchs):
-    """{team_id: {joueur: buts}} à partir des keyEvents des matchs joués (hors csc et t.a.b.)."""
-    par_equipe, manquants = {}, 0
+    """({team_id: {joueur: buts}}, nb de matchs sans détail, {joueur: id ESPN}) à partir des
+    keyEvents des matchs joués (hors csc et t.a.b.)."""
+    par_equipe, manquants, ids = {}, 0, {}
     for m in matchs:
         s = summary(m["id"], termine=True)
         evs = s.get("keyEvents") or []
@@ -299,19 +304,22 @@ def buteurs_saison(matchs):
             if not tid or not parts:
                 continue
             nom = parts[0].get("athlete", {}).get("displayName", "?")
+            if parts[0].get("athlete", {}).get("id"):
+                ids[nom] = str(parts[0]["athlete"]["id"])
             par_equipe.setdefault(tid, {})
             par_equipe[tid][nom] = par_equipe[tid].get(nom, 0) + 1
-    return par_equipe, manquants
+    return par_equipe, manquants, ids
 
 
-def buteurs_probables(tid, lam, buteurs, buts_equipe):
-    joueurs = sorted((buteurs.get(tid) or {}).items(), key=lambda kv: (-kv[1], kv[0]))[:2]
+def buteurs_probables(tid, lam, buteurs, buts_equipe, n=2, ids=None):
+    """Les `n` meilleurs buteurs de l'équipe en C1 (tous si n=None), avec une probabilité indicative."""
+    joueurs = sorted((buteurs.get(tid) or {}).items(), key=lambda kv: (-kv[1], kv[0]))[:n]
     res = []
     for nom, g in joueurs:
         # part des buts de l'équipe, rétrécie (petits échantillons), plafonnée à 45 %
         part = min(0.45, g / (buts_equipe + 2))
         p = 1 - math.exp(-lam * part * PART_TEMPS_JEU)
-        res.append({"joueur": nom, "buts_c1": g, "proba_buteur": p})
+        res.append({"joueur": nom, "id": (ids or {}).get(nom), "buts_c1": g, "proba_buteur": p})
     return res
 
 
@@ -322,7 +330,7 @@ def predire(jour, aujourdhui, avec_cotes=True, donnees_avant=None, verbeux=True)
     avant = donnees_avant or jour
     historique = matchs_joues(avant, aujourdhui)
     mu, notes = notes_equipes(historique)
-    buteurs, manquants = buteurs_saison(historique)
+    buteurs, manquants, ids_joueurs = buteurs_saison(historique)
     if verbeux:
         print(f"Données : {len(historique)} matchs de C1 joués avant le {avant.strftime('%d/%m/%Y')}"
               f" ({len(notes)} équipes), moyenne {mu * (DOMICILE + EXTERIEUR) / 2:.2f} buts/équipe/match.",
@@ -363,6 +371,7 @@ def predire(jour, aujourdhui, avec_cotes=True, donnees_avant=None, verbeux=True)
         pronos.append({
             "id": ev["id"], "heure_paris": ko.strftime("%Hh%M"),
             "domicile": dom["nom"], "exterieur": ext["nom"],
+            "id_domicile": dom["id"], "id_exterieur": ext["id"],
             "bilan_domicile": _bilan(nd), "bilan_exterieur": _bilan(ne),
             "forme_domicile": dom.get("forme"), "forme_exterieur": ext.get("forme"),
             "notes": {"att_dom": round(nd["att"], 2), "def_dom": round(nd["def"], 2),
@@ -376,8 +385,11 @@ def predire(jour, aujourdhui, avec_cotes=True, donnees_avant=None, verbeux=True)
             "pronostic_1n2": choix,
             "score_probable": f"{st['score'][0]}-{st['score'][1]}", "proba_score": round(st["p_score"], 3),
             "plus_2_5": round(st["over"][2.5], 3), "deux_equipes_marquent": round(st["btts"], 3),
-            "buteurs_domicile": buteurs_probables(dom["id"], lh, buteurs, nd["bp"]),
-            "buteurs_exterieur": buteurs_probables(ext["id"], la, buteurs, ne["bp"]),
+            "buteurs_domicile": buteurs_probables(dom["id"], lh, buteurs, nd["bp"], ids=ids_joueurs),
+            "buteurs_exterieur": buteurs_probables(ext["id"], la, buteurs, ne["bp"], ids=ids_joueurs),
+            # liste complète (interne) pour remplacer un buteur absent ; retirée par ucl_verif
+            "_candidats_domicile": buteurs_probables(dom["id"], lh, buteurs, nd["bp"], n=None, ids=ids_joueurs),
+            "_candidats_exterieur": buteurs_probables(ext["id"], la, buteurs, ne["bp"], n=None, ids=ids_joueurs),
             "resultat_reel": reel,
         })
     return pronos, {"matchs_historique": len(historique), "equipes": len(notes), "mu": mu}
@@ -404,11 +416,28 @@ def _txt_bilan(b):
     return f"{b['mj']} m. : {b['v']}V {b['n']}N {b['d']}D, {b['bp']}-{b['bc']}"
 
 
-def _txt_buteurs(lst):
+TAGS_DISPO = {"titulaire": "titulaire ✅", "remplaçant": "remplaçant ⚠️", "incertain": "incertain ⚠️"}
+
+
+def _txt_buteurs(lst, dispo=None):
     if not lst:
         return "pas de données (aucun but en C1 cette saison)"
-    return ", ".join(f"{b['joueur']} ({b['buts_c1']} but{'s' if b['buts_c1'] > 1 else ''} en C1, "
-                     f"~{pct(b['proba_buteur'])})" for b in lst)
+    morceaux = []
+    for b in lst:
+        s = f"{b['joueur']} ({b['buts_c1']} but{'s' if b['buts_c1'] > 1 else ''} en C1, ~{pct(b['proba_buteur'])}"
+        if b.get("disponibilite") in TAGS_DISPO:
+            s += f", {TAGS_DISPO[b['disponibilite']]}"
+        if b.get("remplace"):
+            s += f", remplace {b['remplace']}"
+        morceaux.append(s + ")")
+    s = ", ".join(morceaux)
+    if dispo == "non vérifiée":
+        s += " — ⚠️ disponibilité non vérifiée"
+    return s
+
+
+def _txt_absents(lst):
+    return ", ".join(f"{a['joueur']} ({a['raison']})" if a.get("raison") else a["joueur"] for a in lst)
 
 
 def _de(nom):
@@ -419,16 +448,19 @@ LIB_1N2 = {"1": "victoire {d}", "N": "match nul", "2": "victoire {e}"}
 
 AVERTISSEMENT = ("⚠️ Ces pronostics sont des **estimations statistiques** (loi de Poisson, notes "
                  "d'équipes sur peu de matchs, cotes de bookmaker quand elles existent). Ce ne sont "
-                 "**pas des certitudes** : le football reste très aléatoire, les blessures, compositions "
-                 "et enjeux ne sont pas pris en compte. Ne pariez pas sur cette base.")
+                 "**pas des certitudes** : le football reste très aléatoire ; les absences ne sont prises en "
+                 "compte que pour les buteurs (vérification automatique, forcément incomplète) et les enjeux "
+                 "pas du tout. Ne pariez pas sur cette base.")
 
 
-def rapport_texte(jour, pronos, meta):
+def rapport_texte(jour, pronos, meta, verif=None):
     titre = f"Pronostics Ligue des champions — {date_longue(jour)}"
     out = [titre, "=" * len(titre),
            f"Basé sur {meta['matchs_historique']} matchs de C1 2026/27 joués avant ce jour"
            " + cotes DraftKings (via ESPN) quand disponibles.",
            AVERTISSEMENT.replace("**", "")]
+    if verif:
+        out += ["", bloc_verif_texte(verif)]
     if not pronos:
         out.append("\nAucun match de Ligue des champions ce jour-là.")
         return "\n".join(out)
@@ -449,20 +481,24 @@ def rapport_texte(jour, pronos, meta):
                        f"  (modèle seul : {p['buts_attendus_stats'][0]:.2f} - {p['buts_attendus_stats'][1]:.2f} buts attendus)")
         else:
             out.append("   Cotes : non disponibles (modèle statistique seul)")
-        out.append(f"   Buteurs probables {d} : {_txt_buteurs(p['buteurs_domicile'])}")
-        out.append(f"   Buteurs probables {e} : {_txt_buteurs(p['buteurs_exterieur'])}")
+        for camp, nom in (("domicile", d), ("exterieur", e)):
+            out.append(f"   Buteurs probables {nom} : {_txt_buteurs(p[f'buteurs_{camp}'], p.get(f'disponibilite_{camp}'))}")
+            if p.get(f"absents_{camp}"):
+                out.append(f"   Absents {nom} : {_txt_absents(p[f'absents_{camp}'])}")
         if p["resultat_reel"]:
             ok = "✅" if p["resultat_reel"]["1n2"] == p["pronostic_1n2"] else "❌"
             out.append(f"   Résultat réel : {p['resultat_reel']['score']} {ok}")
     return "\n".join(out)
 
 
-def rapport_markdown(jour, pronos, meta):
+def rapport_markdown(jour, pronos, meta, verif=None):
     genere = vers_paris(datetime.now(timezone.utc)).strftime("%d/%m/%Y à %Hh%M")
     md = [f"# Pronostics Ligue des champions — {date_longue(jour)}", "",
           f"_Généré le {genere} (heure de Paris). Données : ESPN ({meta['matchs_historique']} matchs de C1 "
           "2026/27 joués avant ce jour) + cotes DraftKings quand disponibles._", "",
           f"> {AVERTISSEMENT}", ""]
+    if verif:
+        md += [bloc_verif_markdown(verif)]
     if not pronos:
         md.append("Aucun match de Ligue des champions ce jour-là.")
         return "\n".join(md) + "\n"
@@ -490,8 +526,12 @@ def rapport_markdown(jour, pronos, meta):
                       f"modèle seul {p['buts_attendus_stats'][0]:.2f} - {p['buts_attendus_stats'][1]:.2f})")
         else:
             md.append("- **Cotes :** non disponibles (modèle statistique seul)")
-        md.append(f"- **Buteurs probables {d} :** {_txt_buteurs(p['buteurs_domicile'])}")
-        md.append(f"- **Buteurs probables {e} :** {_txt_buteurs(p['buteurs_exterieur'])}")
+        for camp, nom in (("domicile", d), ("exterieur", e)):
+            md.append(f"- **Buteurs probables {nom} :** {_txt_buteurs(p[f'buteurs_{camp}'], p.get(f'disponibilite_{camp}'))}")
+            if p.get(f"absents_{camp}"):
+                md.append(f"- **Absents {nom} :** " + ", ".join(
+                    (f"{a['joueur']} ({a['raison']}" + (f", [source]({a['source']})" if str(a.get('source', '')).startswith('http') else "") + ")")
+                    for a in p[f"absents_{camp}"]))
         if p["resultat_reel"]:
             md.append(f"- **Résultat réel :** {p['resultat_reel']['score']}")
     md += ["", "## Méthode", "",
@@ -502,7 +542,11 @@ def rapport_markdown(jour, pronos, meta):
            f"{POIDS_COTES:.0%} et le modèle statistique pour {1 - POIDS_COTES:.0%}.".replace("%", " %"),
            "- Loi de Poisson avec correction Dixon-Coles pour les petits scores.",
            "- Buteurs : part des buts de l'équipe en C1 cette saison (rétrécie), appliquée aux buts attendus ; "
-           "probabilité « buteur à tout moment » indicative (titularisation non connue)."]
+           "probabilité « buteur à tout moment » indicative (titularisation non connue avant la compo officielle).",
+           "- Vérification (`ucl_verif.py`) : un buteur absent (compo officielle, effectif ESPN, actualité ESPN, "
+           "`absences.json`) est retiré et remplacé par le meilleur buteur suivant de l'équipe ; un remplaçant voit sa "
+           "probabilité réduite. Les probabilités 1/N/2 ne sont pas recalculées (les cotes intègrent en général "
+           "déjà les absences connues)."]
     return "\n".join(md) + "\n"
 
 
@@ -515,6 +559,9 @@ def backtest(jours, aujourdhui):
         brier = 0.0
         for j in jours:
             pronos, _ = predire(j, aujourdhui, avec_cotes=avec_cotes, donnees_avant=avant, verbeux=False)
+            for p in pronos:
+                p.pop("_candidats_domicile", None)
+                p.pop("_candidats_exterieur", None)
             for p in pronos:
                 if not p["resultat_reel"]:
                     continue
@@ -535,6 +582,8 @@ def main(argv=None):
     p.add_argument("--date", help="Date AAAA-MM-JJ (défaut : aujourd'hui, heure de Paris)")
     p.add_argument("--out", help="Dossier de sortie pour pronos_AAAA-MM-JJ.md et .json")
     p.add_argument("--sans-cotes", action="store_true", help="N'utiliser que le modèle statistique")
+    p.add_argument("--sans-verif", action="store_true",
+                   help="Ne pas lancer la vérification automatique (ucl_verif.py) — déconseillé")
     p.add_argument("--backtest", nargs="+", metavar="AAAA-MM-JJ",
                    help="Évalue les pronostics de ces dates (données antérieures à la 1re date uniquement)")
     args = p.parse_args(argv)
@@ -556,12 +605,26 @@ def main(argv=None):
         print(f"Erreur : {e}", file=sys.stderr)
         return 1
 
-    print(rapport_texte(jour, pronos, meta))
+    verif = None
+    if args.sans_verif:
+        for pr in pronos:
+            pr.pop("_candidats_domicile", None)
+            pr.pop("_candidats_exterieur", None)
+    else:
+        try:
+            verif = verifier_pronostics(jour, pronos)
+        except RuntimeError as e:
+            print(f"Erreur pendant la vérification : {e}", file=sys.stderr)
+            return 1
+        if verif["statut"] == "ERREUR":
+            print("❌ La vérification a détecté des erreurs de cohérence (voir « Contrôles »).", file=sys.stderr)
+
+    print(rapport_texte(jour, pronos, meta, verif))
     if args.out:
         os.makedirs(args.out, exist_ok=True)
         base = os.path.join(args.out, f"pronos_{jour.isoformat()}")
         with open(base + ".md", "w", encoding="utf-8") as f:
-            f.write(rapport_markdown(jour, pronos, meta))
+            f.write(rapport_markdown(jour, pronos, meta, verif))
         with open(base + ".json", "w", encoding="utf-8") as f:
             json.dump({"date": jour.isoformat(), "competition": "UEFA Champions League",
                        "source": "ESPN (+ cotes DraftKings via ESPN)",
@@ -570,9 +633,10 @@ def main(argv=None):
                                       "prior_matchs": PRIOR_MATCHS, "poids_cotes": POIDS_COTES,
                                       "rho_dixon_coles": RHO_DC},
                        "matchs_historique": meta["matchs_historique"],
+                       "verification": verif,
                        "pronostics": pronos}, f, ensure_ascii=False, indent=2)
         print(f"\nPronostics écrits : {base}.md et {base}.json")
-    return 0
+    return 2 if verif and verif["statut"] == "ERREUR" else 0
 
 
 if __name__ == "__main__":
