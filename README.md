@@ -81,3 +81,49 @@ au script pour toujours cibler la soirée de matchs.
 - ESPN refuse (HTTP 403) les requêtes dont le *User-Agent* contient le mot « bot » ; le script
   envoie donc `ucl-resultats/1.0`.
 - Les noms d'équipes et de joueurs sont ceux d'ESPN (en anglais, par ex. « Internazionale »).
+
+## Pronostics (`ucl_predict.py`)
+
+Un second script, `ucl_predict.py`, **estime** l'issue des matchs d'une date donnée
+(bibliothèque standard uniquement, mêmes accès ESPN que `ucl_bot.py`).
+
+```bash
+# Pronostics du jour (date du jour à Paris)
+python3 ucl_predict.py
+
+# Date précise + écriture de pronostics/pronos_AAAA-MM-JJ.md et .json
+python3 ucl_predict.py --date 2026-11-25 --out pronostics/
+
+# Modèle statistique seul (sans les cotes)
+python3 ucl_predict.py --date 2026-11-25 --sans-cotes
+
+# Contrôle a posteriori : pronostics de la 4e journée avec les seules données antérieures
+python3 ucl_predict.py --backtest 2026-11-03 2026-11-04
+```
+
+Pour chaque match : probabilités **1 / N / 2**, pronostic, **score exact le plus probable**,
+**buts attendus** de chaque équipe, probabilité de **plus de 2,5 buts**, probabilité que
+**les deux équipes marquent**, et 2 **buteurs probables** par équipe (meilleurs buteurs en C1
+cette saison, avec une probabilité indicative de marquer).
+
+Méthode, en bref :
+
+1. tous les matchs de C1 2026/27 joués avant la date visée sont récupérés jour par jour
+   (mis en cache dans `cache/`, dossier ignoré par git) ;
+2. chaque équipe reçoit une note d'attaque et de défense (modèle de Poisson ajusté à la force
+   des adversaires). Avec seulement 4 ou 5 matchs par équipe, ces notes sont fortement
+   rapprochées de la moyenne (a priori équivalent à 3 matchs « moyens ») ; avantage du terrain
+   x1,15 pour l'équipe qui reçoit, x0,87 pour le visiteur ;
+3. quand ESPN publie des cotes (DraftKings), on en déduit les buts attendus implicites du marché
+   et on les mélange au modèle (70 % cotes, 30 % modèle) : les cotes sont le meilleur signal
+   disponible ;
+4. loi de Poisson avec correction Dixon-Coles des petits scores.
+
+Contrôle sur la 4e journée (3 et 4 novembre 2026, 18 matchs, données antérieures uniquement) :
+15/18 bons pronostics 1N2 avec les cotes, 11/18 avec le modèle statistique seul. C'est un
+échantillon minuscule : il ne prouve pas grand-chose.
+
+> ⚠️ **Avertissement.** Ces pronostics sont des **estimations statistiques**, pas des
+> certitudes. Ils reposent sur très peu de matchs et ignorent les blessures, suspensions,
+> compositions d'équipe, la fatigue et les enjeux. Un favori à 60 % perd ou fait match nul
+> 4 fois sur 10. Ils ne constituent en aucun cas un conseil de pari.

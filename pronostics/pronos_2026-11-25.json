@@ -1,0 +1,826 @@
+{
+  "date": "2026-11-25",
+  "competition": "UEFA Champions League",
+  "source": "ESPN (+ cotes DraftKings via ESPN)",
+  "avertissement": "Ces pronostics sont des estimations statistiques (loi de Poisson, notes d'équipes sur peu de matchs, cotes de bookmaker quand elles existent). Ce ne sont pas des certitudes : le football reste très aléatoire, les blessures, compositions et enjeux ne sont pas pris en compte. Ne pariez pas sur cette base.",
+  "parametres": {
+    "domicile": 1.15,
+    "exterieur": 0.87,
+    "prior_matchs": 3.0,
+    "poids_cotes": 0.7,
+    "rho_dixon_coles": -0.1
+  },
+  "matchs_historique": 81,
+  "pronostics": [
+    {
+      "id": "401915378",
+      "heure_paris": "18h45",
+      "domicile": "Sabah FK",
+      "exterieur": "Barcelona",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 1,
+        "n": 0,
+        "d": 3,
+        "bp": 4,
+        "bc": 10
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 3,
+        "n": 0,
+        "d": 1,
+        "bp": 14,
+        "bc": 6
+      },
+      "forme_domicile": "LLWLW",
+      "forme_exterieur": "WWWWL",
+      "notes": {
+        "att_dom": 0.7,
+        "def_dom": 1.18,
+        "att_ext": 1.58,
+        "def_ext": 0.78
+      },
+      "buts_attendus_stats": [
+        1.21,
+        3.12
+      ],
+      "buts_attendus_cotes": [
+        0.87,
+        3.87
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          21.0,
+          13.0,
+          1.08
+        ],
+        "proba_1n2": [
+          0.045,
+          0.073,
+          0.881
+        ]
+      },
+      "buts_attendus": [
+        0.96,
+        3.63
+      ],
+      "proba_1n2": [
+        0.054,
+        0.098,
+        0.848
+      ],
+      "pronostic_1n2": "2",
+      "score_probable": "0-3",
+      "proba_score": 0.081,
+      "plus_2_5": 0.836,
+      "deux_equipes_marquent": 0.604,
+      "buteurs_domicile": [
+        {
+          "joueur": "Aden McCarthy",
+          "buts_c1": 1,
+          "proba_buteur": 0.12702347619230203
+        },
+        {
+          "joueur": "Joy-Lance Mickels",
+          "buts_c1": 1,
+          "proba_buteur": 0.12702347619230203
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Raphinha",
+          "buts_c1": 4,
+          "proba_buteur": 0.5376932443323297
+        },
+        {
+          "joueur": "Lamine Yamal",
+          "buts_c1": 3,
+          "proba_buteur": 0.4393424435754486
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915293",
+      "heure_paris": "18h45",
+      "domicile": "Slavia Prague",
+      "exterieur": "Villarreal",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 0,
+        "n": 1,
+        "d": 3,
+        "bp": 5,
+        "bc": 9
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 1,
+        "n": 0,
+        "d": 3,
+        "bp": 8,
+        "bc": 14
+      },
+      "forme_domicile": "LDLLL",
+      "forme_exterieur": "LWLLW",
+      "notes": {
+        "att_dom": 0.74,
+        "def_dom": 1.25,
+        "att_ext": 1.01,
+        "def_ext": 1.28
+      },
+      "buts_attendus_stats": [
+        2.09,
+        2.11
+      ],
+      "buts_attendus_cotes": [
+        1.36,
+        1.65
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          3.1,
+          3.75,
+          2.2
+        ],
+        "proba_1n2": [
+          0.309,
+          0.255,
+          0.435
+        ]
+      },
+      "buts_attendus": [
+        1.55,
+        1.78
+      ],
+      "proba_1n2": [
+        0.328,
+        0.248,
+        0.424
+      ],
+      "pronostic_1n2": "2",
+      "score_probable": "1-1",
+      "proba_score": 0.109,
+      "plus_2_5": 0.646,
+      "deux_equipes_marquent": 0.664,
+      "buteurs_domicile": [
+        {
+          "joueur": "Danijel Sturm",
+          "buts_c1": 2,
+          "proba_buteur": 0.31337835106106104
+        },
+        {
+          "joueur": "Lukás Provod",
+          "buts_c1": 1,
+          "proba_buteur": 0.17137363731357247
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Georges Mikautadze",
+          "buts_c1": 2,
+          "proba_buteur": 0.2607954154741319
+        },
+        {
+          "joueur": "Santiago Mouriño",
+          "buts_c1": 2,
+          "proba_buteur": 0.2607954154741319
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915291",
+      "heure_paris": "21h00",
+      "domicile": "Atlético Madrid",
+      "exterieur": "Viking FK",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 1,
+        "n": 1,
+        "d": 2,
+        "bp": 4,
+        "bc": 5
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 1,
+        "n": 1,
+        "d": 2,
+        "bp": 9,
+        "bc": 10
+      },
+      "forme_domicile": "WLLWW",
+      "forme_exterieur": "DWWLW",
+      "notes": {
+        "att_dom": 0.73,
+        "def_dom": 0.72,
+        "att_ext": 1.15,
+        "def_ext": 1.14
+      },
+      "buts_attendus_stats": [
+        1.84,
+        1.38
+      ],
+      "buts_attendus_cotes": [
+        3.26,
+        0.67
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          1.11,
+          10.5,
+          19.0
+        ],
+        "proba_1n2": [
+          0.859,
+          0.091,
+          0.05
+        ]
+      },
+      "buts_attendus": [
+        2.75,
+        0.83
+      ],
+      "proba_1n2": [
+        0.768,
+        0.151,
+        0.08
+      ],
+      "pronostic_1n2": "1",
+      "score_probable": "2-0",
+      "proba_score": 0.106,
+      "plus_2_5": 0.692,
+      "deux_equipes_marquent": 0.533,
+      "buteurs_domicile": [
+        {
+          "joueur": "Ademola Lookman",
+          "buts_c1": 1,
+          "proba_buteur": 0.32223070696246403
+        },
+        {
+          "joueur": "Julián Álvarez",
+          "buts_c1": 1,
+          "proba_buteur": 0.32223070696246403
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Erik Botheim",
+          "buts_c1": 2,
+          "proba_buteur": 0.12008009671918718
+        },
+        {
+          "joueur": "Peter Christiansen",
+          "buts_c1": 2,
+          "proba_buteur": 0.12008009671918718
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915292",
+      "heure_paris": "21h00",
+      "domicile": "Club Brugge",
+      "exterieur": "Liverpool",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 3,
+        "n": 0,
+        "d": 1,
+        "bp": 11,
+        "bc": 7
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 3,
+        "n": 0,
+        "d": 1,
+        "bp": 14,
+        "bc": 10
+      },
+      "forme_domicile": "WDWWW",
+      "forme_exterieur": "WWLLW",
+      "notes": {
+        "att_dom": 1.23,
+        "def_dom": 1.01,
+        "att_ext": 1.4,
+        "def_ext": 1.26
+      },
+      "buts_attendus_stats": [
+        3.39,
+        2.36
+      ],
+      "buts_attendus_cotes": [
+        1.4,
+        2.38
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          4.5,
+          4.7,
+          1.62
+        ],
+        "proba_1n2": [
+          0.212,
+          0.203,
+          0.586
+        ]
+      },
+      "buts_attendus": [
+        1.83,
+        2.37
+      ],
+      "proba_1n2": [
+        0.293,
+        0.208,
+        0.498
+      ],
+      "pronostic_1n2": "2",
+      "score_probable": "1-2",
+      "proba_score": 0.077,
+      "plus_2_5": 0.79,
+      "deux_equipes_marquent": 0.767,
+      "buteurs_domicile": [
+        {
+          "joueur": "Nicolo Tresoldi",
+          "buts_c1": 5,
+          "proba_buteur": 0.4493539358348201
+        },
+        {
+          "joueur": "Carlos Forbs",
+          "buts_c1": 2,
+          "proba_buteur": 0.2123214558147417
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Alexis Mac Allister",
+          "buts_c1": 3,
+          "proba_buteur": 0.31507154593954334
+        },
+        {
+          "joueur": "Bradley Barcola",
+          "buts_c1": 3,
+          "proba_buteur": 0.31507154593954334
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915376",
+      "heure_paris": "21h00",
+      "domicile": "Internazionale",
+      "exterieur": "VfB Stuttgart",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 2,
+        "n": 0,
+        "d": 2,
+        "bp": 8,
+        "bc": 6
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 2,
+        "n": 1,
+        "d": 1,
+        "bp": 7,
+        "bc": 4
+      },
+      "forme_domicile": "DWWLW",
+      "forme_exterieur": "DWLWW",
+      "notes": {
+        "att_dom": 1.05,
+        "def_dom": 0.84,
+        "att_ext": 0.93,
+        "def_ext": 0.8
+      },
+      "buts_attendus_stats": [
+        1.85,
+        1.3
+      ],
+      "buts_attendus_cotes": [
+        2.67,
+        1.26
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          1.42,
+          5.5,
+          6.0
+        ],
+        "proba_1n2": [
+          0.669,
+          0.172,
+          0.158
+        ]
+      },
+      "buts_attendus": [
+        2.39,
+        1.27
+      ],
+      "proba_1n2": [
+        0.615,
+        0.203,
+        0.182
+      ],
+      "pronostic_1n2": "1",
+      "score_probable": "2-1",
+      "proba_score": 0.093,
+      "plus_2_5": 0.708,
+      "deux_equipes_marquent": 0.661,
+      "buteurs_domicile": [
+        {
+          "joueur": "Carlos Augusto",
+          "buts_c1": 2,
+          "proba_buteur": 0.3340968029390182
+        },
+        {
+          "joueur": "Lautaro Martínez",
+          "buts_c1": 2,
+          "proba_buteur": 0.3340968029390182
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Ermedin Demirovic",
+          "buts_c1": 4,
+          "proba_buteur": 0.38057523227428725
+        },
+        {
+          "joueur": "Deniz Undav",
+          "buts_c1": 1,
+          "proba_buteur": 0.1128498268173993
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915377",
+      "heure_paris": "21h00",
+      "domicile": "Lille",
+      "exterieur": "Bayern Munich",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 0,
+        "n": 1,
+        "d": 3,
+        "bp": 4,
+        "bc": 10
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 2,
+        "n": 2,
+        "d": 0,
+        "bp": 12,
+        "bc": 5
+      },
+      "forme_domicile": "LWDWD",
+      "forme_exterieur": "DWWDW",
+      "notes": {
+        "att_dom": 0.78,
+        "def_dom": 1.25,
+        "att_ext": 1.44,
+        "def_ext": 0.86
+      },
+      "buts_attendus_stats": [
+        1.48,
+        2.99
+      ],
+      "buts_attendus_cotes": [
+        0.93,
+        1.91
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          5.5,
+          4.1,
+          1.61
+        ],
+        "proba_1n2": [
+          0.173,
+          0.233,
+          0.594
+        ]
+      },
+      "buts_attendus": [
+        1.07,
+        2.18
+      ],
+      "proba_1n2": [
+        0.166,
+        0.216,
+        0.618
+      ],
+      "pronostic_1n2": "2",
+      "score_probable": "1-1",
+      "proba_score": 0.099,
+      "plus_2_5": 0.63,
+      "deux_equipes_marquent": 0.591,
+      "buteurs_domicile": [
+        {
+          "joueur": "Soriba Diaoune",
+          "buts_c1": 2,
+          "proba_buteur": 0.26079535817553234
+        },
+        {
+          "joueur": "Alexsandro",
+          "buts_c1": 1,
+          "proba_buteur": 0.14022989013081666
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Harry Kane",
+          "buts_c1": 4,
+          "proba_buteur": 0.41137749692910563
+        },
+        {
+          "joueur": "Alphonso Davies",
+          "buts_c1": 2,
+          "proba_buteur": 0.23278262332576538
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915374",
+      "heure_paris": "21h00",
+      "domicile": "Paris Saint-Germain",
+      "exterieur": "AS Roma",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 4,
+        "n": 0,
+        "d": 0,
+        "bp": 20,
+        "bc": 5
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 1,
+        "n": 1,
+        "d": 2,
+        "bp": 10,
+        "bc": 8
+      },
+      "forme_domicile": "DWWWW",
+      "forme_exterieur": "WWLWW",
+      "notes": {
+        "att_dom": 1.79,
+        "def_dom": 0.76,
+        "att_ext": 1.07,
+        "def_ext": 1.05
+      },
+      "buts_attendus_stats": [
+        4.13,
+        1.34
+      ],
+      "buts_attendus_cotes": [
+        2.44,
+        1.21
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          1.5,
+          4.9,
+          5.75
+        ],
+        "proba_1n2": [
+          0.638,
+          0.195,
+          0.166
+        ]
+      },
+      "buts_attendus": [
+        2.86,
+        1.25
+      ],
+      "proba_1n2": [
+        0.701,
+        0.165,
+        0.134
+      ],
+      "pronostic_1n2": "1",
+      "score_probable": "2-1",
+      "proba_score": 0.084,
+      "plus_2_5": 0.777,
+      "deux_equipes_marquent": 0.677,
+      "buteurs_domicile": [
+        {
+          "joueur": "Fabián Ruiz",
+          "buts_c1": 4,
+          "proba_buteur": 0.3573423423052906
+        },
+        {
+          "joueur": "Désiré Doué",
+          "buts_c1": 3,
+          "proba_buteur": 0.28223088824140186
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Donyell Malen",
+          "buts_c1": 4,
+          "proba_buteur": 0.2974821488956041
+        },
+        {
+          "joueur": "Bryan Cristante",
+          "buts_c1": 1,
+          "proba_buteur": 0.08448736779854138
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915375",
+      "heure_paris": "21h00",
+      "domicile": "Shakhtar Donetsk",
+      "exterieur": "Fenerbahce",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 1,
+        "n": 1,
+        "d": 2,
+        "bp": 4,
+        "bc": 4
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 1,
+        "n": 2,
+        "d": 1,
+        "bp": 6,
+        "bc": 11
+      },
+      "forme_domicile": "LLWDL",
+      "forme_exterieur": "DWWLL",
+      "notes": {
+        "att_dom": 0.77,
+        "def_dom": 0.79,
+        "att_ext": 0.79,
+        "def_ext": 1.23
+      },
+      "buts_attendus_stats": [
+        2.1,
+        1.04
+      ],
+      "buts_attendus_cotes": [
+        1.38,
+        1.44
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          2.75,
+          3.5,
+          2.55
+        ],
+        "proba_1n2": [
+          0.349,
+          0.274,
+          0.377
+        ]
+      },
+      "buts_attendus": [
+        1.57,
+        1.31
+      ],
+      "proba_1n2": [
+        0.423,
+        0.27,
+        0.307
+      ],
+      "pronostic_1n2": "1",
+      "score_probable": "1-1",
+      "proba_score": 0.127,
+      "plus_2_5": 0.549,
+      "deux_equipes_marquent": 0.589,
+      "buteurs_domicile": [
+        {
+          "joueur": "Gleiker Mendoza",
+          "buts_c1": 2,
+          "proba_buteur": 0.3586469542639288
+        },
+        {
+          "joueur": "Pedrinho",
+          "buts_c1": 1,
+          "proba_buteur": 0.19915479289935734
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Archie Brown",
+          "buts_c1": 2,
+          "proba_buteur": 0.24290636974317692
+        },
+        {
+          "joueur": "Mason Greenwood",
+          "buts_c1": 2,
+          "proba_buteur": 0.24290636974317692
+        }
+      ],
+      "resultat_reel": null
+    },
+    {
+      "id": "401915373",
+      "heure_paris": "21h00",
+      "domicile": "Sporting CP",
+      "exterieur": "Manchester United",
+      "bilan_domicile": {
+        "mj": 4,
+        "v": 3,
+        "n": 0,
+        "d": 1,
+        "bp": 8,
+        "bc": 4
+      },
+      "bilan_exterieur": {
+        "mj": 4,
+        "v": 2,
+        "n": 0,
+        "d": 2,
+        "bp": 8,
+        "bc": 8
+      },
+      "forme_domicile": "WWWWL",
+      "forme_exterieur": "LDWLL",
+      "notes": {
+        "att_dom": 0.97,
+        "def_dom": 0.79,
+        "att_ext": 1.03,
+        "def_ext": 1.0
+      },
+      "buts_attendus_stats": [
+        2.15,
+        1.35
+      ],
+      "buts_attendus_cotes": [
+        1.59,
+        1.68
+      ],
+      "cotes": {
+        "bookmaker": "DraftKings",
+        "cotes_1n2": [
+          2.7,
+          3.7,
+          2.45
+        ],
+        "proba_1n2": [
+          0.353,
+          0.258,
+          0.389
+        ]
+      },
+      "buts_attendus": [
+        1.74,
+        1.57
+      ],
+      "proba_1n2": [
+        0.411,
+        0.249,
+        0.34
+      ],
+      "pronostic_1n2": "1",
+      "score_probable": "1-1",
+      "proba_score": 0.11,
+      "plus_2_5": 0.643,
+      "deux_equipes_marquent": 0.663,
+      "buteurs_domicile": [
+        {
+          "joueur": "Luis Suárez",
+          "buts_c1": 4,
+          "proba_buteur": 0.44657129802693196
+        },
+        {
+          "joueur": "Issa Doumbia",
+          "buts_c1": 2,
+          "proba_buteur": 0.25607211238382244
+        }
+      ],
+      "buteurs_exterieur": [
+        {
+          "joueur": "Matheus Cunha",
+          "buts_c1": 3,
+          "proba_buteur": 0.329969332327377
+        },
+        {
+          "joueur": "Bruno Fernandes",
+          "buts_c1": 2,
+          "proba_buteur": 0.23429211258799854
+        }
+      ],
+      "resultat_reel": null
+    }
+  ]
+}
