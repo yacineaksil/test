@@ -278,3 +278,55 @@ python3 ucl_bilan.py --date 2026-11-25
 
 Le dossier `cache/` reste ignoré par git ; `bilans/` et `historique/` sont faits pour être
 commités.
+
+## Tickets combinés, toutes compétitions (`ticket_analyse.py`, `ticket_generer.py`)
+
+Ces deux robots fonctionnent sur toutes les compétitions dont ESPN publie les cotes
+DraftKings : C1, Ligue Europa, Ligue Conférence, Premier League, Championship, Liga,
+Serie A, Bundesliga, Ligue 1, Liga Portugal, Eredivisie, Belgique, Turquie, Écosse
+(liste dans `paris_espn.py` → `LIGUES`).
+Ils sont **100 % factuels** : la probabilité d'un pari est la cote du marché, marge du
+bookmaker retirée. Aucun modèle maison (c'est la leçon des bilans, voir `LECONS.md`).
+
+### Analyser un ticket joué
+
+Décrire le ticket dans un fichier JSON (exemple : `tickets/ticket_2026-11-25.json`) :
+compétition (code ESPN), date, heure, équipes, pari (`1X2. V1`, `V2`, `X`, `1X`, `X2`,
+`+2.5`, `-2.5`…), cote. **Ne pas y mettre la mise ni les gains : le dépôt est public.**
+Ils se passent en option et ne sont jamais enregistrés.
+
+```bash
+python3 ticket_analyse.py tickets/ticket_2026-11-25.json --mise 4000 --gains 109947.92 --devise DZD
+```
+
+Pour chaque sélection : statut (gagné / perdu / en cours / à venir), probabilité réelle,
+valeur de ta cote face au marché, mouvement des cotes depuis l'ouverture, et le
+**garde-fou** :
+- match retrouvé sur ESPN, horaire conforme, pas encore commencé ;
+- actualité ESPN des 7 derniers jours (blessures, suspensions) ;
+- à partir d'environ 1 h avant le match : compositions officielles et **détection de la
+  rotation** du favori (nombre de titulaires du dernier match de championnat) ;
+- pendant le match : probabilité recalculée selon le score et le temps restant.
+
+Puis le bilan du ticket : probabilité qu'il passe, valeur juste (à comparer à un éventuel
+cash-out) et maillon faible. Les cotes d'avant-match sont gardées dans
+`tickets/cotes_avant_match.json` pour les calculs en direct.
+
+### Construire un ticket du même niveau
+
+```bash
+python3 ticket_generer.py --du 2026-11-26 --au 2026-11-30 --selections 7 --cible 27.5 \
+    --exclure tickets/ticket_2026-11-25.json --comparer tickets/ticket_2026-11-25.json
+```
+
+Le robot lit tous les matchs à venir avec cotes, puis cherche (programmation dynamique
+exacte) la combinaison de N sélections dont la cote totale est dans la fourchette visée et
+dont la probabilité réelle est la plus haute, c'est-à-dire celle qui paie le moins de marge
+au bookmaker. Options utiles : `--cote-min` / `--cote-max` (cote d'une sélection, défaut
+1,20–2,40), `--avec-buts` (autorise plus/moins de buts), `--ligues`, `--top`.
+Le ticket n°1 passe par le garde-fou, et chaque ticket est écrit en JSON pour être
+analysé ensuite avec `ticket_analyse.py`.
+
+**À savoir :** à cote égale, deux bons tickets ont presque la même probabilité. Chaque
+sélection ajoutée rajoute la marge du bookmaker (~4 à 6 %). Un combiné de 7 sélections
+rend donc en moyenne environ 73 % de la mise sur la durée, contre ~95 % pour un pari simple.

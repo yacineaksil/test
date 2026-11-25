@@ -1,0 +1,72 @@
+{
+ "description": "Ticket généré n°1 (7 sélections, cote ~27.5)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 26.174,
+ "probabilite_reelle": 0.02798,
+ "selections": [
+  {
+   "ligue": "uefa.europa",
+   "date": "2026-11-26",
+   "heure": "18:45",
+   "domicile": "Marseille",
+   "exterieur": "Levski Sofia",
+   "pari": "1",
+   "cote": 1.351
+  },
+  {
+   "ligue": "uefa.europa.conf",
+   "date": "2026-11-26",
+   "heure": "18:45",
+   "domicile": "Heart of Midlothian",
+   "exterieur": "AS Monaco",
+   "pari": "2",
+   "cote": 1.556
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "13:30",
+   "domicile": "Preston North End",
+   "exterieur": "Norwich City",
+   "pari": "2",
+   "cote": 1.69
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-28",
+   "heure": "16:15",
+   "domicile": "Málaga",
+   "exterieur": "Athletic Club",
+   "pari": "2",
+   "cote": 1.769
+  },
+  {
+   "ligue": "fra.1",
+   "date": "2026-11-28",
+   "heure": "17:15",
+   "domicile": "Angers",
+   "exterieur": "Lens",
+   "pari": "2",
+   "cote": 1.667
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-28",
+   "heure": "18:30",
+   "domicile": "Elche",
+   "exterieur": "Atlético Madrid",
+   "pari": "2",
+   "cote": 1.5
+  },
+  {
+   "ligue": "fra.1",
+   "date": "2026-11-28",
+   "heure": "20:45",
+   "domicile": "Nice",
+   "exterieur": "Troyes",
+   "pari": "1",
+   "cote": 1.667
+  }
+ ]
+}

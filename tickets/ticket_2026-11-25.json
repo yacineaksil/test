@@ -1,0 +1,73 @@
+{
+ "description": "Combiné 7 sélections joué le 25/11/2026",
+ "mise": null,
+ "devise": "DZD",
+ "cote_totale": 27.486,
+ "gains_potentiels": null,
+ "selections": [
+  {
+   "ligue": "uefa.champions",
+   "date": "2026-11-25",
+   "heure": "21:00",
+   "domicile": "Inter Milan",
+   "exterieur": "VfB Stuttgart",
+   "pari": "1X2. V1",
+   "cote": 1.453
+  },
+  {
+   "ligue": "uefa.europa.conf",
+   "date": "2026-11-26",
+   "heure": "18:45",
+   "domicile": "Iberia 1999",
+   "exterieur": "Getafe",
+   "pari": "1X2. V2",
+   "cote": 1.474
+  },
+  {
+   "ligue": "uefa.europa.conf",
+   "date": "2026-11-26",
+   "heure": "18:45",
+   "domicile": "Pafos",
+   "exterieur": "Midtjylland",
+   "pari": "1X2. V2",
+   "cote": 2.284
+  },
+  {
+   "ligue": "uefa.europa.conf",
+   "date": "2026-11-26",
+   "heure": "21:00",
+   "domicile": "Borac Banja Luka",
+   "exterieur": "Atalanta",
+   "pari": "1X2. V2",
+   "cote": 1.483
+  },
+  {
+   "ligue": "uefa.europa.conf",
+   "date": "2026-11-26",
+   "heure": "21:00",
+   "domicile": "Inter Club d'Escaldes",
+   "exterieur": "Copenhague",
+   "pari": "1X2. V2",
+   "cote": 1.231
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-25",
+   "heure": "20:45",
+   "domicile": "Bolton Wanderers",
+   "exterieur": "West Bromwich Albion",
+   "pari": "1X2. V2",
+   "cote": 1.9
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "13:30",
+   "domicile": "Lincoln City",
+   "exterieur": "Wolverhampton Wanderers",
+   "pari": "1X2. V2",
+   "cote": 1.62
+  }
+ ],
+ "note": "Montants personnels volontairement absents (dépôt public) : les passer en option --mise/--gains."
+}
