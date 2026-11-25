@@ -8,16 +8,16 @@
       "coup_envoi_utc": "2026-11-25T17:45:00Z",
       "coup_envoi_paris": "2026-11-25 18:45",
       "heure_paris": "18h45",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "21922",
         "nom": "Sabah FK",
         "abrev": "SAB",
-        "score": 0,
-        "mi_temps": null,
+        "score": 1,
+        "mi_temps": 0,
         "tab": null,
         "vainqueur": false
       },
@@ -25,18 +25,77 @@
         "id": "83",
         "nom": "Barcelona",
         "abrev": "BAR",
-        "score": 0,
-        "mi_temps": null,
+        "score": 4,
+        "mi_temps": 1,
         "tab": null,
-        "vainqueur": false
+        "vainqueur": true
       },
-      "buts": [],
-      "cartons": [],
+      "buts": [
+        {
+          "minute": "31'",
+          "periode": 1,
+          "equipe": "Barcelona",
+          "equipe_id": "83",
+          "buteur": "Anthony Gordon",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "51'",
+          "periode": 2,
+          "equipe": "Barcelona",
+          "equipe_id": "83",
+          "buteur": "Anthony Gordon",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "55'",
+          "periode": 2,
+          "equipe": "Barcelona",
+          "equipe_id": "83",
+          "buteur": "Karim Adeyemi",
+          "passeur": "Alejandro Balde",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "60'",
+          "periode": 2,
+          "equipe": "Barcelona",
+          "equipe_id": "83",
+          "buteur": "Gabriel Jesus",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "63'",
+          "periode": 2,
+          "equipe": "Sabah FK",
+          "equipe_id": "21922",
+          "buteur": "Joy-Lance Mickels",
+          "passeur": "Christian Nwachukwu",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "69'",
+          "equipe": "Sabah FK",
+          "joueur": "Ivan Lepinjica",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "Baku Olympic Stadium",
       "ville": "Baku",
-      "affluence": null,
+      "affluence": 66321,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915378/barcelona-sabah-fk"
     },
@@ -45,16 +104,16 @@
       "coup_envoi_utc": "2026-11-25T17:45:00Z",
       "coup_envoi_paris": "2026-11-25 18:45",
       "heure_paris": "18h45",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "494",
         "nom": "Slavia Prague",
         "abrev": "SLP",
         "score": 0,
-        "mi_temps": null,
+        "mi_temps": 0,
         "tab": null,
         "vainqueur": false
       },
@@ -62,18 +121,72 @@
         "id": "102",
         "nom": "Villarreal",
         "abrev": "VIL",
-        "score": 0,
-        "mi_temps": null,
+        "score": 1,
+        "mi_temps": 0,
         "tab": null,
-        "vainqueur": false
+        "vainqueur": true
       },
-      "buts": [],
-      "cartons": [],
+      "buts": [
+        {
+          "minute": "62'",
+          "periode": 2,
+          "equipe": "Villarreal",
+          "equipe_id": "102",
+          "buteur": "Tajon Buchanan",
+          "passeur": "Ayoze Pérez",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "4'",
+          "equipe": "Slavia Prague",
+          "joueur": "Michal Sadílek",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "12'",
+          "equipe": "Villarreal",
+          "joueur": "Sergi Cardona",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "29'",
+          "equipe": "Slavia Prague",
+          "joueur": "Ange N'Guessan",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "45'+2'",
+          "equipe": "Villarreal",
+          "joueur": "Renato Veiga",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "90'+3'",
+          "equipe": "Villarreal",
+          "joueur": "Tajon Buchanan",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "90'+4'",
+          "equipe": "Villarreal",
+          "joueur": "Carlos Romero",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "Fortuna Arena",
       "ville": "Prague",
-      "affluence": null,
+      "affluence": 18453,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915293/villarreal-slavia-prague"
     },
@@ -82,35 +195,71 @@
       "coup_envoi_utc": "2026-11-25T20:00:00Z",
       "coup_envoi_paris": "2026-11-25 21:00",
       "heure_paris": "21h00",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "1068",
         "nom": "Atlético Madrid",
         "abrev": "ATM",
-        "score": 0,
-        "mi_temps": null,
+        "score": 2,
+        "mi_temps": 2,
         "tab": null,
-        "vainqueur": false
+        "vainqueur": true
       },
       "exterieur": {
         "id": "510",
         "nom": "Viking FK",
         "abrev": "VFK",
         "score": 0,
-        "mi_temps": null,
+        "mi_temps": 0,
         "tab": null,
         "vainqueur": false
       },
-      "buts": [],
-      "cartons": [],
+      "buts": [
+        {
+          "minute": "19'",
+          "periode": 1,
+          "equipe": "Atlético Madrid",
+          "equipe_id": "1068",
+          "buteur": "Alexander Sørloth",
+          "passeur": "Alejandro Grimaldo",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "24'",
+          "periode": 1,
+          "equipe": "Atlético Madrid",
+          "equipe_id": "1068",
+          "buteur": "Julián Álvarez",
+          "passeur": null,
+          "type": "normal",
+          "precision": "sur coup franc"
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "46'",
+          "equipe": "Viking FK",
+          "joueur": "Gianni Stensness",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "90'+1'",
+          "equipe": "Viking FK",
+          "joueur": "Henrik Falchener",
+          "couleur": "rouge",
+          "second_jaune": false
+        }
+      ],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "Riyadh Air Metropolitano",
       "ville": "Madrid",
-      "affluence": null,
+      "affluence": 0,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915291/viking-fk-atletico-madrid"
     },
@@ -119,16 +268,16 @@
       "coup_envoi_utc": "2026-11-25T20:00:00Z",
       "coup_envoi_paris": "2026-11-25 21:00",
       "heure_paris": "21h00",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "570",
         "nom": "Club Brugge",
         "abrev": "BRU",
         "score": 0,
-        "mi_temps": null,
+        "mi_temps": 0,
         "tab": null,
         "vainqueur": false
       },
@@ -136,18 +285,49 @@
         "id": "364",
         "nom": "Liverpool",
         "abrev": "LIV",
-        "score": 0,
-        "mi_temps": null,
+        "score": 3,
+        "mi_temps": 1,
         "tab": null,
-        "vainqueur": false
+        "vainqueur": true
       },
-      "buts": [],
+      "buts": [
+        {
+          "minute": "13'",
+          "periode": 1,
+          "equipe": "Liverpool",
+          "equipe_id": "364",
+          "buteur": "Alexander Isak",
+          "passeur": "Dominik Szoboszlai",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "79'",
+          "periode": 2,
+          "equipe": "Liverpool",
+          "equipe_id": "364",
+          "buteur": "Florian Wirtz",
+          "passeur": "Rio Ngumoha",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "82'",
+          "periode": 2,
+          "equipe": "Liverpool",
+          "equipe_id": "364",
+          "buteur": "Alexander Isak",
+          "passeur": "Alisson Becker",
+          "type": "normal",
+          "precision": null
+        }
+      ],
       "cartons": [],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "Jan Breydel Stadium",
       "ville": "Brugge",
-      "affluence": null,
+      "affluence": 0,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915292/liverpool-club-brugge"
     },
@@ -156,35 +336,78 @@
       "coup_envoi_utc": "2026-11-25T20:00:00Z",
       "coup_envoi_paris": "2026-11-25 21:00",
       "heure_paris": "21h00",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "110",
         "nom": "Internazionale",
         "abrev": "INT",
-        "score": 0,
-        "mi_temps": null,
+        "score": 2,
+        "mi_temps": 0,
         "tab": null,
-        "vainqueur": false
+        "vainqueur": true
       },
       "exterieur": {
         "id": "134",
         "nom": "VfB Stuttgart",
         "abrev": "VFB",
         "score": 0,
-        "mi_temps": null,
+        "mi_temps": 0,
         "tab": null,
         "vainqueur": false
       },
-      "buts": [],
-      "cartons": [],
+      "buts": [
+        {
+          "minute": "57'",
+          "periode": 2,
+          "equipe": "Internazionale",
+          "equipe_id": "110",
+          "buteur": "Petar Sucic",
+          "passeur": null,
+          "type": "penalty",
+          "precision": null
+        },
+        {
+          "minute": "74'",
+          "periode": 2,
+          "equipe": "Internazionale",
+          "equipe_id": "110",
+          "buteur": "Lautaro Martínez",
+          "passeur": "Federico Dimarco",
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "13'",
+          "equipe": "Internazionale",
+          "joueur": "Marcus Thuram",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "48'",
+          "equipe": "VfB Stuttgart",
+          "joueur": "Finn Jeltsch",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "78'",
+          "equipe": "Internazionale",
+          "joueur": "Manuel Akanji",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "San Siro",
       "ville": "Milano",
-      "affluence": null,
+      "affluence": 0,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915376/vfb-stuttgart-internazionale"
     },
@@ -193,35 +416,74 @@
       "coup_envoi_utc": "2026-11-25T20:00:00Z",
       "coup_envoi_paris": "2026-11-25 21:00",
       "heure_paris": "21h00",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "166",
         "nom": "Lille",
         "abrev": "LILL",
-        "score": 0,
-        "mi_temps": null,
+        "score": 2,
+        "mi_temps": 0,
         "tab": null,
-        "vainqueur": false
+        "vainqueur": true
       },
       "exterieur": {
         "id": "132",
         "nom": "Bayern Munich",
         "abrev": "MUN",
-        "score": 0,
-        "mi_temps": null,
+        "score": 1,
+        "mi_temps": 1,
         "tab": null,
         "vainqueur": false
       },
-      "buts": [],
-      "cartons": [],
+      "buts": [
+        {
+          "minute": "15'",
+          "periode": 1,
+          "equipe": "Bayern Munich",
+          "equipe_id": "132",
+          "buteur": "Dayot Upamecano",
+          "passeur": "Tom Bischof",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "62'",
+          "periode": 2,
+          "equipe": "Lille",
+          "equipe_id": "166",
+          "buteur": "Ayase Ueda",
+          "passeur": "Nathan Ngoy",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "65'",
+          "periode": 2,
+          "equipe": "Lille",
+          "equipe_id": "166",
+          "buteur": "Aleksandar Pavlovic",
+          "passeur": null,
+          "type": "csc",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "53'",
+          "equipe": "Bayern Munich",
+          "joueur": "Konrad Laimer",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "Decathlon Arena - Stade Pierre-Mauroy",
       "ville": "Lille",
-      "affluence": null,
+      "affluence": 0,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915377/bayern-munich-lille"
     },
@@ -230,16 +492,16 @@
       "coup_envoi_utc": "2026-11-25T20:00:00Z",
       "coup_envoi_paris": "2026-11-25 21:00",
       "heure_paris": "21h00",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "160",
         "nom": "Paris Saint-Germain",
         "abrev": "PSG",
-        "score": 0,
-        "mi_temps": null,
+        "score": 2,
+        "mi_temps": 1,
         "tab": null,
         "vainqueur": false
       },
@@ -247,18 +509,74 @@
         "id": "104",
         "nom": "AS Roma",
         "abrev": "ROMA",
-        "score": 0,
-        "mi_temps": null,
+        "score": 2,
+        "mi_temps": 1,
         "tab": null,
         "vainqueur": false
       },
-      "buts": [],
-      "cartons": [],
+      "buts": [
+        {
+          "minute": "5'",
+          "periode": 1,
+          "equipe": "AS Roma",
+          "equipe_id": "104",
+          "buteur": "Mario Hermoso",
+          "passeur": "Matìas Soulè",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "31'",
+          "periode": 1,
+          "equipe": "Paris Saint-Germain",
+          "equipe_id": "160",
+          "buteur": "Illia Zabarnyi",
+          "passeur": "Senny Mayulu",
+          "type": "normal",
+          "precision": "de la tête"
+        },
+        {
+          "minute": "62'",
+          "periode": 2,
+          "equipe": "Paris Saint-Germain",
+          "equipe_id": "160",
+          "buteur": "Ousmane Dembélé",
+          "passeur": null,
+          "type": "penalty",
+          "precision": null
+        },
+        {
+          "minute": "78'",
+          "periode": 2,
+          "equipe": "AS Roma",
+          "equipe_id": "104",
+          "buteur": "Donyell Malen",
+          "passeur": null,
+          "type": "penalty",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "41'",
+          "equipe": "AS Roma",
+          "joueur": "Gianluca Mancini",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "60'",
+          "equipe": "AS Roma",
+          "joueur": "Wesley",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "Parc des Princes",
       "ville": "Paris",
-      "affluence": null,
+      "affluence": 0,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915374/as-roma-paris-saint-germain"
     },
@@ -267,16 +585,16 @@
       "coup_envoi_utc": "2026-11-25T20:00:00Z",
       "coup_envoi_paris": "2026-11-25 21:00",
       "heure_paris": "21h00",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "493",
         "nom": "Shakhtar Donetsk",
         "abrev": "SHK",
         "score": 0,
-        "mi_temps": null,
+        "mi_temps": 0,
         "tab": null,
         "vainqueur": false
       },
@@ -284,18 +602,51 @@
         "id": "436",
         "nom": "Fenerbahce",
         "abrev": "FEN",
-        "score": 0,
-        "mi_temps": null,
+        "score": 1,
+        "mi_temps": 0,
         "tab": null,
-        "vainqueur": false
+        "vainqueur": true
       },
-      "buts": [],
-      "cartons": [],
+      "buts": [
+        {
+          "minute": "56'",
+          "periode": 2,
+          "equipe": "Fenerbahce",
+          "equipe_id": "436",
+          "buteur": "Vedat Muriqi",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "53'",
+          "equipe": "Fenerbahce",
+          "joueur": "Ismail Yüksek",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "69'",
+          "equipe": "Shakhtar Donetsk",
+          "joueur": "Valeriy Bondar",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "73'",
+          "equipe": "Shakhtar Donetsk",
+          "joueur": "Pedrinho",
+          "couleur": "jaune",
+          "second_jaune": false
+        }
+      ],
       "penaltys_manques": [],
       "tirs_au_but": [],
       "stade": "Stamford Bridge",
       "ville": "London",
-      "affluence": null,
+      "affluence": 0,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915375/fenerbahce-shakhtar-donetsk"
     },
@@ -304,16 +655,16 @@
       "coup_envoi_utc": "2026-11-25T20:00:00Z",
       "coup_envoi_paris": "2026-11-25 21:00",
       "heure_paris": "21h00",
-      "statut_code": "STATUS_SCHEDULED",
-      "etat": "pre",
-      "statut": "À venir",
+      "statut_code": "STATUS_FULL_TIME",
+      "etat": "post",
+      "statut": "Terminé",
       "chrono": null,
       "domicile": {
         "id": "2250",
         "nom": "Sporting CP",
         "abrev": "SCP",
-        "score": 0,
-        "mi_temps": null,
+        "score": 2,
+        "mi_temps": 1,
         "tab": null,
         "vainqueur": false
       },
@@ -321,18 +672,102 @@
         "id": "360",
         "nom": "Manchester United",
         "abrev": "MAN",
-        "score": 0,
-        "mi_temps": null,
+        "score": 2,
+        "mi_temps": 0,
         "tab": null,
         "vainqueur": false
       },
-      "buts": [],
-      "cartons": [],
-      "penaltys_manques": [],
+      "buts": [
+        {
+          "minute": "33'",
+          "periode": 1,
+          "equipe": "Sporting CP",
+          "equipe_id": "2250",
+          "buteur": "Luis Suárez",
+          "passeur": null,
+          "type": "penalty",
+          "precision": null
+        },
+        {
+          "minute": "48'",
+          "periode": 2,
+          "equipe": "Manchester United",
+          "equipe_id": "360",
+          "buteur": "Bruno Fernandes",
+          "passeur": null,
+          "type": "penalty",
+          "precision": null
+        },
+        {
+          "minute": "50'",
+          "periode": 2,
+          "equipe": "Manchester United",
+          "equipe_id": "360",
+          "buteur": "Bruno Fernandes",
+          "passeur": "Amad Diallo",
+          "type": "normal",
+          "precision": null
+        },
+        {
+          "minute": "80'",
+          "periode": 2,
+          "equipe": "Sporting CP",
+          "equipe_id": "2250",
+          "buteur": "Luis Suárez",
+          "passeur": null,
+          "type": "normal",
+          "precision": null
+        }
+      ],
+      "cartons": [
+        {
+          "minute": "31'",
+          "equipe": "Manchester United",
+          "joueur": "Senne Lammens",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "40'",
+          "equipe": "Manchester United",
+          "joueur": "Youri Tielemans",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "53'",
+          "equipe": "Sporting CP",
+          "joueur": "Eduardo Quaresma",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "87'",
+          "equipe": "Sporting CP",
+          "joueur": "Nestory Irankunda",
+          "couleur": "jaune",
+          "second_jaune": false
+        },
+        {
+          "minute": "90'+3'",
+          "equipe": "Manchester United",
+          "joueur": "Youri Tielemans",
+          "couleur": "rouge",
+          "second_jaune": true
+        }
+      ],
+      "penaltys_manques": [
+        {
+          "minute": "30'",
+          "equipe": "Sporting CP",
+          "joueur": "Luis Suárez",
+          "issue": "arrêté"
+        }
+      ],
       "tirs_au_but": [],
       "stade": "Estádio José Alvalade",
       "ville": "Lisbon",
-      "affluence": null,
+      "affluence": 0,
       "phase": null,
       "lien": "https://www.espn.com/soccer/match/_/gameId/401915373/manchester-united-sporting-cp"
     }
