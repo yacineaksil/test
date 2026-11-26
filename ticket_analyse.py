@@ -68,6 +68,15 @@ def buts_attendus(probas, ligne=None):
     return meilleur
 
 
+def synthese_1n2(code, p):
+    """Probabilités 1/N/2 plausibles quand seul le pari joué a une cote connue."""
+    if code == "N":
+        return {"1": (1 - p) / 2, "N": p, "2": (1 - p) / 2}
+    pn = min(0.26, max(0.05, 1 - p - 0.03))
+    autre = max(0.03, 1 - p - pn)
+    return {"1": p, "N": pn, "2": autre} if code == "1" else {"1": autre, "N": pn, "2": p}
+
+
 def minute_jouee(m):
     st = (m.get("statut") or "").upper()
     if "HT" in st or "HALF" in st or "MI-TEMPS" in st:
@@ -233,7 +242,14 @@ def analyser(ticket, avec_actu=True):
                                          f"pour une cote de 1.00 — vérifie le règlement de ton bookmaker"))
         elif m["etat"] == "in":
             r["etat"] = "en_cours"
-            lam = buts_attendus(probas_ref, cotes_ref.get("ligne") if cotes_ref else None) if probas_ref else None
+            if probas_ref:
+                lam = buts_attendus(probas_ref, cotes_ref.get("ligne") if cotes_ref else None)
+            elif code in ("1", "N", "2") and p_dep:
+                # pas de cote de marché : 1N2 reconstitué depuis ta cote (nul ~26 %)
+                lam = buts_attendus(synthese_1n2(code, p_dep))
+                r["source"] = r.get("source", "") + " ; direct estimé avec un nul à ~26 %"
+            else:
+                lam = None
             pdir = proba_en_direct(code, m, lam)
             r["p_maintenant"] = pdir if pdir is not None else p_dep
             r["passe_actuellement"] = pe.pari_gagnant(code, h, a)
