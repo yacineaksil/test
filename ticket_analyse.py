@@ -259,6 +259,18 @@ def analyser(ticket, avec_actu=True):
             if m["debut_utc"] <= maintenant:
                 r["garde_fou"].append(("⚠️", "l'heure du coup d'envoi est passée mais ESPN n'indique pas le match en cours"))
 
+        # matchs joués : rotation du favori, pour le bilan (leçon D)
+        if r["etat"] in ("gagne", "perdu") and code in ("1", "2"):
+            xi = titulaires(m["ligue"], m["id"])
+            fav = m["id_exterieur"] if code == "2" else m["id_domicile"]
+            if str(fav) in xi:
+                rot = analyse_rotation(m, fav, xi[str(fav)])
+                if rot:
+                    r["rotation"] = rot
+                    nom_fav = m["exterieur"] if code == "2" else m["domicile"]
+                    r["garde_fou"].append(("ℹ️", f"{nom_fav} alignait {rot['communs']}/11 titulaires du dernier "
+                                                 f"match de championnat ({rot['reference']})"))
+
         # actu et compos : seulement pour ce qui reste à jouer
         if r["etat"] in ("a_venir", "en_cours"):
             if avec_actu:
@@ -290,6 +302,9 @@ def analyser(ticket, avec_actu=True):
                                                    f"championnat ({rot['reference']}) → {niveau}"))
                 else:
                     r["garde_fou"].append(("ℹ️", "compositions pas encore publiées"))
+            elif m["ligue"].startswith("uefa."):
+                r["garde_fou"].append(("⚠️", "Coupe d'Europe : les favoris font souvent tourner — ne miser qu'après la "
+                                             "compo officielle (~1 h avant), voir LECONS.md (leçon D)"))
             else:
                 r["garde_fou"].append(("ℹ️", "compositions publiées ~1 h avant le coup d'envoi : relancer l'analyse à ce moment-là"))
     sauver_snapshot(snap)
@@ -355,6 +370,12 @@ def rapport(ticket, res):
     cote_rest = math.prod(r["sel"]["cote"] for r in restants)
     L.append("BILAN DU TICKET")
     L.append(f"   {len(gagnes)} gagné(s), {len(perdus)} perdu(s), {len(restants)} à jouer")
+    for r in res:
+        rot = r.get("rotation")
+        if rot and rot["communs"] <= 5:
+            fav = r["match"]["exterieur"] if r["code"] in ("2", "N2") else r["match"]["domicile"]
+            L.append(f"   ⚠️ Forte rotation : {fav} n'aligne que {rot['communs']}/11 titulaires habituels"
+                     f" ({'sélection perdue' if r['etat'] == 'perdu' else 'risque élevé'})")
     if perdus:
         L.append("   ❌ Ticket perdu.")
     else:

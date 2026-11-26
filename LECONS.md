@@ -129,6 +129,39 @@ perdu. Une soirée ne dit rien de la valeur d'une méthode de ticket.
 
 ---
 
+## 26 novembre 2026 — Ticket combiné et coupes d'Europe
+
+### Leçon D — Coupe d'Europe : attendre la compo officielle avant de miser sur un favori
+
+| Favori | Titulaires habituels alignés* | Cote (veille → coup d'envoi) | Résultat |
+|---|---|---|---|
+| Getafe (à Iberia 1999) | 3/11 | 1,47 → 1,56 | ❌ 1-0 |
+| Copenhague (à Inter d'Escaldes) | 3/11 | 1,24 → 1,33 | ❌ 2-0, aucun tir de tout le match |
+| Atalanta (à Borac) | 6/11 | 1,45 → 1,43 | ✅ 2-3 (mené 2-0 à la pause, Borac fini à 9) |
+| Midtjylland (à Pafos) | 6/11 | pas de cote | ✅ 0-2 |
+| Marseille (c. Levski) | 7/11 | 1,48 → 1,39 | ✅ 1-0 |
+| Monaco (à Hearts) | 8/11 | 1,67 → 1,54 | ✅ 2-3 |
+
+\* titulaires du dernier match de championnat présents dans le onze (`ticket_analyse.py`).
+
+- Les deux favoris qui ont le plus tourné (3/11) ont perdu. Le marché n'a que légèrement
+  corrigé leurs cotes : il ne suffit pas de suivre la cote, il faut voir la compo.
+- La recherche web de la veille (agent « garde-fou actu ») annonçait déjà ces rotations.
+- 6 matchs ne prouvent rien statistiquement : à confirmer dans les prochains bilans
+  (noter à chaque fois titulaires habituels vs résultat).
+- Changements faits :
+  - `ticket_generer.py` : `--min-titulaires 6` par défaut — compo publiée et favori sous
+    6 titulaires habituels → sélection écartée ; coupe d'Europe sans compo → avertissement
+    « ne valider qu'après la compo » ;
+  - `ticket_analyse.py` : même avertissement avant la compo, et le bilan liste les favoris
+    à forte rotation (≤ 5/11).
+
+### Ticket du 25/11 (7 sélections, cote 27,49)
+- 4 sélections gagnées (Inter, West Brom, Midtjylland, Atalanta), 2 perdues (Getafe,
+  Copenhague) → ticket perdu avant même Lincoln–Wolves.
+- Probabilité au départ ≈ 2,6 % ; les deux sélections perdues étaient les deux plus
+  fortes rotations de la soirée.
+
 ## Bilans automatiques
 
 <!-- bilan-auto:2026-11-25 -->

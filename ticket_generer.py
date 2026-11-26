@@ -23,7 +23,7 @@ import paris_espn as pe
 import ticket_analyse as ta
 
 
-def collecter(ligues, du, au, marge_minutes, avec_buts):
+def collecter(ligues, du, au, marge_minutes, avec_buts, min_titulaires=0):
     maintenant = pe.maintenant_utc()
     matchs, vus = [], set()
     for ligue in ligues:
@@ -47,6 +47,17 @@ def collecter(ligues, du, au, marge_minutes, avec_buts):
                     ln = m["cotes"]["ligne"]
                     opts.append((f"+{ln}", m["cotes"]["plus"], m["probas"][f"+{ln}"]))
                     opts.append((f"-{ln}", m["cotes"]["moins"], m["probas"][f"-{ln}"]))
+                # Leçon D : compo publiée et favori qui fait trop tourner -> sélection écartée
+                if min_titulaires and (m["debut_utc"] - maintenant).total_seconds() <= 80 * 60:
+                    xi = ta.titulaires(ligue, m["id"])
+                    hab = {}
+                    for code_eq, tid in (("1", m["id_domicile"]), ("2", m["id_exterieur"])):
+                        if str(tid) in xi:
+                            rot = ta.analyse_rotation(m, tid, xi[str(tid)])
+                            if rot:
+                                hab[code_eq] = rot["communs"]
+                    m["titulaires_habituels"] = hab
+                    opts = [o for o in opts if not (o[0] in hab and hab[o[0]] < min_titulaires)]
                 m["options"] = opts
                 matchs.append(m)
             d += timedelta(days=1)
@@ -143,6 +154,9 @@ def garde_fou(m, code, avec_actu):
                 msgs.append(("✅" if cc >= 8 else "⚠️",
                              f"compo officielle : {cc}/11 titulaires du dernier match de championnat"
                              + (" — FORTE ROTATION" if cc <= 5 else "")))
+    elif m["ligue"].startswith("uefa."):
+        msgs.append(("⚠️", "Coupe d'Europe : rotation fréquente des favoris — ne valider qu'après la compo "
+                           "officielle (≈ 1 h avant), relancer le générateur à ce moment-là (leçon D)"))
     else:
         msgs.append(("ℹ️", "compo officielle pas encore publiée (≈ 1 h avant) : relancer avant de valider"))
     return msgs
@@ -163,6 +177,8 @@ def main():
     ap.add_argument("--avec-buts", action="store_true", help="autoriser aussi plus/moins de buts")
     ap.add_argument("--exclure", default=None, help="ticket JSON dont les matchs sont exclus")
     ap.add_argument("--marge-minutes", type=int, default=30, help="exclure les matchs qui commencent avant")
+    ap.add_argument("--min-titulaires", type=int, default=6,
+                    help="compo publiée : écarter un favori qui aligne moins de N titulaires habituels (0 = désactivé)")
     ap.add_argument("--sans-actu", action="store_true")
     ap.add_argument("--top", type=int, default=3)
     ap.add_argument("--comparer", default=None, help="ticket JSON à comparer (probabilité au départ)")
@@ -173,7 +189,7 @@ def main():
     au = date.fromisoformat(args.au) if args.au else du + timedelta(days=4)
     ligues = [x.strip() for x in args.ligues.split(",") if x.strip()]
     exclus = ids_du_ticket(args.exclure)
-    matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts) if m["id"] not in exclus]
+    matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts, args.min_titulaires) if m["id"] not in exclus]
     lo, hi = args.cible * args.tol_bas, args.cible * args.tol_haut
 
     L = []
