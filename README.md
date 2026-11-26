@@ -330,3 +330,15 @@ analysé ensuite avec `ticket_analyse.py`.
 **À savoir :** à cote égale, deux bons tickets ont presque la même probabilité. Chaque
 sélection ajoutée rajoute la marge du bookmaker (~4 à 6 %). Un combiné de 7 sélections
 rend donc en moyenne environ 73 % de la mise sur la durée, contre ~95 % pour un pari simple.
+
+### Analyser les mi-temps (`analyse_mitemps.py`)
+
+```bash
+python3 analyse_mitemps.py tickets/ticket_2026-11-25.json --date 2026-11-26
+python3 analyse_mitemps.py --ligue uefa.europa.conf --date 2026-11-26 --match Getafe
+```
+
+Découpe chaque match mi-temps par mi-temps à partir du commentaire minute par minute
+d'ESPN : score à la pause, tirs, tirs cadrés, tirs dans la surface, poteaux, corners,
+fautes, cartons, changements à la pause, plus quelques constats factuels (domination,
+manque d'efficacité, réaction de l'entraîneur). Marche aussi pendant le match.
