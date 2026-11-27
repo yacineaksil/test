@@ -1,0 +1,27 @@
+{
+ "description": "Ticket généré n°1 (2 sélections, cote ~2.5)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 2.379,
+ "probabilite_reelle": 0.38728,
+ "selections": [
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-27",
+   "heure": "21:30",
+   "domicile": "Hofstra Pride",
+   "exterieur": "Colgate Raiders",
+   "pari": "1",
+   "cote": 1.769
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "21:30",
+   "domicile": "Maryland Terrapins",
+   "exterieur": "Penn State Nittany Lions",
+   "pari": "2",
+   "cote": 1.345
+  }
+ ]
+}

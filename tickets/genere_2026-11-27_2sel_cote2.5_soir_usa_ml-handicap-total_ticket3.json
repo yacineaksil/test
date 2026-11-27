@@ -1,0 +1,27 @@
+{
+ "description": "Ticket généré n°3 (2 sélections, cote ~2.5)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 2.437,
+ "probabilite_reelle": 0.37762,
+ "selections": [
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "North Texas Mean Green",
+   "exterieur": "North Dakota State Bison",
+   "pari": "1",
+   "cote": 1.377
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Buffalo Sabres",
+   "exterieur": "Pittsburgh Penguins",
+   "pari": "1",
+   "cote": 1.769
+  }
+ ]
+}

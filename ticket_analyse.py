@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Analyse d'un ticket combiné, toutes compétitions suivies par ESPN.
+"""Analyse d'un ticket combiné, toutes compétitions suivies par ESPN
+(football et sports américains : NFL, NCAA, NBA, NHL, MLB, WNBA).
 
 Pour chaque sélection :
-  - statut (gagné / perdu / en cours / à venir) et score ;
+  - statut (gagné / perdu / remboursé / en cours / à venir) et score ;
   - probabilité réelle (cotes DraftKings via ESPN, marge retirée) et, en
     direct, probabilité recalculée à partir du score et du temps restant ;
   - valeur de ta cote (ta cote × probabilité réelle − 1) et mouvement du marché ;
   - garde-fou : match retrouvé, horaire conforme, pas commencé, actu ESPN
-    (blessures / suspensions), compo officielle et rotation du favori.
+    (blessures / suspensions) ; football : compo officielle et rotation du
+    favori ; sports US : blessés des deux équipes, matchs à la suite (NBA,
+    NHL), gardiens partants (NHL), météo (NFL, NCAA), lanceurs (MLB).
 Puis le ticket : probabilité qu'il passe, valeur juste, maillon faible.
 
 Usage : python3 ticket_analyse.py tickets/ticket_2026-11-25.json [--sans-actu]
@@ -128,7 +131,7 @@ SCHEDULE = ("https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/{}/s
 
 def titulaires(ligue, event_id):
     try:
-        d = pe.get_json(pe.SUMMARY.format(ligue, event_id))
+        d = pe.get_json(pe.url_summary(ligue, event_id))
     except RuntimeError:
         return {}
     res = {}
@@ -184,6 +187,187 @@ def analyse_rotation(m, team_id, xi_actuel):
             "absents_vs_reference": absents}
 
 
+# ---------------------------------------------------- sports américains
+
+RAPPELS_US = {
+    "nfl": "liste officielle des inactifs publiée ~90 min avant le coup d'envoi",
+    "ncaaf": "le jour du match (météo, quarterback titulaire et lignes NCAA bougent jusqu'au bout)",
+    "nba": "statuts confirmés ~30 min avant (repos des stars souvent annoncé tard)",
+    "wnba": "statuts confirmés ~30 min avant",
+    "ncaab": "~1 h avant (absences connues tard en NCAA, pas de liste officielle)",
+    "nhl": "gardiens confirmés le matin ou ~1 h avant le match",
+    "mlb": "lanceurs partants annoncés la veille, alignement ~3 h avant",
+}
+
+
+def _camp(code):
+    """Équipe sur laquelle repose le pari : '1', '2' ou None (total, nul)."""
+    base, _ = pe.decomposer_code(code)
+    if base in ("1", "1N") or base.startswith("1 "):
+        return "1"
+    if base in ("2", "N2") or base.startswith("2 "):
+        return "2"
+    return None
+
+
+def _txt_blesse(b):
+    txt = f"{b['nom']} ({b['poste'] + ', ' if b['poste'] else ''}{b['statut_fr']}"
+    if b["note"] and b["statut"] in ("Day-To-Day", "Questionable", "Doubtful"):
+        txt += f", note ESPN : « {b['note']} »"
+    if b["etoile"]:
+        txt += f" ; ⭐ {b['etoile']}"
+    if not b["recent"]:
+        txt += f" ; depuis le {b['date'].strftime('%d/%m')}"
+    return txt + ")"
+
+
+def garde_fou_us(m, code, avec_actu=True):
+    """Contrôles d'une sélection de sport américain, avant ou pendant le match :
+    blessés des deux équipes, quarterback, matchs à la suite (NBA, NHL, WNBA),
+    gardiens (NHL), lanceurs (MLB), météo (NFL, NCAA, MLB), FCS et gros écarts
+    (NCAA football), mouvement du marché, modèle ESPN (pour info), actu ESPN."""
+    L = []
+    lg = m["ligue"]
+    t = pe.type_pari(code, True)
+    camp = _camp(code)
+    noms = {"1": m["domicile"], "2": m["exterieur"]}
+    ids = {"1": m["id_domicile"], "2": m["id_exterieur"]}
+    if m.get("neutre"):
+        L.append(("ℹ️", "terrain neutre : « 1 » = équipe listée à domicile par ESPN ; vérifie que ton bookmaker "
+                        "présente les équipes dans le même ordre"))
+    mv = pe.mouvement_marche(code, m)
+    if mv:
+        L.append(mv)
+    # blessés
+    stars = pe.etoiles(m) if m["etat"] == "pre" else {}
+    sans_liste = False
+    for c in ("1", "2"):
+        bl = pe.blessures_equipe(m, ids[c], stars.get(str(ids[c])))
+        if bl is None:
+            sans_liste = True
+            continue
+        if not bl:
+            L.append(("✅", f"{noms[c]} : aucun blessé déclaré dans la liste ESPN"))
+            continue
+        graves = [b for b in bl if (b["etoile"] or b["cle"]) and b["recent"]
+                  and b["statut"] in ("Out", "Doubtful", "Questionable", "Day-To-Day", "Suspension")]
+        icone = "⚠️" if graves and (camp is None or camp == c or t == "total") else "ℹ️"
+        reste = f" +{len(bl) - 4} autre(s)" if len(bl) > 4 else ""
+        L.append((icone, f"blessés {noms[c]} ({len(bl)}) : " + ", ".join(_txt_blesse(b) for b in bl[:4]) + reste))
+        absents = [b for b in graves if b["statut"] in ("Out", "Doubtful", "Suspension")]
+        if absents and camp and camp != c and t != "total":
+            L.append(("ℹ️", f"absence importante chez l'adversaire ({absents[0]['nom']}, {absents[0]['statut_fr']}) : "
+                            f"normalement déjà dans la cote si l'info est publique"))
+    if sans_liste:
+        L.append(("ℹ️", "pas de liste de blessés ESPN pour cette compétition : vérifie l'actu des deux équipes"))
+    if lg in ("nfl", "ncaaf"):
+        for c in ("1", "2"):
+            q = pe.note_quarterback(m, ids[c])
+            if q:
+                com = q["commentaire"] if len(q["commentaire"]) <= 150 else q["commentaire"][:147] + "…"
+                L.append(("ℹ️", f"quarterback {noms[c]} ({q['date'].strftime('%d/%m')}) : « {com} »"))
+    # fatigue : deux matchs en deux soirs
+    if lg in ("nba", "nhl", "wnba"):
+        rep = {c: pe.dos_a_dos(m, ids[c]) for c in ("1", "2")}
+        txts = []
+        for c in ("1", "2"):
+            x = rep[c]
+            if x is None:
+                continue
+            if x["veille"]:
+                txts.append(f"{noms[c]} a joué la veille ({x['dernier']}) : 2e match en 2 soirs")
+            else:
+                txts.append(f"{noms[c]} : {x['repos']} jour(s) de repos")
+        if txts:
+            veille = {c for c in ("1", "2") if rep[c] and rep[c]["veille"]}
+            icone = "⚠️" if (camp in veille and len(veille) == 1) or (t == "total" and veille) else \
+                "ℹ️" if veille else "✅"
+            L.append((icone, "fatigue : " + " ; ".join(txts)))
+    # gardiens (NHL)
+    if lg == "nhl":
+        partants, stats = pe.gardiens(m)
+        for c, p in zip(("1", "2"), partants):
+            if not p:
+                L.append(("ℹ️", f"gardien partant de {noms[c]} pas encore annoncé"))
+                continue
+            statut = {"Confirmed": "confirmé", "Expected": "attendu, pas encore confirmé"}.get(p["statut"], p["statut"] or "?")
+            lst = stats.get(str(ids[c])) or []
+            moi = next((g for g in lst if g["id"] == p["id"]), None)
+            n1 = max(lst, key=lambda g: g["matchs"] or 0) if lst else None
+            txt = f"gardien {noms[c]} : {p['nom']} ({statut}"
+            if moi and moi["matchs"] is not None:
+                txt += f", {moi['matchs']} matchs cette saison"
+                try:
+                    txt += f", {100 * float(moi['arrets']):.1f} % d'arrêts".replace(".", ",")
+                except (TypeError, ValueError):
+                    pass
+            txt += ")"
+            icone = "✅" if p["statut"] == "Confirmed" else "ℹ️"
+            if n1 and moi and n1["id"] != moi["id"] and (n1["matchs"] or 0) > (moi["matchs"] or 0):
+                if (n1["matchs"] or 0) >= 1.5 * (moi["matchs"] or 0) + 2:
+                    txt += f" — c'est le n°2 : le n°1 {n1['nom']} a joué {n1['matchs']} matchs"
+                    icone = "⚠️" if camp == c or t == "total" else "ℹ️"
+                else:
+                    txt += f" — poste partagé avec {n1['nom']} ({n1['matchs']} matchs)"
+            L.append((icone, txt))
+    # lanceurs (MLB)
+    if lg == "mlb":
+        for c, p in zip(("1", "2"), m.get("partants") or (None, None)):
+            if p:
+                L.append(("ℹ️", f"lanceur partant {noms[c]} : {p['nom']}" + (f" ({p['statut']})" if p.get("statut") else "")))
+            else:
+                L.append(("⚠️", f"lanceur partant de {noms[c]} pas annoncé : la cote peut encore bouger fortement"))
+    # météo (plein air)
+    if lg in ("nfl", "ncaaf", "mlb") and m["etat"] == "pre":
+        w = pe.meteo(m)
+        if w:
+            txt = f"météo prévue (AccuWeather via ESPN) : {w['temp_c']:.0f} °C"
+            if w["rafales_kmh"] is not None:
+                txt += f", rafales {w['rafales_kmh']:.0f} km/h"
+            if w["precipitations"] is not None:
+                txt += f", risque de précipitations {w['precipitations']} %"
+            dur = (w["rafales_kmh"] or 0) >= 40 or (w["precipitations"] or 0) >= 60 or w["temp_c"] <= -5
+            if dur:
+                txt += " → conditions difficiles : en général moins de points (passes et coups de pied gênés)"
+            base = pe.decomposer_code(code)[0]
+            L.append(("⚠️" if dur and base.startswith("+") else "ℹ️", txt))
+        elif lg != "mlb":
+            L.append(("ℹ️", "pas de météo publiée (stade couvert ou prévision pas encore disponible)"))
+    # NCAA football : FCS, gros écarts, classement
+    if lg == "ncaaf":
+        for c in ("1", "2"):
+            if pe.est_fcs(m, ids[c]):
+                L.append(("⚠️", f"{noms[c]} est une équipe de FCS (division inférieure) : écarts énormes possibles"))
+        h = (m.get("cotes") or {}).get("hcp")
+        if h and abs(h["ligne"]) >= 20 and t in ("handicap", "ml"):
+            L.append(("ℹ️", f"gros écart annoncé ({pe.fmt_ligne(h['ligne'])} pour {m['domicile']}) : le favori sort souvent "
+                            f"ses titulaires en fin de match, le handicap est plus aléatoire que le vainqueur"))
+    rangs = m.get("rangs") or (None, None)
+    if lg in ("ncaaf", "ncaab") and any(r and r <= 25 for r in rangs):
+        L.append(("ℹ️", "classement AP : " + " | ".join(f"{noms[c]} {'n°' + str(r) if r and r <= 25 else 'non classé'}"
+                                                       for c, r in zip(("1", "2"), rangs))))
+    # modèle ESPN : information secondaire, jamais utilisée (leçon A)
+    pr = pe.predicteur(m) if m["etat"] == "pre" else None
+    p = m.get("probas") or {}
+    if pr and p.get("1") is not None:
+        L.append(("ℹ️", f"modèle ESPN, pour info (non utilisé) : {m['domicile']} {100 * pr[0]:.0f} % / "
+                        f"{m['exterieur']} {100 * pr[1]:.0f} % — marché : {100 * p['1']:.0f} % / {100 * p['2']:.0f} %"))
+    if avec_actu:
+        alertes = []
+        for c in ("1", "2"):
+            for al in pe.alertes_actu(lg, ids[c], noms[c]):
+                alertes.append((noms[c], al))
+        if alertes:
+            L.append(("⚠️", f"{len(alertes)} article(s) ESPN récents sur blessures / repos / titularisations — à lire :"))
+            for nom, al in alertes[:4]:
+                L.append(("  •", f"[{nom}] {al['date']} « {al['titre']} » {al['lien']}"))
+        else:
+            L.append(("✅", "aucune alerte blessure / repos dans l'actu ESPN des 7 derniers jours"))
+    if m["etat"] == "pre" and lg in RAPPELS_US:
+        L.append(("ℹ️", f"relancer avant de valider : {RAPPELS_US[lg]}"))
+    return L
+
+
 # ---------------------------------------------------- analyse
 
 def analyser(ticket, avec_actu=True):
@@ -192,20 +376,33 @@ def analyser(ticket, avec_actu=True):
     maintenant = pe.maintenant_utc()
     for i, sel in enumerate(ticket["selections"], 1):
         jour = date.fromisoformat(sel["date"])
+        deux = pe.est_deux_issues(sel["ligue"])
         m, sim = pe.trouver_match(sel["ligue"], jour, sel["domicile"], sel["exterieur"])
-        code = pe.normaliser_pari(sel["pari"])
+        # pari libellé avec un nom d'équipe (« Knicks -4.5 ») : déjà dans l'ordre ESPN
+        code = pe.pari_depuis_equipes(sel["pari"], m) if m is not None else None
+        if not code:
+            code = pe.normaliser_pari(sel["pari"], sel["ligue"])
+            if m is not None and m.get("inverse"):
+                code = pe.inverser_code(code)
         r = {"n": i, "sel": sel, "code": code, "match": m, "similarite": sim,
              "garde_fou": [], "alertes": []}
         lignes_res.append(r)
         if m is None:
             r["etat"] = "introuvable"
-            r["garde_fou"].append(("❌", f"match introuvable sur ESPN ({pe.LIGUES.get(sel['ligue'], sel['ligue'])}"
+            r["garde_fou"].append(("❌", f"match introuvable sur ESPN ({pe.nom_competition(sel['ligue'])}"
                                          f", {sel['date']}) — vérifie la compétition et les noms"))
             r["p_depart"] = (1 / sel["cote"]) / pe.MARGE_PAR_DEFAUT
             r["p_maintenant"] = r["p_depart"]
             continue
         r["garde_fou"].append(("✅", f"match retrouvé : {m['domicile']} - {m['exterieur']} "
                                      f"({m['competition']})"))
+        if m.get("inverse"):
+            r["garde_fou"].append(("⚠️", f"équipes dans l'ordre inverse d'ESPN (à domicile : {m['domicile']}) : "
+                                         f"ton pari est lu comme « {pe.libelle_pari(code, m)} »"))
+        if pe.type_pari(code, deux) is None:
+            r["garde_fou"].append(("❌", f"type de pari non reconnu : « {sel['pari']} » — écris par exemple "
+                                         + ("1, 2, 1 -5.5, 2 +3.5, +224.5, -6.5 ou 1X2. V1 (temps réglementaire)"
+                                            if deux else "1X2. V1, X, 1X, +2.5, -2.5")))
         h_ticket = sel.get("heure")
         h_espn = m["debut_paris"].strftime("%H:%M")
         if h_ticket and h_ticket != h_espn:
@@ -218,13 +415,21 @@ def analyser(ticket, avec_actu=True):
             snap[m["id"]] = {"cotes": {k: v for k, v in m["cotes"].items()},
                              "capture": maintenant.isoformat(timespec="minutes")}
         cotes_ref = m["cotes"] if (m["etat"] == "pre" and m["cotes"]) else (snap.get(m["id"]) or {}).get("cotes")
+        cloture = False
+        if not cotes_ref and deux and m["etat"] != "pre":
+            # sports US : le tableau ESPN retire les cotes au coup d'envoi, le résumé les garde
+            cotes_ref = pe.cotes_resume(m, "close")
+            cloture = bool(cotes_ref)
         probas_ref = pe.probas_marche(cotes_ref) if cotes_ref else {}
         mref = dict(m, cotes=cotes_ref, probas=probas_ref)
         p_dep, source = pe.proba_pari(code, mref, sel["cote"])
         r["p_depart"], r["source"] = p_dep, source
         r["cote_marche"] = pe.cote_marche(code, mref) if cotes_ref else None
         r["cote_ouverture"] = pe.cote_ouverture(code, mref) if cotes_ref else None
-        if cotes_ref:
+        if cloture:
+            r["garde_fou"].append(("✅", f"cotes de clôture {cotes_ref.get('bookmaker', '?')} retrouvées dans le résumé "
+                                         f"ESPN (le tableau des matchs les retire au coup d'envoi)"))
+        elif cotes_ref:
             r["garde_fou"].append(("✅", f"cotes du marché publiées ({cotes_ref.get('bookmaker', '?')})"))
         else:
             r["garde_fou"].append(("⚠️", "pas de cote de marché publiée : probabilité estimée depuis ta cote"))
@@ -232,9 +437,27 @@ def analyser(ticket, avec_actu=True):
 
         h, a = m["score"]
         if m["termine"]:
-            ok = pe.pari_gagnant(code, h, a)
-            r["etat"] = "gagne" if ok else "perdu"
-            r["p_maintenant"] = 1.0 if ok else 0.0
+            res = pe.resultat_pari(code, m)
+            if res is None:
+                r["etat"] = "non_reconnu"
+                r["p_maintenant"] = p_dep
+            elif res == "rembourse":
+                r["etat"] = "rembourse"
+                r["p_maintenant"] = 1.0
+                r["garde_fou"].append(("↩️", "ligne tombée pile : pari remboursé (push), la sélection compte pour une "
+                                             "cote de 1,00"))
+            else:
+                r["etat"] = res
+                r["p_maintenant"] = 1.0 if res == "gagne" else 0.0
+            if deux:
+                tr = m.get("score_tr") or (None, None)
+                if tr[0] is not None and tuple(tr) != (h, a):
+                    r["garde_fou"].append(("ℹ️", f"décidé {pe.statut_fin_fr(m['statut'])} : "
+                                                 f"{tr[0]}-{tr[1]} à la fin du temps réglementaire"))
+                if h == a and pe.type_pari(code, True) == "ml":
+                    r["garde_fou"].append(("⚠️", "match nul après prolongation : le moneyline est compté PERDU ici ; "
+                                                 "chez DraftKings et beaucoup de bookmakers il est REMBOURSÉ "
+                                                 "(cote 1,00) — vérifie ton règlement"))
         elif m["etat"] == "post":
             r["etat"] = "annule"
             r["p_maintenant"] = 1.0
@@ -242,22 +465,42 @@ def analyser(ticket, avec_actu=True):
                                          f"pour une cote de 1.00 — vérifie le règlement de ton bookmaker"))
         elif m["etat"] == "in":
             r["etat"] = "en_cours"
-            if probas_ref:
-                lam = buts_attendus(probas_ref, cotes_ref.get("ligne") if cotes_ref else None)
-            elif code in ("1", "N", "2") and p_dep:
-                # pas de cote de marché : 1N2 reconstitué depuis ta cote (nul ~26 %)
-                lam = buts_attendus(synthese_1n2(code, p_dep))
-                r["source"] = r.get("source", "") + " ; direct estimé avec un nul à ~26 %"
+            if deux:
+                pdir = pe.proba_direct_us(code, m, cotes_ref or {}, probas_ref, p_dep)
+                r["p_maintenant"] = pdir if pdir is not None else p_dep
+                r["passe_actuellement"] = pe.resultat_scores(code, m["score"], m.get("score_tr"), True) \
+                    in ("gagne", "rembourse")
+                modele = pe.PARAMS.get(m["ligue"], {}).get("modele")
+                r["modele_direct"] = ("loi de Poisson sur les buts restants" if modele == "poisson"
+                                      else "loi normale sur l'écart et le total restants")
+                live = pe.cotes_resume(m, "live")
+                if live:
+                    pl = pe.probas_marche(live)
+                    if code in pl:
+                        r["marche_direct"] = pl[code]
             else:
-                lam = None
-            pdir = proba_en_direct(code, m, lam)
-            r["p_maintenant"] = pdir if pdir is not None else p_dep
-            r["passe_actuellement"] = pe.pari_gagnant(code, h, a)
+                if probas_ref:
+                    lam = buts_attendus(probas_ref, cotes_ref.get("ligne") if cotes_ref else None)
+                elif code in ("1", "N", "2") and p_dep:
+                    # pas de cote de marché : 1N2 reconstitué depuis ta cote (nul ~26 %)
+                    lam = buts_attendus(synthese_1n2(code, p_dep))
+                    r["source"] = r.get("source", "") + " ; direct estimé avec un nul à ~26 %"
+                else:
+                    lam = None
+                pdir = proba_en_direct(code, m, lam)
+                r["p_maintenant"] = pdir if pdir is not None else p_dep
+                r["passe_actuellement"] = pe.pari_gagnant(code, h, a)
         else:
             r["etat"] = "a_venir"
             r["p_maintenant"] = p_dep
             if m["debut_utc"] <= maintenant:
                 r["garde_fou"].append(("⚠️", "l'heure du coup d'envoi est passée mais ESPN n'indique pas le match en cours"))
+
+        if deux:
+            # sports US : blessés, fatigue, gardiens, météo... pour ce qui reste à jouer
+            if r["etat"] in ("a_venir", "en_cours"):
+                r["garde_fou"].extend(garde_fou_us(mref if cotes_ref else m, code, avec_actu))
+            continue
 
         # matchs joués : rotation du favori, pour le bilan (leçon D)
         if r["etat"] in ("gagne", "perdu") and code in ("1", "2"):
@@ -324,7 +567,8 @@ def rapport(ticket, res):
     L.append("Probabilité réelle = cote du marché, marge du bookmaker retirée. Aucun modèle maison.")
     L.append("")
     icones = {"gagne": "✅ GAGNÉ", "perdu": "❌ PERDU", "en_cours": "🔴 EN COURS", "a_venir": "⏳ À VENIR",
-              "annule": "⚪ NON JOUÉ", "introuvable": "❓ INTROUVABLE"}
+              "annule": "⚪ NON JOUÉ", "introuvable": "❓ INTROUVABLE", "rembourse": "↩️ REMBOURSÉ (cote 1,00)",
+              "non_reconnu": "❓ PARI NON RECONNU"}
     for r in res:
         sel, m = r["sel"], r["match"]
         nom = f"{m['domicile']} - {m['exterieur']}" if m else f"{sel['domicile']} - {sel['exterieur']}"
@@ -335,24 +579,35 @@ def rapport(ticket, res):
         etat = icones.get(r["etat"], r["etat"])
         sc = f" — score {m['score'][0]}-{m['score'][1]}" if m and m["etat"] in ("in", "post") and m["score"][0] is not None else ""
         if r["etat"] == "en_cours":
-            sc += f" ({m.get('chrono') or m.get('statut')}, " + ("passe pour l'instant" if r.get("passe_actuellement") else "ne passe pas pour l'instant") + ")"
+            chrono = m.get("statut") if m.get("deux_issues") else (m.get("chrono") or m.get("statut"))
+            sc += f" ({chrono}, " + ("passe pour l'instant" if r.get("passe_actuellement") else "ne passe pas pour l'instant") + ")"
+        elif m and m.get("deux_issues") and m["termine"] and m["statut"] and m["statut"] != "Final":
+            sc += f" ({pe.statut_fin_fr(m['statut'])})"
         L.append(f"   Pari : {lib} @ {sel['cote']:.3f}  →  {etat}{sc}")
         if r["etat"] in ("a_venir", "en_cours"):
             txt = f"   Probabilité réelle : {pe.fmt_pct(r['p_depart'])} ({r.get('source', '')})"
             if r["etat"] == "en_cours" and r["p_maintenant"] is not None:
                 txt += f"  |  en direct : {pe.fmt_pct(r['p_maintenant'])}"
+                if r.get("modele_direct"):
+                    txt += f" (estimation : {r['modele_direct']})"
             L.append(txt)
+            if r.get("marche_direct") is not None:
+                L.append(f"   Marché en direct (DraftKings via ESPN, peut avoir quelques minutes de retard) : "
+                         f"{pe.fmt_pct(r['marche_direct'])}")
             if r.get("cote_marche"):
                 v = r["valeur"]
                 L.append(f"   Ta cote {sel['cote']:.3f} vs marché {r['cote_marche']:.2f} → valeur "
                          f"{'+' if v >= 0 else ''}{100 * v:.1f} % (positif = ta cote paie plus que le risque réel)")
-            if r.get("cote_ouverture") and r.get("cote_marche"):
+            if r.get("cote_ouverture") and r.get("cote_marche") and not (m and m.get("deux_issues")):
+                # (sports US : le mouvement, cote et ligne, est dans le garde-fou)
                 o, c = r["cote_ouverture"], r["cote_marche"]
                 sens = ("le marché croit PLUS en ce pari" if c < o - 0.005 else
                         "le marché croit MOINS en ce pari" if c > o + 0.005 else "stable")
                 L.append(f"   Mouvement du marché : ouverture {o:.2f} → maintenant {c:.2f} ({sens})")
             if m and (m["forme"][0] or m["forme"][1]):
                 L.append(f"   Forme (5 derniers) : {m['domicile']} {m['forme'][0] or '?'} | {m['exterieur']} {m['forme'][1] or '?'}")
+            elif m and m.get("deux_issues") and (m["bilan"][0] or m["bilan"][1]):
+                L.append(f"   Bilan de la saison : {m['domicile']} {m['bilan'][0] or '?'} | {m['exterieur']} {m['bilan'][1] or '?'}")
         for ic, txt in r["garde_fou"]:
             L.append(f"   {ic} {txt}")
         for nom_eq, al in r["alertes"][:4]:
@@ -364,12 +619,19 @@ def rapport(ticket, res):
 
     gagnes = [r for r in res if r["etat"] == "gagne"]
     perdus = [r for r in res if r["etat"] == "perdu"]
-    restants = [r for r in res if r["etat"] in ("a_venir", "en_cours", "introuvable")]
+    rembourses = [r for r in res if r["etat"] in ("rembourse", "annule")]
+    restants = [r for r in res if r["etat"] in ("a_venir", "en_cours", "introuvable", "non_reconnu")]
     p_maint = 0.0 if perdus else math.prod(r["p_maintenant"] for r in restants if r["p_maintenant"] is not None)
     p_dep = math.prod(r["p_depart"] for r in res if r.get("p_depart"))
     cote_rest = math.prod(r["sel"]["cote"] for r in restants)
     L.append("BILAN DU TICKET")
     L.append(f"   {len(gagnes)} gagné(s), {len(perdus)} perdu(s), {len(restants)} à jouer")
+    if rembourses:
+        c_remb = math.prod(r["sel"]["cote"] for r in rembourses)
+        L.append(f"   ↩️ {len(rembourses)} sélection(s) remboursée(s) ou non jouée(s), comptée(s) à 1,00 : cote du ticket "
+                 f"recalculée {ticket['cote_totale'] / c_remb:.3f}")
+        if gains:
+            gains = gains / c_remb
     for r in res:
         rot = r.get("rotation")
         if rot and rot["communs"] <= 5:
@@ -396,7 +658,7 @@ def rapport(ticket, res):
                          f" {pe.fmt_pct(f['p_maintenant'])})")
         else:
             L.append("   ✅ Ticket GAGNANT !")
-    L.append(f"   Probabilité du ticket au moment du pari (7 sélections, estimation) : {100 * p_dep:.2f} %"
+    L.append(f"   Probabilité du ticket au moment du pari ({len(res)} sélections, estimation) : {100 * p_dep:.2f} %"
              f" (≈ 1 fois sur {1 / p_dep:.0f})" if p_dep else "")
     vals = [r["valeur"] for r in res if r.get("valeur") is not None and r.get("cote_marche")]
     if vals:
@@ -411,7 +673,7 @@ def main():
     ap.add_argument("--mise", type=float, default=None,
                     help="mise (non enregistrée dans le dépôt, qui est public)")
     ap.add_argument("--gains", type=float, default=None, help="gains potentiels affichés par le bookmaker")
-    ap.add_argument("--devise", default=None)
+    ap.add_argument("--devise", default=None, help="devise des montants (ex. EUR, DZD)")
     args = ap.parse_args()
     with open(args.ticket, encoding="utf-8") as fh:
         ticket = json.load(fh)

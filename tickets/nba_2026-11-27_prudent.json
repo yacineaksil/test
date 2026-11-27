@@ -1,0 +1,27 @@
+{
+ "description": "NBA nuit du 27 au 28/11 — ticket prudent (garde-fou strict ; sans Dallas ni San Antonio : Kyrie et Fox incertains)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 2.306,
+ "probabilite_reelle": 0.39785,
+ "selections": [
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "02:30",
+   "domicile": "Minnesota Timberwolves",
+   "exterieur": "Memphis Grizzlies",
+   "pari": "+219.5",
+   "cote": 1.877
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "03:30",
+   "domicile": "Utah Jazz",
+   "exterieur": "Denver Nuggets",
+   "pari": "2",
+   "cote": 1.228
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "description": "Ticket généré n°2 (2 sélections, cote ~2.5)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 2.406,
+ "probabilite_reelle": 0.38265,
+ "selections": [
+  {
+   "ligue": "nhl",
+   "date": "2026-11-27",
+   "heure": "22:00",
+   "domicile": "Minnesota Wild",
+   "exterieur": "Colorado Avalanche",
+   "pari": "-6.5",
+   "cote": 1.769
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-27",
+   "heure": "22:30",
+   "domicile": "New Mexico Lobos",
+   "exterieur": "Air Force Falcons",
+   "pari": "1",
+   "cote": 1.36
+  }
+ ]
+}

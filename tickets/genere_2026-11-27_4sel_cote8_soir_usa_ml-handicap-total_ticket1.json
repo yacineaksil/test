@@ -1,0 +1,45 @@
+{
+ "description": "Ticket généré n°1 (4 sélections, cote ~8.0)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 7.628,
+ "probabilite_reelle": 0.11124,
+ "selections": [
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-27",
+   "heure": "21:30",
+   "domicile": "Hofstra Pride",
+   "exterieur": "Colgate Raiders",
+   "pari": "1",
+   "cote": 1.769
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-27",
+   "heure": "22:00",
+   "domicile": "Minnesota Wild",
+   "exterieur": "Colorado Avalanche",
+   "pari": "-6.5",
+   "cote": 1.769
+  },
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "North Texas Mean Green",
+   "exterieur": "North Dakota State Bison",
+   "pari": "1",
+   "cote": 1.377
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Buffalo Sabres",
+   "exterieur": "Pittsburgh Penguins",
+   "pari": "1",
+   "cote": 1.769
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "description": "Ticket généré n°3 (4 sélections, cote ~8.0)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 7.833,
+ "probabilite_reelle": 0.1085,
+ "selections": [
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-28",
+   "heure": "01:00",
+   "domicile": "North Carolina Tar Heels",
+   "exterieur": "West Virginia Mountaineers",
+   "pari": "1",
+   "cote": 2.36
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "01:30",
+   "domicile": "Detroit Pistons",
+   "exterieur": "Milwaukee Bucks",
+   "pari": "1",
+   "cote": 1.221
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Edmonton Oilers",
+   "exterieur": "Seattle Kraken",
+   "pari": "1 -1.5",
+   "cote": 2.2
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "18:00",
+   "domicile": "Ohio State Buckeyes",
+   "exterieur": "Michigan Wolverines",
+   "pari": "1",
+   "cote": 1.235
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "description": "NBA nuit du 27 au 28/11 — ticket intermediaire (garde-fou strict ; sans Dallas ni San Antonio : Kyrie et Fox incertains)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 7.405,
+ "probabilite_reelle": 0.11452,
+ "selections": [
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Boston Celtics",
+   "exterieur": "Atlanta Hawks",
+   "pari": "1",
+   "cote": 1.279
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "02:30",
+   "domicile": "Minnesota Timberwolves",
+   "exterieur": "Memphis Grizzlies",
+   "pari": "1",
+   "cote": 1.645
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "03:00",
+   "domicile": "Phoenix Suns",
+   "exterieur": "Dallas Mavericks",
+   "pari": "1",
+   "cote": 1.645
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "03:30",
+   "domicile": "LA Clippers",
+   "exterieur": "New Orleans Pelicans",
+   "pari": "2",
+   "cote": 2.14
+  }
+ ]
+}

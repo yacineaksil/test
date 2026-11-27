@@ -1,0 +1,45 @@
+{
+ "description": "Ticket généré n°2 (4 sélections, cote ~8.0)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 7.636,
+ "probabilite_reelle": 0.11112,
+ "selections": [
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "01:30",
+   "domicile": "Indiana Pacers",
+   "exterieur": "Philadelphia 76ers",
+   "pari": "2",
+   "cote": 1.588
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Buffalo Sabres",
+   "exterieur": "Pittsburgh Penguins",
+   "pari": "1",
+   "cote": 1.769
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "18:00",
+   "domicile": "Kentucky Wildcats",
+   "exterieur": "Louisville Cardinals",
+   "pari": "1",
+   "cote": 2.2
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "18:00",
+   "domicile": "Ohio State Buckeyes",
+   "exterieur": "Michigan Wolverines",
+   "pari": "1",
+   "cote": 1.235
+  }
+ ]
+}

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Construit le ticket combiné le plus probable pour un « niveau » donné
 (nombre de sélections, cote totale visée, fourchette de cote par sélection),
-sur toutes les compétitions suivies par ESPN.
+sur toutes les compétitions suivies par ESPN : football et sports américains
+(NFL, NCAA football, NBA, NCAA basket, NHL, MLB, WNBA).
 
 100 % factuel : cotes DraftKings publiées par ESPN, probabilité = cote du
 marché marge retirée. À cote totale égale, le meilleur ticket est celui qui
@@ -9,8 +10,11 @@ paie le moins de marge au bookmaker : c'est ce que la recherche maximise.
 
 Exemple (même niveau que le ticket du 25/11 : 7 sélections, cote ~27,5,
 favoris entre 1,20 et 2,40) :
-  python3 ticket_generer.py --du 2026-11-26 --au 2026-11-30 \
-      --selections 7 --cible 27.5 --exclure tickets/ticket_2026-11-25.json
+  python3 ticket_generer.py --du 2026-11-26 --au 2026-11-30 --selections 7 --cible 27.5
+      --exclure tickets/ticket_2026-11-25.json
+Sports américains ce soir et demain, vainqueur + handicap + total :
+  python3 ticket_generer.py --ligues usa --du 2026-11-27 --au 2026-11-29 --jusqua 2026-11-29T06:00
+      --selections 4 --cible 8 --marches ml,handicap,total
 """
 import argparse
 import json
@@ -23,10 +27,36 @@ import paris_espn as pe
 import ticket_analyse as ta
 
 
-def collecter(ligues, du, au, marge_minutes, avec_buts, min_titulaires=0, jusqua=None):
+MARCHES = ("1n2", "ml", "handicap", "total")
+
+
+def options_us(m, marches):
+    """Sélections possibles d'un match de sport US : (code, cote, probabilité)."""
+    c, p = m["cotes"], m["probas"]
+    opts = []
+    if ("ml" in marches or "1n2" in marches) and "1" in c:
+        opts += [("1", c["1"], p["1"]), ("2", c["2"], p["2"])]
+    if "handicap" in marches and c.get("hcp"):
+        h = c["hcp"]
+        for cote, ligne in (("1", h["ligne"]), ("2", -h["ligne"])):
+            code = pe.code_hcp(cote, ligne)
+            opts.append((code, h[cote], p[code]))
+    if "total" in marches and "ligne" in c:
+        ln = c["ligne"]
+        opts += [(f"+{ln}", c["plus"], p[f"+{ln}"]), (f"-{ln}", c["moins"], p[f"-{ln}"])]
+    return opts
+
+
+def collecter(ligues, du, au, marge_minutes, avec_buts, min_titulaires=0, jusqua=None, marches=None):
+    """Matchs à venir avec cotes et sélections possibles. `marches` : None =
+    comportement historique (1N2 en football, vainqueur en sport US, + totaux
+    si avec_buts) ; sinon ensemble parmi 1n2 / ml / handicap / total."""
     maintenant = pe.maintenant_utc()
+    if marches is None:
+        marches = {"1n2", "ml"} | ({"total"} if avec_buts else set())
     matchs, vus = [], set()
     for ligue in ligues:
+        deux = pe.est_deux_issues(ligue)
         d = du - timedelta(days=1)
         while d <= au + timedelta(days=1):
             for e in pe.scoreboard(ligue, d).get("events") or []:
@@ -38,14 +68,24 @@ def collecter(ligues, du, au, marge_minutes, avec_buts, min_titulaires=0, jusqua
                     continue
                 if jusqua is not None and m["debut_paris"] > jusqua:
                     continue
+                if deux:
+                    if m["etat"] != "pre" or not m["cotes"]:
+                        continue
+                    if (m["debut_utc"] - maintenant).total_seconds() < marge_minutes * 60:
+                        continue
+                    m["options"] = options_us(m, marches)
+                    if m["options"]:
+                        matchs.append(m)
+                    continue
                 if m["etat"] != "pre" or not m["cotes"] or "1" not in m["cotes"]:
                     continue
                 if (m["debut_utc"] - maintenant).total_seconds() < marge_minutes * 60:
                     continue
                 opts = []
-                for code in ("1", "N", "2"):
-                    opts.append((code, m["cotes"][code], m["probas"][code]))
-                if avec_buts and "ligne" in m["cotes"]:
+                if "1n2" in marches or "ml" in marches:
+                    for code in ("1", "N", "2"):
+                        opts.append((code, m["cotes"][code], m["probas"][code]))
+                if "total" in marches and "ligne" in m["cotes"]:
                     ln = m["cotes"]["ligne"]
                     opts.append((f"+{ln}", m["cotes"]["plus"], m["probas"][f"+{ln}"]))
                     opts.append((f"-{ln}", m["cotes"]["moins"], m["probas"][f"-{ln}"]))
@@ -127,6 +167,9 @@ def chercher(matchs, n, lo, hi, cmin, cmax, top=3, pas=0.012):
 def garde_fou(m, code, avec_actu):
     msgs = []
     msgs.append(("✅", f"pas commencé (coup d'envoi {pe.fmt_heure(m)}), cotes DraftKings publiées"))
+    if m.get("deux_issues"):
+        # sports US : blessés, fatigue, gardiens, météo, mouvement du marché...
+        return msgs + ta.garde_fou_us(m, code, avec_actu)
     mvt = pe.cote_ouverture(code, m)
     c = pe.cote_marche(code, m)
     if mvt and c:
@@ -167,26 +210,34 @@ def garde_fou(m, code, avec_actu):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     demain = pe.vers_paris(pe.maintenant_utc()).date() + timedelta(days=1)
-    ap.add_argument("--du", default=demain.isoformat())
+    ap.add_argument("--du", default=demain.isoformat(), help="premier jour inclus, AAAA-MM-JJ (défaut : demain)")
     ap.add_argument("--au", default=None, help="dernier jour inclus (défaut : du + 4 jours)")
-    ap.add_argument("--ligues", default=",".join(pe.LIGUES), help="codes ESPN séparés par des virgules")
-    ap.add_argument("--selections", type=int, default=7)
-    ap.add_argument("--cible", type=float, default=27.5)
-    ap.add_argument("--tol-bas", type=float, default=0.95)
-    ap.add_argument("--tol-haut", type=float, default=1.10)
+    ap.add_argument("--ligues", default=",".join(pe.LIGUES),
+                    help="codes séparés par des virgules (football : eng.1, fra.1… ; sports US : nfl, ncaaf, nba, "
+                         "ncaab, nhl, mlb, wnba) ou groupes : usa (sports US + MLS), foot (tout le football), "
+                         "tout. Défaut : tout le football")
+    ap.add_argument("--selections", type=int, default=7, help="nombre de sélections du ticket (défaut : 7)")
+    ap.add_argument("--cible", type=float, default=27.5, help="cote totale visée (défaut : 27.5)")
+    ap.add_argument("--tol-bas", type=float, default=0.95, help="cote minimale acceptée = cible × tol-bas (défaut : 0.95)")
+    ap.add_argument("--tol-haut", type=float, default=1.10, help="cote maximale acceptée = cible × tol-haut (défaut : 1.10)")
     ap.add_argument("--cote-min", type=float, default=1.20, help="cote minimale d'une sélection")
     ap.add_argument("--cote-max", type=float, default=2.40, help="cote maximale d'une sélection")
-    ap.add_argument("--avec-buts", action="store_true", help="autoriser aussi plus/moins de buts")
+    ap.add_argument("--avec-buts", action="store_true",
+                    help="autoriser aussi plus/moins de buts ou de points (équivaut à ajouter « total » à --marches)")
+    ap.add_argument("--marches", default=None,
+                    help="types de paris autorisés, séparés par des virgules : ml (vainqueur, prolongation incluse "
+                         "en sport US ; 1N2 en football), 1n2, handicap (sports US), total. Défaut : ml (+ total "
+                         "avec --avec-buts)")
     ap.add_argument("--exclure", default=None, help="ticket JSON dont les matchs sont exclus")
     ap.add_argument("--marge-minutes", type=int, default=30, help="exclure les matchs qui commencent avant")
     ap.add_argument("--min-titulaires", type=int, default=6,
                     help="compo publiée : écarter un favori qui aligne moins de N titulaires habituels (0 = désactivé)")
     ap.add_argument("--jusqua", default=None,
                     help="dernier coup d'envoi accepté, heure de Paris (ex. 2026-11-28T04:30)")
-    ap.add_argument("--sans-actu", action="store_true")
-    ap.add_argument("--top", type=int, default=3)
+    ap.add_argument("--sans-actu", action="store_true", help="ne pas lire l'actualité ESPN (plus rapide)")
+    ap.add_argument("--top", type=int, default=3, help="nombre de tickets différents proposés (défaut : 3)")
     ap.add_argument("--comparer", default=None, help="ticket JSON à comparer (probabilité au départ)")
-    ap.add_argument("--out", default="tickets")
+    ap.add_argument("--out", default="tickets", help="dossier des fichiers écrits (défaut : tickets)")
     args = ap.parse_args()
 
     du = date.fromisoformat(args.du)
@@ -196,9 +247,21 @@ def main():
         tz = pe.vers_paris(pe.maintenant_utc()).tzinfo
         jusqua = datetime.fromisoformat(args.jusqua).replace(tzinfo=tz)
     au = date.fromisoformat(args.au) if args.au else du + timedelta(days=4)
-    ligues = [x.strip() for x in args.ligues.split(",") if x.strip()]
+    ligues = pe.developper_ligues(args.ligues)
+    marches = None
+    if args.marches:
+        marches = {x.strip().lower() for x in args.marches.split(",") if x.strip()}
+        marches = {"total" if x in ("buts", "points", "plus/moins") else "ml" if x in ("vainqueur", "moneyline") else x
+                   for x in marches}
+        inconnus = marches - set(MARCHES)
+        if inconnus:
+            ap.error(f"marché(s) inconnu(s) : {', '.join(sorted(inconnus))} (choix : {', '.join(MARCHES)})")
+        if args.avec_buts:
+            marches.add("total")
     exclus = ids_du_ticket(args.exclure)
-    matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts, args.min_titulaires, jusqua) if m["id"] not in exclus]
+    matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts, args.min_titulaires, jusqua,
+                                   marches) if m["id"] not in exclus]
+    us = any(pe.est_deux_issues(x) for x in ligues)
     lo, hi = args.cible * args.tol_bas, args.cible * args.tol_haut
 
     L = []
@@ -206,6 +269,18 @@ def main():
              f"chaque sélection entre {args.cote_min:.2f} et {args.cote_max:.2f}")
     L.append(f"Matchs du {du.strftime('%d/%m')} au {au.strftime('%d/%m')} avec cotes DraftKings : {len(matchs)}"
              f" ({', '.join(sorted({m['competition'] for m in matchs}))})")
+    if jusqua and us:
+        L.append(f"Dernier début accepté : {jusqua.strftime('%d/%m à %H:%M')} (heure de Paris)")
+    if us or marches:
+        foot = any(not pe.est_deux_issues(x) for x in ligues)
+        libelles = {"1n2": "1N2 (football)",
+                    "ml": ("1N2 en football, vainqueur prolongation incluse en sport US" if foot
+                           else "vainqueur (prolongation incluse)"),
+                    "handicap": "handicap" + (" (sports US)" if foot else ""), "total": "plus/moins"}
+        choix = marches or ({"ml", "total"} if args.avec_buts else {"ml"})
+        if "ml" in choix:
+            choix = choix - {"1n2"}
+        L.append("Paris autorisés : " + ", ".join(libelles[x] for x in MARCHES if x in choix))
     if exclus:
         L.append(f"Exclus : {len(exclus)} match(s) déjà dans {args.exclure}")
     L.append(f"Cotes relevées le {pe.vers_paris(pe.maintenant_utc()).strftime('%d/%m/%Y à %H:%M')} (heure de Paris)")
@@ -248,10 +323,19 @@ def main():
     L.append("")
     L.append("Rappel : ce sont les cotes DraftKings. Chez ton bookmaker, prends chaque sélection seulement"
              " si sa cote est au moins égale ; sinon le ticket vaut moins.")
+    if us:
+        L.append("Sports US : vainqueur = prolongation (et tirs au but en NHL) incluse ; handicap ou total à ligne"
+                 " entière tombé pile = remboursé (cote 1,00). En hockey, le « 1X2 » des bookmakers européens se"
+                 " joue sur 60 minutes : ce n'est PAS le même pari que le vainqueur (voir README).")
     txt = "\n".join(L)
     print(txt)
     os.makedirs(args.out, exist_ok=True)
-    base = f"genere_{du.isoformat()}_{args.selections}sel_cote{args.cible:g}" + ("_soir" if jusqua else "")
+    suffixe = ""
+    if us:
+        suffixe = "_usa" if all(x in pe.GROUPES["usa"] for x in ligues) else "_multi"
+        if marches and marches - {"ml", "1n2"}:
+            suffixe += "_" + "-".join(x for x in MARCHES if x in marches)
+    base = f"genere_{du.isoformat()}_{args.selections}sel_cote{args.cible:g}" + ("_soir" if jusqua else "") + suffixe
     with open(os.path.join(args.out, base + ".md"), "w", encoding="utf-8") as fh:
         fh.write("```\n" + txt + "\n```\n")
     for n, s in enumerate(sorties, 1):

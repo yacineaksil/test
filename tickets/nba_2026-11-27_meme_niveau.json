@@ -1,0 +1,72 @@
+{
+ "description": "NBA nuit du 27 au 28/11 — ticket meme_niveau (garde-fou strict ; sans Dallas ni San Antonio : Kyrie et Fox incertains)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 25.539,
+ "probabilite_reelle": 0.02912,
+ "selections": [
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "01:30",
+   "domicile": "Indiana Pacers",
+   "exterieur": "Philadelphia 76ers",
+   "pari": "+229.5",
+   "cote": 1.909
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "01:30",
+   "domicile": "Toronto Raptors",
+   "exterieur": "Brooklyn Nets",
+   "pari": "1",
+   "cote": 1.267
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Boston Celtics",
+   "exterieur": "Atlanta Hawks",
+   "pari": "1",
+   "cote": 1.279
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "02:30",
+   "domicile": "Minnesota Timberwolves",
+   "exterieur": "Memphis Grizzlies",
+   "pari": "1",
+   "cote": 1.645
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "03:00",
+   "domicile": "Phoenix Suns",
+   "exterieur": "Dallas Mavericks",
+   "pari": "+225.5",
+   "cote": 1.909
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "03:30",
+   "domicile": "Utah Jazz",
+   "exterieur": "Denver Nuggets",
+   "pari": "2",
+   "cote": 1.228
+  },
+  {
+   "ligue": "nba",
+   "date": "2026-11-28",
+   "heure": "03:30",
+   "domicile": "LA Clippers",
+   "exterieur": "New Orleans Pelicans",
+   "pari": "2",
+   "cote": 2.14
+  }
+ ]
+}

@@ -162,6 +162,35 @@ perdu. Une soirée ne dit rien de la valeur d'une méthode de ticket.
 - Probabilité au départ ≈ 2,6 % ; les deux sélections perdues étaient les deux plus
   fortes rotations de la soirée.
 
+## 27 novembre 2026 — Passage aux sports américains
+
+### Leçon E — Hockey : le « 1X2 » n'est pas le vainqueur ; ESPN retire les cotes au coup d'envoi
+
+**Constat (données réelles).**
+
+- Dans la nuit du 25 au 26/11, 2 des 14 matchs NHL étaient à égalité après 60 minutes
+  (Islanders-Blues 2-2, Blue Jackets-Devils 2-2), décidés aux tirs au but. « Vainqueur
+  Islanders » (moneyline, prolongation incluse) a gagné, « 1X2. V1 Islanders » (60 minutes, le
+  sens du 1X2 chez les bookmakers européens) a perdu. Même cote affichée, paris différents :
+  sur un match NHL équilibré, le nul après 60 minutes vaut ~23 %.
+- Pour les sports US, le tableau ESPN (`scoreboard`) **retire les cotes dès le coup d'envoi** ; le
+  résumé (`summary` → `pickcenter`) garde les cotes de clôture et ajoute des cotes en direct.
+- Les cotes d'ouverture ne sont pas toujours fiables : NFL ouverte des semaines avant (total
+  Patriots-Chargers 45,5 → 35,5), et handicap d'ouverture de signe inversé sur Knicks-Heat et
+  Spurs-Lakers (Knicks favoris à -198 au moneyline mais +5,5 au handicap).
+
+**Changements.**
+
+- Un « 1X2 », un nul ou une double chance sur un sport US devient un pari « temps
+  réglementaire » (`1 TR`, `N TR`…), réglé sur le score après 60 minutes (somme des périodes
+  réglementaires). Sa probabilité est **estimée** (moneyline + total du marché, Poisson recalé
+  sur ~23 % de nuls en NHL) et l'analyse l'écrit en toutes lettres : ce n'est pas une cote de
+  marché.
+- Matchs en cours ou terminés : cotes de clôture lues dans le `pickcenter` du résumé si la photo
+  d'avant-match manque.
+- Handicap d'ouverture ignoré quand son signe contredit le moneyline d'ouverture ; pour la NFL,
+  le mouvement du marché rappelle que l'ouverture est ancienne.
+
 ## Bilans automatiques
 
 <!-- bilan-auto:2026-11-25 -->

@@ -1,0 +1,45 @@
+{
+ "description": "Ticket généré n°1 (4 sélections, cote ~8.0)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 7.636,
+ "probabilite_reelle": 0.11112,
+ "selections": [
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-27",
+   "heure": "21:30",
+   "domicile": "Hofstra Pride",
+   "exterieur": "Colgate Raiders",
+   "pari": "1",
+   "cote": 1.769
+  },
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-28",
+   "heure": "00:00",
+   "domicile": "Pennsylvania Quakers",
+   "exterieur": "Towson Tigers",
+   "pari": "1",
+   "cote": 1.588
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "18:00",
+   "domicile": "Kentucky Wildcats",
+   "exterieur": "Louisville Cardinals",
+   "pari": "1",
+   "cote": 2.2
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "18:00",
+   "domicile": "Ohio State Buckeyes",
+   "exterieur": "Michigan Wolverines",
+   "pari": "1",
+   "cote": 1.235
+  }
+ ]
+}

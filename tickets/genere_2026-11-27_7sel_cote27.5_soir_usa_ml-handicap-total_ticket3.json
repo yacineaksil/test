@@ -1,0 +1,72 @@
+{
+ "description": "Ticket généré n°3 (7 sélections, cote ~27.5)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 26.498,
+ "probabilite_reelle": 0.02838,
+ "selections": [
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-27",
+   "heure": "21:30",
+   "domicile": "Hofstra Pride",
+   "exterieur": "Colgate Raiders",
+   "pari": "1",
+   "cote": 1.769
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-27",
+   "heure": "22:00",
+   "domicile": "Minnesota Wild",
+   "exterieur": "Colorado Avalanche",
+   "pari": "-6.5",
+   "cote": 1.769
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "01:30",
+   "domicile": "Texas A&M Aggies",
+   "exterieur": "Texas Longhorns",
+   "pari": "2",
+   "cote": 1.22
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Buffalo Sabres",
+   "exterieur": "Pittsburgh Penguins",
+   "pari": "1",
+   "cote": 1.769
+  },
+  {
+   "ligue": "ncaab",
+   "date": "2026-11-28",
+   "heure": "05:30",
+   "domicile": "Texas Tech Red Raiders",
+   "exterieur": "San Diego State Aztecs",
+   "pari": "1",
+   "cote": 1.253
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-29",
+   "heure": "01:00",
+   "domicile": "New York Rangers",
+   "exterieur": "Calgary Flames",
+   "pari": "+5.5",
+   "cote": 1.769
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-29",
+   "heure": "01:00",
+   "domicile": "Pittsburgh Penguins",
+   "exterieur": "Toronto Maple Leafs",
+   "pari": "+6.5",
+   "cote": 1.769
+  }
+ ]
+}
