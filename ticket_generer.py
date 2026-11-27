@@ -230,15 +230,21 @@ def main():
                          "avec --avec-buts)")
     ap.add_argument("--exclure", default=None, help="ticket JSON dont les matchs sont exclus")
     ap.add_argument("--marge-minutes", type=int, default=30, help="exclure les matchs qui commencent avant")
+    ap.add_argument("--max-derive", type=float, default=None,
+                    help="écarter une sélection dont la cote a monté de plus de X depuis l'ouverture "
+                         "(ex. 0.10 = +10 %% : le marché y croit nettement moins)")
     ap.add_argument("--min-titulaires", type=int, default=6,
                     help="compo publiée : écarter un favori qui aligne moins de N titulaires habituels (0 = désactivé)")
     ap.add_argument("--jusqua", default=None,
                     help="dernier coup d'envoi accepté, heure de Paris (ex. 2026-11-28T04:30)")
     ap.add_argument("--sans-actu", action="store_true", help="ne pas lire l'actualité ESPN (plus rapide)")
     ap.add_argument("--top", type=int, default=3, help="nombre de tickets différents proposés (défaut : 3)")
+    ap.add_argument("--demarge", choices=["proportionnelle", "puissance"], default="proportionnelle",
+                    help="retrait de la marge : proportionnelle (défaut) ou puissance (conseillée pour les grosses cotes)")
     ap.add_argument("--comparer", default=None, help="ticket JSON à comparer (probabilité au départ)")
     ap.add_argument("--out", default="tickets", help="dossier des fichiers écrits (défaut : tickets)")
     args = ap.parse_args()
+    pe.METHODE_DEMARGE = args.demarge
 
     du = date.fromisoformat(args.du)
     jusqua = None
@@ -261,6 +267,19 @@ def main():
     exclus = ids_du_ticket(args.exclure)
     matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts, args.min_titulaires, jusqua,
                                    marches) if m["id"] not in exclus]
+    if args.max_derive is not None:
+        ecartees = 0
+        for m in matchs:
+            garde = []
+            for o in m["options"]:
+                ouv = pe.cote_ouverture(o[0], m)
+                if ouv and o[1] > ouv * (1 + args.max_derive):
+                    ecartees += 1
+                    continue
+                garde.append(o)
+            m["options"] = garde
+        print(f"Garde-fou dérive : {ecartees} sélection(s) écartée(s), cote montée de plus de "
+              f"{100 * args.max_derive:.0f} % depuis l'ouverture")
     us = any(pe.est_deux_issues(x) for x in ligues)
     lo, hi = args.cible * args.tol_bas, args.cible * args.tol_haut
 

@@ -1,0 +1,80 @@
+{
+ "description": "Ton ticket B (8 sélections, pas encore joué)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 352.272,
+ "selections": [
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-28",
+   "heure": "14:00",
+   "domicile": "Real Betis",
+   "exterieur": "Rayo Vallecano",
+   "pari": "1X2 (2UP): V1",
+   "cote": 1.559
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-28",
+   "heure": "16:15",
+   "domicile": "Málaga",
+   "exterieur": "Athletic Bilbao",
+   "pari": "Double Chance + Les deux équipes vont marquer: 12 Et Chaque Equipe Va Marquer – Oui",
+   "cote": 2.62
+  },
+  {
+   "ligue": "ger.1",
+   "date": "2026-11-28",
+   "heure": "15:30",
+   "domicile": "Cologne",
+   "exterieur": "Elversberg",
+   "pari": "Double Chance + Les deux équipes vont marquer: 12 Et Chaque Equipe Va Marquer – Oui",
+   "cote": 2.146
+  },
+  {
+   "ligue": "ger.1",
+   "date": "2026-11-28",
+   "heure": "15:30",
+   "domicile": "Paderborn 07",
+   "exterieur": "Schalke 04",
+   "pari": "Double Chance + Les deux équipes vont marquer: 12 Et Chaque Equipe Va Marquer – Oui",
+   "cote": 2.398
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "13:30",
+   "domicile": "Blackburn Rovers",
+   "exterieur": "Charlton Athletic",
+   "pari": "Double Chance + Les deux équipes vont marquer: 12 Et Chaque Equipe Va Marquer – Oui",
+   "cote": 2.61
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "13:30",
+   "domicile": "Preston North End",
+   "exterieur": "Norwich City",
+   "pari": "Double Chance + Les deux équipes vont marquer: 12 Et Chaque Equipe Va Marquer – Oui",
+   "cote": 2.2
+  },
+  {
+   "ligue": "ksa.1",
+   "date": "2026-11-28",
+   "heure": "13:15",
+   "domicile": "Al Hazem",
+   "exterieur": "Al Nassr",
+   "pari": "Double Chance + Les deux équipes vont marquer: 12 Et Chaque Equipe Va Marquer – Oui",
+   "cote": 2.07
+  },
+  {
+   "ligue": "ger.2",
+   "date": "2026-11-28",
+   "heure": "13:00",
+   "domicile": "Hertha BSC",
+   "exterieur": "Karlsruher",
+   "pari": "1X2: V1",
+   "cote": 1.41
+  }
+ ]
+}

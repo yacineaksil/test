@@ -572,35 +572,55 @@ def code_hcp(cote, ligne):
     return f"{cote} {fmt_ligne(ligne)}"
 
 
+# Retrait de la marge : « proportionnelle » (défaut historique) ou « puissance »
+# (p_i = (1/cote_i)^k avec k tel que la somme fasse 1). La méthode puissance
+# reporte davantage de marge sur les outsiders (biais favori-outsider des
+# bookmakers) : à privilégier pour les grosses cotes.
+METHODE_DEMARGE = "proportionnelle"
+
+
+def _demarge(inv):
+    s = sum(inv)
+    if METHODE_DEMARGE != "puissance" or s <= 1:
+        return [x / s for x in inv]
+    lo, hi = 1.0, 4.0
+    for _ in range(60):
+        k = (lo + hi) / 2
+        if sum(x ** k for x in inv) > 1:
+            lo = k
+        else:
+            hi = k
+    k = (lo + hi) / 2
+    q = [x ** k for x in inv]
+    t = sum(q)
+    return [x / t for x in q]
+
+
 def probas_marche(cotes):
     """Probabilités « réelles » : cotes du marché, marge retirée."""
     p = {}
     if cotes and (cotes.get("deux_issues") or ("1" in cotes and "N" not in cotes)):
         if "1" in cotes and "2" in cotes:
             a, b = 1 / cotes["1"], 1 / cotes["2"]
-            p["1"], p["2"] = a / (a + b), b / (a + b)
+            p["1"], p["2"] = _demarge([a, b])
             p["marge_ml"] = a + b - 1
         h = cotes.get("hcp")
         if h:
             a, b = 1 / h["1"], 1 / h["2"]
-            p[code_hcp("1", h["ligne"])] = a / (a + b)
-            p[code_hcp("2", -h["ligne"])] = b / (a + b)
+            p[code_hcp("1", h["ligne"])], p[code_hcp("2", -h["ligne"])] = _demarge([a, b])
         if "ligne" in cotes:
             a, b = 1 / cotes["plus"], 1 / cotes["moins"]
-            p[f"+{cotes['ligne']}"] = a / (a + b)
-            p[f"-{cotes['ligne']}"] = b / (a + b)
+            p[f"+{cotes['ligne']}"], p[f"-{cotes['ligne']}"] = _demarge([a, b])
         return p
     if cotes and "1" in cotes:
         inv = [1 / cotes["1"], 1 / cotes["N"], 1 / cotes["2"]]
         s = sum(inv)
-        p["1"], p["N"], p["2"] = inv[0] / s, inv[1] / s, inv[2] / s
+        p["1"], p["N"], p["2"] = _demarge(inv)
         p["1N"], p["N2"], p["12"] = p["1"] + p["N"], p["N"] + p["2"], p["1"] + p["2"]
         p["marge_1n2"] = s - 1
     if cotes and "ligne" in cotes:
         a, b = 1 / cotes["plus"], 1 / cotes["moins"]
-        s = a + b
-        p[f"+{cotes['ligne']}"] = a / s
-        p[f"-{cotes['ligne']}"] = b / s
+        p[f"+{cotes['ligne']}"], p[f"-{cotes['ligne']}"] = _demarge([a, b])
     return p
 
 

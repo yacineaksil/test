@@ -1,0 +1,63 @@
+{
+ "description": "Ticket généré n°1 (6 sélections, cote ~300.0)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 294.946,
+ "probabilite_reelle": 0.00249,
+ "selections": [
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "16:00",
+   "domicile": "Derby County",
+   "exterieur": "Watford",
+   "pari": "1",
+   "cote": 2.25
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "16:00",
+   "domicile": "Queens Park Rangers",
+   "exterieur": "Sheffield United",
+   "pari": "1",
+   "cote": 2.05
+  },
+  {
+   "ligue": "eng.3",
+   "date": "2026-11-28",
+   "heure": "16:00",
+   "domicile": "Bromley",
+   "exterieur": "Burton Albion",
+   "pari": "2",
+   "cote": 2.9
+  },
+  {
+   "ligue": "bel.1",
+   "date": "2026-11-28",
+   "heure": "20:45",
+   "domicile": "Lommel SK",
+   "exterieur": "Zulte-Waregem",
+   "pari": "2",
+   "cote": 2.45
+  },
+  {
+   "ligue": "ned.1",
+   "date": "2026-11-28",
+   "heure": "21:00",
+   "domicile": "SC Cambuur",
+   "exterieur": "Sparta Rotterdam",
+   "pari": "2",
+   "cote": 3.0
+  },
+  {
+   "ligue": "arg.1",
+   "date": "2026-11-29",
+   "heure": "02:00",
+   "domicile": "Instituto (Córdoba)",
+   "exterieur": "River Plate",
+   "pari": "N",
+   "cote": 3.0
+  }
+ ]
+}
