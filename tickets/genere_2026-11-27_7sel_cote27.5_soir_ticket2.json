@@ -1,0 +1,72 @@
+{
+ "description": "Ticket généré n°2 (7 sélections, cote ~27.5)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 26.136,
+ "probabilite_reelle": 0.02523,
+ "selections": [
+  {
+   "ligue": "ned.1",
+   "date": "2026-11-27",
+   "heure": "20:00",
+   "domicile": "FC Groningen",
+   "exterieur": "Willem II",
+   "pari": "1",
+   "cote": 1.27
+  },
+  {
+   "ligue": "esp.2",
+   "date": "2026-11-27",
+   "heure": "20:30",
+   "domicile": "Leganés",
+   "exterieur": "CD Sabadell",
+   "pari": "-2.5",
+   "cote": 1.571
+  },
+  {
+   "ligue": "ita.1",
+   "date": "2026-11-27",
+   "heure": "20:45",
+   "domicile": "Venezia",
+   "exterieur": "Bologna",
+   "pari": "-2.5",
+   "cote": 1.741
+  },
+  {
+   "ligue": "bel.1",
+   "date": "2026-11-27",
+   "heure": "20:45",
+   "domicile": "OH Leuven",
+   "exterieur": "KV Kortrijk",
+   "pari": "+2.5",
+   "cote": 1.667
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Southampton",
+   "exterieur": "Middlesbrough",
+   "pari": "-3.5",
+   "cote": 1.588
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Levante",
+   "exterieur": "Racing Santander",
+   "pari": "-3.5",
+   "cote": 1.769
+  },
+  {
+   "ligue": "usa.1",
+   "date": "2026-11-28",
+   "heure": "04:00",
+   "domicile": "Real Salt Lake",
+   "exterieur": "Vancouver Whitecaps",
+   "pari": "+2.5",
+   "cote": 1.606
+  }
+ ]
+}

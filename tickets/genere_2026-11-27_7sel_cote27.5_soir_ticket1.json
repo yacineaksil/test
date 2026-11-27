@@ -1,0 +1,72 @@
+{
+ "description": "Ticket généré n°1 (7 sélections, cote ~27.5)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 26.231,
+ "probabilite_reelle": 0.02527,
+ "selections": [
+  {
+   "ligue": "ned.1",
+   "date": "2026-11-27",
+   "heure": "20:00",
+   "domicile": "FC Groningen",
+   "exterieur": "Willem II",
+   "pari": "1",
+   "cote": 1.27
+  },
+  {
+   "ligue": "ger.1",
+   "date": "2026-11-27",
+   "heure": "20:30",
+   "domicile": "Werder Bremen",
+   "exterieur": "Borussia Mönchengladbach",
+   "pari": "-3.5",
+   "cote": 1.588
+  },
+  {
+   "ligue": "esp.2",
+   "date": "2026-11-27",
+   "heure": "20:30",
+   "domicile": "Leganés",
+   "exterieur": "CD Sabadell",
+   "pari": "-2.5",
+   "cote": 1.571
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Southampton",
+   "exterieur": "Middlesbrough",
+   "pari": "-3.5",
+   "cote": 1.588
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Levante",
+   "exterieur": "Racing Santander",
+   "pari": "-3.5",
+   "cote": 1.769
+  },
+  {
+   "ligue": "usa.1",
+   "date": "2026-11-28",
+   "heure": "02:00",
+   "domicile": "Columbus Crew",
+   "exterieur": "Inter Miami CF",
+   "pari": "-3.5",
+   "cote": 1.833
+  },
+  {
+   "ligue": "usa.1",
+   "date": "2026-11-28",
+   "heure": "04:00",
+   "domicile": "Real Salt Lake",
+   "exterieur": "Vancouver Whitecaps",
+   "pari": "+2.5",
+   "cote": 1.606
+  }
+ ]
+}

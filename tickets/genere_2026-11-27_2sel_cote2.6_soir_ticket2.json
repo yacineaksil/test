@@ -1,0 +1,27 @@
+{
+ "description": "Ticket généré n°2 (2 sélections, cote ~2.6)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 2.496,
+ "probabilite_reelle": 0.35451,
+ "selections": [
+  {
+   "ligue": "esp.2",
+   "date": "2026-11-27",
+   "heure": "20:30",
+   "domicile": "Leganés",
+   "exterieur": "CD Sabadell",
+   "pari": "-2.5",
+   "cote": 1.571
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Southampton",
+   "exterieur": "Middlesbrough",
+   "pari": "-3.5",
+   "cote": 1.588
+  }
+ ]
+}

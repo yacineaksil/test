@@ -1,0 +1,27 @@
+{
+ "description": "Ticket généré n°1 (2 sélections, cote ~2.6)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 2.48,
+ "probabilite_reelle": 0.36129,
+ "selections": [
+  {
+   "ligue": "ned.1",
+   "date": "2026-11-27",
+   "heure": "20:00",
+   "domicile": "FC Groningen",
+   "exterieur": "Willem II",
+   "pari": "1",
+   "cote": 1.27
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Levante",
+   "exterieur": "Racing Santander",
+   "pari": "1",
+   "cote": 1.952
+  }
+ ]
+}

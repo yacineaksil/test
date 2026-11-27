@@ -23,7 +23,7 @@ import paris_espn as pe
 import ticket_analyse as ta
 
 
-def collecter(ligues, du, au, marge_minutes, avec_buts, min_titulaires=0):
+def collecter(ligues, du, au, marge_minutes, avec_buts, min_titulaires=0, jusqua=None):
     maintenant = pe.maintenant_utc()
     matchs, vus = [], set()
     for ligue in ligues:
@@ -35,6 +35,8 @@ def collecter(ligues, du, au, marge_minutes, avec_buts, min_titulaires=0):
                 vus.add(e["id"])
                 m = pe.match_depuis_event(e, ligue)
                 if not (du <= m["debut_paris"].date() <= au):
+                    continue
+                if jusqua is not None and m["debut_paris"] > jusqua:
                     continue
                 if m["etat"] != "pre" or not m["cotes"] or "1" not in m["cotes"]:
                     continue
@@ -179,6 +181,8 @@ def main():
     ap.add_argument("--marge-minutes", type=int, default=30, help="exclure les matchs qui commencent avant")
     ap.add_argument("--min-titulaires", type=int, default=6,
                     help="compo publiée : écarter un favori qui aligne moins de N titulaires habituels (0 = désactivé)")
+    ap.add_argument("--jusqua", default=None,
+                    help="dernier coup d'envoi accepté, heure de Paris (ex. 2026-11-28T04:30)")
     ap.add_argument("--sans-actu", action="store_true")
     ap.add_argument("--top", type=int, default=3)
     ap.add_argument("--comparer", default=None, help="ticket JSON à comparer (probabilité au départ)")
@@ -186,10 +190,15 @@ def main():
     args = ap.parse_args()
 
     du = date.fromisoformat(args.du)
+    jusqua = None
+    if args.jusqua:
+        from datetime import datetime
+        tz = pe.vers_paris(pe.maintenant_utc()).tzinfo
+        jusqua = datetime.fromisoformat(args.jusqua).replace(tzinfo=tz)
     au = date.fromisoformat(args.au) if args.au else du + timedelta(days=4)
     ligues = [x.strip() for x in args.ligues.split(",") if x.strip()]
     exclus = ids_du_ticket(args.exclure)
-    matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts, args.min_titulaires) if m["id"] not in exclus]
+    matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts, args.min_titulaires, jusqua) if m["id"] not in exclus]
     lo, hi = args.cible * args.tol_bas, args.cible * args.tol_haut
 
     L = []
@@ -242,7 +251,7 @@ def main():
     txt = "\n".join(L)
     print(txt)
     os.makedirs(args.out, exist_ok=True)
-    base = f"genere_{du.isoformat()}_{args.selections}sel_cote{args.cible:g}"
+    base = f"genere_{du.isoformat()}_{args.selections}sel_cote{args.cible:g}" + ("_soir" if jusqua else "")
     with open(os.path.join(args.out, base + ".md"), "w", encoding="utf-8") as fh:
         fh.write("```\n" + txt + "\n```\n")
     for n, s in enumerate(sorties, 1):

@@ -37,6 +37,26 @@ LIGUES = {
     "bel.1": "Pro League (Belgique)",
     "tur.1": "Süper Lig",
     "sco.1": "Premiership (Écosse)",
+    # deuxièmes divisions et autres championnats européens
+    "eng.3": "League One",
+    "esp.2": "Liga 2",
+    "ita.2": "Serie B",
+    "ger.2": "2. Bundesliga",
+    "fra.2": "Ligue 2",
+    "gre.1": "Super League (Grèce)",
+    "aut.1": "Bundesliga (Autriche)",
+    "sui.1": "Super League (Suisse)",
+    "den.1": "Superliga (Danemark)",
+    # reste du monde
+    "usa.1": "MLS",
+    "mex.1": "Liga MX",
+    "bra.1": "Brasileirão",
+    "arg.1": "Liga Profesional (Argentine)",
+    "col.1": "Primera A (Colombie)",
+    "chi.1": "Primera División (Chili)",
+    "ksa.1": "Saudi Pro League",
+    "jpn.1": "J1 League",
+    "aus.1": "A-League",
 }
 
 # Marge supposée quand aucune cote de marché n'est publiée (on retire ~6 %)

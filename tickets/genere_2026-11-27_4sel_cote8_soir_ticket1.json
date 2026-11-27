@@ -1,0 +1,45 @@
+{
+ "description": "Ticket généré n°1 (4 sélections, cote ~8.0)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 7.674,
+ "probabilite_reelle": 0.10496,
+ "selections": [
+  {
+   "ligue": "ned.1",
+   "date": "2026-11-27",
+   "heure": "20:00",
+   "domicile": "FC Groningen",
+   "exterieur": "Willem II",
+   "pari": "1",
+   "cote": 1.27
+  },
+  {
+   "ligue": "fra.1",
+   "date": "2026-11-27",
+   "heure": "20:45",
+   "domicile": "Brest",
+   "exterieur": "Paris FC",
+   "pari": "2",
+   "cote": 2.15
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Southampton",
+   "exterieur": "Middlesbrough",
+   "pari": "-3.5",
+   "cote": 1.588
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-27",
+   "heure": "21:00",
+   "domicile": "Levante",
+   "exterieur": "Racing Santander",
+   "pari": "-3.5",
+   "cote": 1.769
+  }
+ ]
+}
