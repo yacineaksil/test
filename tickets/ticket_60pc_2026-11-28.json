@@ -1,0 +1,135 @@
+{
+ "description": "Ticket ~300 avec uniquement des sélections à plus de 60 % (14 sélections, sam. 28 – dim. 29/11)",
+ "mise": null,
+ "devise": null,
+ "cote_totale": 295.3,
+ "probabilite_reelle": 0.00237,
+ "selections": [
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "13:30",
+   "domicile": "Lincoln City",
+   "exterieur": "Wolverhampton Wanderers",
+   "pari": "2",
+   "cote": 1.556
+  },
+  {
+   "ligue": "eng.1",
+   "date": "2026-11-28",
+   "heure": "16:00",
+   "domicile": "Leeds United",
+   "exterieur": "Coventry City",
+   "pari": "1",
+   "cote": 1.488
+  },
+  {
+   "ligue": "eng.2",
+   "date": "2026-11-28",
+   "heure": "16:00",
+   "domicile": "Birmingham City",
+   "exterieur": "Bolton Wanderers",
+   "pari": "1",
+   "cote": 1.488
+  },
+  {
+   "ligue": "eng.3",
+   "date": "2026-11-28",
+   "heure": "16:00",
+   "domicile": "Leicester City",
+   "exterieur": "Mansfield Town",
+   "pari": "1",
+   "cote": 1.5
+  },
+  {
+   "ligue": "eng.3",
+   "date": "2026-11-28",
+   "heure": "16:00",
+   "domicile": "Stockport County",
+   "exterieur": "Leyton Orient",
+   "pari": "1",
+   "cote": 1.408
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "18:00",
+   "domicile": "Wyoming Cowboys",
+   "exterieur": "UConn Huskies",
+   "pari": "2",
+   "cote": 1.588
+  },
+  {
+   "ligue": "esp.1",
+   "date": "2026-11-28",
+   "heure": "18:30",
+   "domicile": "Elche",
+   "exterieur": "Atlético Madrid",
+   "pari": "2",
+   "cote": 1.465
+  },
+  {
+   "ligue": "ksa.1",
+   "date": "2026-11-28",
+   "heure": "18:30",
+   "domicile": "Al Ahli",
+   "exterieur": "Al Taawoun",
+   "pari": "1",
+   "cote": 1.426
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-28",
+   "heure": "19:00",
+   "domicile": "Western Kentucky Hilltoppers",
+   "exterieur": "Kennesaw State Owls",
+   "pari": "2",
+   "cote": 1.588
+  },
+  {
+   "ligue": "ncaaf",
+   "date": "2026-11-29",
+   "heure": "03:00",
+   "domicile": "UNLV Rebels",
+   "exterieur": "Nevada Wolf Pack",
+   "pari": "1",
+   "cote": 1.444
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-29",
+   "heure": "03:00",
+   "domicile": "Colorado Avalanche",
+   "exterieur": "San Jose Sharks",
+   "pari": "1",
+   "cote": 1.36
+  },
+  {
+   "ligue": "nhl",
+   "date": "2026-11-29",
+   "heure": "04:00",
+   "domicile": "Seattle Kraken",
+   "exterieur": "Edmonton Oilers",
+   "pari": "2",
+   "cote": 1.588
+  },
+  {
+   "ligue": "aut.1",
+   "date": "2026-11-29",
+   "heure": "14:30",
+   "domicile": "SK Sturm Graz",
+   "exterieur": "WSG Swarovski Tirol",
+   "pari": "1",
+   "cote": 1.588
+  },
+  {
+   "ligue": "eng.1",
+   "date": "2026-11-29",
+   "heure": "15:05",
+   "domicile": "Brighton & Hove Albion",
+   "exterieur": "Newcastle United",
+   "pari": "1",
+   "cote": 1.556
+  }
+ ]
+}

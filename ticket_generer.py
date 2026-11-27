@@ -230,6 +230,8 @@ def main():
                          "avec --avec-buts)")
     ap.add_argument("--exclure", default=None, help="ticket JSON dont les matchs sont exclus")
     ap.add_argument("--marge-minutes", type=int, default=30, help="exclure les matchs qui commencent avant")
+    ap.add_argument("--proba-min", type=float, default=None,
+                    help="garder seulement les sélections dont la probabilité réelle dépasse ce seuil (ex. 0.60)")
     ap.add_argument("--max-derive", type=float, default=None,
                     help="écarter une sélection dont la cote a monté de plus de X depuis l'ouverture "
                          "(ex. 0.10 = +10 %% : le marché y croit nettement moins)")
@@ -267,6 +269,11 @@ def main():
     exclus = ids_du_ticket(args.exclure)
     matchs = [m for m in collecter(ligues, du, au, args.marge_minutes, args.avec_buts, args.min_titulaires, jusqua,
                                    marches) if m["id"] not in exclus]
+    if args.proba_min is not None:
+        for m in matchs:
+            m["options"] = [o for o in m["options"] if o[2] >= args.proba_min]
+        n_ok = sum(len(m["options"]) for m in matchs)
+        print(f"Filtre probabilité : seulement les sélections à plus de {100 * args.proba_min:.0f} % ({n_ok} disponibles)")
     if args.max_derive is not None:
         ecartees = 0
         for m in matchs:
