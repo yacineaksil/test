@@ -670,11 +670,14 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("ticket", help="fichier JSON du ticket (voir tickets/)")
     ap.add_argument("--sans-actu", action="store_true", help="ne pas lire l'actualité ESPN")
+    ap.add_argument("--demarge", choices=["proportionnelle", "puissance"], default="proportionnelle",
+                    help="retrait de la marge (même option que ticket_generer.py)")
     ap.add_argument("--mise", type=float, default=None,
                     help="mise (non enregistrée dans le dépôt, qui est public)")
     ap.add_argument("--gains", type=float, default=None, help="gains potentiels affichés par le bookmaker")
     ap.add_argument("--devise", default=None, help="devise des montants (ex. EUR, DZD)")
     args = ap.parse_args()
+    pe.METHODE_DEMARGE = args.demarge
     with open(args.ticket, encoding="utf-8") as fh:
         ticket = json.load(fh)
     if args.mise is not None:
