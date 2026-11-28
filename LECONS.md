@@ -191,6 +191,38 @@ perdu. Une soirée ne dit rien de la valeur d'une méthode de ticket.
 - Handicap d'ouverture ignoré quand son signe contredit le moneyline d'ouverture ; pour la NFL,
   le mouvement du marché rappelle que l'ouverture est ancienne.
 
+## 28 novembre 2026 — Première nuit NBA (tickets du 27/11)
+
+Résultats : ticket prudent ✅ (cote 2,31 : plus de 219,5 points Grizzlies–Wolves, victoire de Denver),
+ticket intermédiaire ❌ (1/4), ticket « même niveau » ❌ (3/7).
+
+### Leçon F — NBA : « incertain » (Day-To-Day) n'est pas « absent »
+| Équipe écartée par le garde-fou strict | Joueur incertain | Résultat de l'équipe |
+|---|---|---|
+| Knicks | Towns (a joué) | ❌ perdu 105-108 |
+| Heat | Giannis (a joué) | ✅ gagné 108-105 |
+| 76ers | Embiid | ✅ gagné 111-87 |
+| Mavericks | Kyrie Irving | ✅ gagné 113-109 |
+| Spurs | De'Aaron Fox | ✅ gagné 99-96 |
+
+- 4 équipes écartées sur 5 ont gagné : exclure d'office une équipe dont une star est « Day-To-Day » était
+  trop prudent. Le marché intègre déjà la probabilité qu'elle joue.
+- À faire : en NBA, attendre le statut officiel (~30 min avant le match) et n'écarter que si la star est
+  déclarée **absente** après la publication de la cote. (Le garde-fou « coupe d'Europe / rotation » du
+  football reste valable : ce n'est pas le même mécanisme.)
+
+### Leçon G — Le mouvement de la ligne de points est un signal
+- Les deux paris « plus de points » dont la ligne avait baissé avant le match ont perdu :
+  76ers–Pacers (234,5 → 228,5 ; total réel 198) et Mavericks–Suns (227,5 → 225,5 ; total 222).
+- Le « plus de 219,5 » de Grizzlies–Wolves (ligne 223,5 → 220,5) est passé de justesse (223).
+- Règle : ne pas garder un pari « plus/moins » dont la ligne a bougé de 2 points ou plus contre lui ;
+  le recalculer sur la nouvelle ligne.
+- Une seule nuit : à confirmer.
+
+### Rappel variance
+- Boston, favori à 76 %, a perdu 86-87 à domicile contre Atlanta : même un favori à 3 contre 1 perd 1 fois sur 4.
+- Le ticket à 2 sélections (39 %) est passé ; ceux à 4 et 7 sélections non, conformément aux probabilités.
+
 ## Bilans automatiques
 
 <!-- bilan-auto:2026-11-25 -->
