@@ -223,6 +223,18 @@ ticket intermédiaire ❌ (1/4), ticket « même niveau » ❌ (3/7).
 - Boston, favori à 76 %, a perdu 86-87 à domicile contre Atlanta : même un favori à 3 contre 1 perd 1 fois sur 4.
 - Le ticket à 2 sélections (39 %) est passé ; ceux à 4 et 7 sélections non, conformément aux probabilités.
 
+## 28 novembre 2026 — Lincoln 0-0 Wolves
+
+- Ticket du 25/11 : bilan final 4 sélections gagnées sur 7 (Inter, West Brom, Midtjylland, Atalanta) ;
+  perdues : Getafe et Copenhague (fortes rotations, leçon D) puis Wolves (0-0 à Lincoln).
+- Ticket « 60 % » (14 sélections, cote 295) : perdu dès la 1re sélection, Wolves (64 %, nul 0-0).
+- Signal à retenir : l'agent « red flags » avait classé ce match en alerte MINEURE pour « effet intérim »
+  (Lincoln venait de limoger ses entraîneurs, 5 défaites de suite). Une équipe en crise avec un entraîneur
+  par intérim peut réagir le match suivant. Un seul cas : à suivre (noter à chaque fois « nouvel
+  entraîneur / intérim » et le résultat).
+- Rappel : une sélection à 64 % échoue 1 fois sur 3 ; un ticket de 14 sélections à ~63 % ne passe
+  qu'environ 1 fois sur 390, et la plupart du temps il tombe dès les premières sélections.
+
 ## Bilans automatiques
 
 <!-- bilan-auto:2026-11-25 -->
