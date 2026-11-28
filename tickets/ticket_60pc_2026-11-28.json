@@ -1,8 +1,8 @@
 {
- "description": "Ticket ~300 avec uniquement des sélections à plus de 60 % (14 sélections, sam. 28 – dim. 29/11)",
+ "description": "Ticket ~295, uniquement des sélections à plus de 60 % (14 sélections, sam. 28 – dim. 29/11) — Sturm Graz remplacé par Magdeburg",
  "mise": null,
  "devise": null,
- "cote_totale": 295.3,
+ "cote_totale": 295.38,
  "probabilite_reelle": 0.00237,
  "selections": [
   {
@@ -114,13 +114,14 @@
    "cote": 1.588
   },
   {
-   "ligue": "aut.1",
+   "ligue": "ger.2",
    "date": "2026-11-29",
-   "heure": "14:30",
-   "domicile": "SK Sturm Graz",
-   "exterieur": "WSG Swarovski Tirol",
+   "heure": "13:30",
+   "domicile": "1. FC Magdeburg",
+   "exterieur": "Energie Cottbus",
    "pari": "1",
-   "cote": 1.588
+   "cote": 1.588,
+   "note": "remplace Sturm Graz – WSG Tirol (alerte majeure : 4 défaites de suite, entraîneur sous pression, blessés, neige)"
   },
   {
    "ligue": "eng.1",
